@@ -1,0 +1,97 @@
+body{
+    background-color: #e49c9c26;
+    margin-top: 10px;
+    font-family: "Inter", Helvetica;
+}
+.form-container {
+    width: 40%;
+    margin:auto;
+    padding: 20px;
+    background-color: #e49c9c26;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-container .form-name{
+    text-align: center;
+}
+.form-group{
+    /* background-color: aqua; */
+    margin: 10px auto;
+    padding: 2px 2px;
+    width: 90%;
+    display: inline-block;
+}
+.form-group input,select{
+    /* background-color:bisque; */
+    float:right;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    margin:auto;
+    width: 70%;
+    height: 3em
+}
+.form-group textarea{
+    margin:auto;
+    float:right;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    margin:auto;
+    width: 70%;
+    overflow: hidden;
+}
+.image-button-container{
+    margin: 0px auto;
+    padding: 2px 2px;
+    width: 90%;
+    display: inline-block;
+}
+.image-button-container input{
+    float: right;
+}
+
+
+
+.form-group .MuiFormControl-root{
+    margin:auto;
+    float:right;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    resize: none;
+    margin:auto;
+    width: 70%;
+}
+.form-group  .MuiInputBase-input {
+    width: 100%;
+}
+.submit-button-container{
+    display: inline-block;  
+    margin:0 40%;
+}
+.provider{
+    position:relative;
+}
+.provider button{
+    position: absolute;
+    right: 3px; 
+    top: 3px;
+    bottom: 3px;
+    border: 0;
+    color: black;
+    outline: none;
+    margin: auto;
+    padding: 3px 10px;
+    z-index: 2;
+    background-color: rgb(21, 179, 0);
+    border-radius: 4px;
+}
+
+
+
+
+    
