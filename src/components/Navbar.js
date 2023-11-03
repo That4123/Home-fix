@@ -9,6 +9,7 @@ function Navbar() {
             </Link>
             <Link to="/SendInformation">SendInformation</Link>
             <Link to="/RequestQueue">RequestQueue</Link>
+            <Link to="/FixQueue">FixQueue</Link>
         </div>
         <div className='rightSide'></div>
     </div>
