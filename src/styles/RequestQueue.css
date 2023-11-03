@@ -1,0 +1,32 @@
+  .allRequest-container {
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .allRequest-container h2 {
+    text-align: center;
+  }
+  
+  .request-container {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    height: fit-content;
+  }
+  
+  .request-id {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-decoration: none ;
+  }
+  
+  .request-status {
+    color: #28a745;
+    text-decoration: none ;
+  }
+  .request-link{
+    text-decoration: none ;
+  }
