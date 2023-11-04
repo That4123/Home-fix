@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,700&display=swap');
+
+
+.background {
+    text-align: center;
+    background-color: #e6dada;
+    width: 100vw;
+    height: 100vh;
+    color: black;
+    font-family: 'Nunito Sans', sans-serif;
+    
+  }
+.background-white {
+    text-align: center;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    color: black;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 22px;
+}
+
+.background-white h1{
+    font-size: 30px;
+}
+
+
+
+
+
+
+.user-info-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    
+}
+.user-info{
+    display: flex;
+    flex-direction: column;
+    background-color: #D9D9D9;
+    border-radius: 30px;
+    text-align: left;
+    padding: 30px;
+    color: black;
+    flex-basis: 0;
+    flex-grow: 1;
+    margin: 40px;
+}
+.communicate-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.communicate-note{
+    margin: 30px;
+    margin-right: 40px;
+    flex-basis: 75%;
+}
+.communicate-btn button{
+    margin: 20px;
+    border-radius: 45px;
+    background-color: #DE6060;
+    color: black;
+    padding: 10px 20px;
+    border: none
+}
+.form-confirm{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    margin: 40px;
+    align-items: flex-start;
+    row-gap: 15px;
+}
+
+.form-confirm-date-time{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    width: 40%;
+}
+
+.form-confirm-price{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    width: 50%;
+}
+
+.form-confirm input{
+    border: none;
+    background-color: #D9D9D9;
+}
+
+.submit-area {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 70%
+}
+
+.submit-area button{
+    margin: 20px;
+    border-radius: 45px;
+    background-color: #3FCE1B;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    margin-top: 0 !important;
+}
+.box{
+        position: 'absolute';
+        top: '50%';
+        left: '50%';
+        transform: 'translate(-50%, -50%)';
+        width: 400;
+        background-color: 'background.paper';
+        border: '2px solid #000';
+        box-shadow: 24;
+        
+}
