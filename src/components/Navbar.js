@@ -7,6 +7,7 @@ function Navbar() {
     ["/SendInformation", "Send request"],
     ["/RequestQueue", "My request"],
     ["/FixQueue", "Fix requests"],
+    ["/SendRequest", "Fixing"],
   ];
   return (
     <nav
