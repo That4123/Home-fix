@@ -54,10 +54,7 @@ const InformationForm = () => {
           />
         </div>
         <PositionForm formData={formData} handleChange={handleChange}></PositionForm>
-        <MeetingTimeSchedule
-          formData={formData}
-          handleChange={handleMeetingTimeSchedule}
-        />
+        <MeetingTimeSchedule formData={formData} handleChange={handleMeetingTimeSchedule} />
         <ProviderForm formData={formData} handleChange={handleChange} />
         <div className="submit-button-container">
           <button type="submit">Xác nhận</button>

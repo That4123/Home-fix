@@ -1,6 +1,6 @@
 
 .informationForm-container {
-    width: 60%;
+    width: 50%;
     margin:auto;
     padding: 20px;
     background-color: #e49c9c26;
@@ -25,7 +25,7 @@
     background-color: #f8f8f8;
     resize: none;
     margin:auto;
-    width: 70%;
+    width: 80%;
     height: 3em
 }
 .informationForm-container .informationForm-group textarea{
@@ -37,7 +37,7 @@
     background-color: #f8f8f8;
     resize: none;
     margin:auto;
-    width: 70%;
+    width: 80%;
     overflow: hidden;
 }
 .image-button-container{
@@ -59,7 +59,7 @@
     background-color: #f8f8f8;
     resize: none;
     margin:auto;
-    width: 70%;
+    width: 80%;
 }
 .informationForm-container .informationForm-group  .MuiInputBase-input {
     width: 100%;

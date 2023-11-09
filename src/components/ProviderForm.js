@@ -53,7 +53,7 @@ export const ProviderForm= ({ formData, handleChange })=> {
     return (
         <div className="informationForm-group providerForm">
             <label>Nhà sửa chữa </label>
-            <input className="providerName"
+            <input className="providerName" disabled
             type="text"
             name="provider"
             value={formData.provider}
