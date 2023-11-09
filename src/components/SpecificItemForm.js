@@ -2,7 +2,7 @@ import React from "react";
 
 export const SpecificItemForm= ({ formData, handleChange })=> {
     return (
-        <div className="form-group">
+        <div className="informationForm-group">
             <label>Tên vật dụng</label>
             <input
                 type="text"

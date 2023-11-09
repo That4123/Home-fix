@@ -6,7 +6,7 @@ import { SingleInputDateTimeRangeField } from '@mui/x-date-pickers-pro';
 export const MeetingTimeSchedule= ({ formData, handleChange })=> {
 
     return (
-        <div className="form-group">
+        <div className="informationForm-group">
             <label >
                 Thời gian
                 <LocalizationProvider dateAdapter={AdapterDayjs}  >
