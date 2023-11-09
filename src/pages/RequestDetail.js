@@ -7,7 +7,7 @@ import { DescriptionForm } from "../components/DescriptionForm";
 import dayjs from "dayjs";
 import { MeetingTimeSchedule } from "../components/MeetingTimeScheduleForm";
 import { ProviderForm } from "../components/ProviderForm";
-
+import { PositionForm } from '../components/PositionForm';
 function RequestDetails() {
   const { requestId } = useParams(); // Get the request ID from the URL params
 
@@ -31,8 +31,8 @@ function RequestDetails() {
 
   // Render the request details
   return (
-    <div className="form-container">
-        <h2 className="form-name">Phiếu yêu cầu sửa chữa số {requestData.ID}</h2>
+    <div className="informationForm-container">
+        <h2 className="informationForm-name">Phiếu yêu cầu sửa chữa số {requestData.ID}</h2>
       <form aria-readonly >
         <ItemTypeForm formData={requestData}  />
         <SpecificItemForm formData={requestData}  />
@@ -40,16 +40,7 @@ function RequestDetails() {
         <div className="image-button-container">
             <input name="imageDescription"  type="file" multiple/>
         </div>
-        <div className="form-group">
-          <label>Vị trí
-            <input 
-              type="text"
-              name="position"
-              value={requestData.position}
-              placeholder="vị trí"
-            />
-          </label>
-        </div>
+        <PositionForm formData={requestData} ></PositionForm>
         <MeetingTimeSchedule formData={requestData} />
         <ProviderForm formData={requestData} />
         <div className="submit-button-container">

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import "../styles/SendInformation.css";
 import { ItemTypeForm } from "../components/ItemTypeForm";
 import { SpecificItemForm } from "../components/SpecificItemForm";
 import { DescriptionForm } from "../components/DescriptionForm";
 import dayjs from "dayjs";
 import { MeetingTimeSchedule } from "../components/MeetingTimeScheduleForm";
 import { ProviderForm } from "../components/ProviderForm";
+import "../styles/SendInformation.css";
+import { PositionForm } from "../components/PositionForm";
 // import {ItemTypeForm,SpecificItemForm} from "../components";
 
 const InformationForm = () => {
@@ -38,31 +39,8 @@ const InformationForm = () => {
   };
 
   return (
-    // <div className="container mt-5 p-5 border border-2 rounded-0">
-    //   <div className="row">
-    //     <div className="col-8 offset-2">
-    //       <div className="mb-3">
-    //         <label for="basic-url" className="form-label">
-    //           Loại vật dụng:
-    //         </label>
-    //         <div className="input-group">
-    //           <input
-    //             type="text"
-    //             className="form-control"
-    //             id="basic-url"
-    //             aria-describedby="basic-addon3 basic-addon4"
-    //           />
-    //         </div>
-    //         <div className="form-text" id="basic-addon4">
-    //           Example help text goes outside the input group.
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-    //--------------------------
-    <div className="form-container">
-      <h2 className="form-name">Phiếu yêu cầu sửa chữa</h2>
+    <div className="informationForm-container">
+      <h2 className="informationForm-name">Phiếu yêu cầu sửa chữa</h2>
       <form onSubmit={handleSubmit}>
         <ItemTypeForm formData={formData} handleChange={handleChange} />
         <SpecificItemForm formData={formData} handleChange={handleChange} />
@@ -75,18 +53,7 @@ const InformationForm = () => {
             multiple
           />
         </div>
-        <div className="form-group">
-          <label>
-            Vị trí
-            <input
-              type="text"
-              name="position"
-              value={formData.position}
-              onChange={handleChange}
-              placeholder="vị trí"
-            />
-          </label>
-        </div>
+        <PositionForm formData={formData} handleChange={handleChange}></PositionForm>
         <MeetingTimeSchedule
           formData={formData}
           handleChange={handleMeetingTimeSchedule}

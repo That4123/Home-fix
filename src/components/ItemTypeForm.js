@@ -5,15 +5,15 @@ export const ItemTypeForm= ({ formData, handleChange })=> {
 
     return (
         <div className="informationForm-group">
-            <label>Loại vật dụng 
-                <select  name="itemType" value={formData.itemType} onChange={handleChange}>
-                    {itemTypes.map((itemType) => (
-                        <option key={itemType} value={itemType}>
-                            {itemType}
-                        </option>
-                    ))}
-                </select>
-            </label>
+            <label>Loại vật dụng </label>
+            <select  name="itemType" value={formData.itemType} onChange={handleChange}>
+                {itemTypes.map((itemType) => (
+                    <option key={itemType} value={itemType}>
+                        {itemType}
+                    </option>
+                ))}
+            </select>
+        
         </div>
     );
 }

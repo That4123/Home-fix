@@ -7,15 +7,14 @@ export const MeetingTimeSchedule= ({ formData, handleChange })=> {
 
     return (
         <div className="informationForm-group">
-            <label >
-                Thời gian
+            <label > Thời gian </label>
                 <LocalizationProvider dateAdapter={AdapterDayjs}  >
                 <SingleInputDateTimeRangeField 
                     value={formData.meetingTimeSchedule}
                     onChange={(newValue) => handleChange('meetingTimeSchedule', newValue)}
                 />
                 </LocalizationProvider>
-            </label>
+
         </div>
     );
 }

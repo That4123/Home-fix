@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import "./styles/datnguyen.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import SendInformation from "./pages/SendInformation";
@@ -8,8 +10,7 @@ import ConfirmPriceSchedule from "./pages/ConfirmPriceSchedule";
 import Chat from "./pages/Chat"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import FixQueue from "./pages/FixQueue";
-import "./styles/datnguyen.css";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 const App = () => {
   return (
     <Router>

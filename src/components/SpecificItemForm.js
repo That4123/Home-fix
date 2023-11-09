@@ -9,7 +9,7 @@ export const SpecificItemForm= ({ formData, handleChange })=> {
                 name="specificItem"
                 value={formData.specificItem}
                 onChange={handleChange}
-                placeholder="tên vật dụng"
+                placeholder="Tên vật dụng"
                 />
         </div>
     );
