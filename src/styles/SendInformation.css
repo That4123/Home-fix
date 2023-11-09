@@ -3,7 +3,7 @@ body{
     margin-top: 10px;
     font-family: "Inter", Helvetica;
 }
-.form-container {
+.informationForm-container {
     width: 40%;
     margin:auto;
     padding: 20px;
@@ -11,17 +11,17 @@ body{
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.form-container .form-name{
+.informationForm-container .informationForm-name{
     text-align: center;
 }
-.form-group{
+.informationForm-group{
     /* background-color: aqua; */
     margin: 10px auto;
     padding: 2px 2px;
     width: 90%;
     display: inline-block;
 }
-.form-group input,select{
+.informationForm-group input,select{
     /* background-color:bisque; */
     float:right;
     box-sizing: border-box;
@@ -33,7 +33,7 @@ body{
     width: 70%;
     height: 3em
 }
-.form-group textarea{
+.informationForm-group textarea{
     margin:auto;
     float:right;
     box-sizing: border-box;
@@ -57,7 +57,7 @@ body{
 
 
 
-.form-group .MuiFormControl-root{
+.informationForm-group .MuiFormControl-root{
     margin:auto;
     float:right;
     box-sizing: border-box;
@@ -66,7 +66,7 @@ body{
     margin:auto;
     width: 70%;
 }
-.form-group  .MuiInputBase-input {
+.informationForm-group  .MuiInputBase-input {
     width: 100%;
 }
 .submit-button-container{

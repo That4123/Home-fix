@@ -3,7 +3,7 @@ import React from "react";
 export const DescriptionForm= ({ formData, handleChange })=> {
     return (
         <>
-        <div className="form-group">
+        <div className="informationForm-group">
             <label>Mô tả
                 <textarea 
                 name="textDescription"

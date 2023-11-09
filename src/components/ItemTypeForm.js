@@ -4,7 +4,7 @@ export const ItemTypeForm= ({ formData, handleChange })=> {
     const itemTypes = ['máy giặt', 'điều hòa', 'đường ống nước', 'đồ bếp', '1', '2'];
 
     return (
-        <div className="form-group">
+        <div className="informationForm-group">
             <label>Loại vật dụng 
                 <select  name="itemType" value={formData.itemType} onChange={handleChange}>
                     {itemTypes.map((itemType) => (
