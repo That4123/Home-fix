@@ -1,6 +1,8 @@
 import React from "react";
 import Popup from "reactjs-popup";
 import 'reactjs-popup/dist/index.css';
+import "../styles/ProviderForm.css";
+
 
 export const ProviderForm= ({ formData, handleChange })=> {
     const providers = [
@@ -50,10 +52,12 @@ export const ProviderForm= ({ formData, handleChange })=> {
             contact: "0902365896",
         },
     ];
+
     return (
         <div className="informationForm-group providerForm">
             <label>Nhà sửa chữa </label>
             <input className="providerName" disabled
+            id="provider"
             type="text"
             name="provider"
             value={formData.provider}
@@ -66,44 +70,47 @@ export const ProviderForm= ({ formData, handleChange })=> {
                 {
                     close => (
                         <div>
+                            <div className="popup-content">
                             <h3 className="text-center my-4">Nhà cung cấp dịch vụ</h3>
-                            <div className="row justify-content-center m-4">
-                                <div className="col-sm-2 mx-2">
-                                    <select className="form-select" aria-label="Default select example">
-                                        <option selected>Search by</option>
-                                        <option value="1">Tên</option>
-                                        <option value="2">Vị trí</option>
-                                        <option value="3">Hoạt động</option>
-                                    </select>
-                                </div>
-                                <div className="col-sm-2">
-                                    <input type="text" className="form-control" placeholder="Nhập từ khóa" />
-                                </div>
-                                <div className="col-sm-2">
-                                    <button type="button" className="btn btn-primary">Search</button>
-                                </div>
-                                <div className="col-sm-2 mx-2">
-                                    <select className="form-select" aria-label="Default select example">
-                                        <option selected>Sort</option>
-                                        <option value="1">Vị trí</option>
-                                        <option value="2">Đánh giá</option>
-                                        <option value="3">Hoạt động</option>
-                                    </select>
-                                </div>
-                                <div className="col-sm-2">
-                                    <button type="button" className="btn btn-primary">Sort</button>
+                                <div className="row justify-content-center m-4">
+                                    <div className="col-sm-2 p-1">
+                                        <select className="form-select" aria-label="Default select example">
+                                            <option selected>Search by</option>
+                                            <option value="1">Tên</option>
+                                            <option value="2">Vị trí</option>
+                                            <option value="3">Hoạt động</option>
+                                        </select>
+                                    </div>
+                                    <div className="col-sm-2 p-2">
+                                        <input type="text" className="form-control" placeholder="Nhập từ khóa" />
+                                    </div>
+                                    <div className="col-sm-2">
+                                        <button type="button" className="btn btn-primary">Search</button>
+                                    </div>
+                                    <div className="col-sm-2 p-1">
+                                        <select className="form-select" aria-label="Default select example">
+                                            <option selected>Sort</option>
+                                            <option value="1">Vị trí</option>
+                                            <option value="2">Đánh giá</option>
+                                            <option value="3">Hoạt động</option>
+                                        </select>
+                                    </div>
+                                    <div className="col-sm-2">
+                                        <button type="button" className="btn btn-primary">Sort</button>
+                                    </div>
                                 </div>
                             </div>
-                            <table className="table table-hover m-3">
+                            <table className="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Tên nhà cung cấp dịch vụ</th>
+                                    <th>Tên nhà sửa chữa</th>
                                     <th>Loại sửa chữa</th>
                                     <th>Địa chỉ</th>
                                     <th>Đánh giá</th>
                                     <th>Hoạt động</th>
                                     <th>Liên hệ</th>
+                                    <th>Chọn</th>   
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -116,10 +123,17 @@ export const ProviderForm= ({ formData, handleChange })=> {
                                         <td>{item.rating}</td>
                                         <td>{item.activity}</td>
                                         <td>{item.contact}</td>
+                                        <td>
+                                            <input type="checkbox" />
+                                        </td>
                                     </tr>
                                 ))}
                                 </tbody>
                             </table>
+                            <button className="btn btn-primary" onClick={() => {
+                                document.getElementById("provider").value = providers[0].name;
+                                close();
+                            }}>Xác nhận chọn</button>
                             <button onClick={() => close()}>Close</button>
                         </div>
                     )
@@ -128,4 +142,3 @@ export const ProviderForm= ({ formData, handleChange })=> {
         </div>
     );
 }
-
