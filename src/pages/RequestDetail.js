@@ -43,7 +43,7 @@ function RequestDetails() {
   }
   const requestData3={
     ID:125,
-    status:"nhà sửa chữa Phúc An",
+    status:"đang được thực hiện",
     itemType: "b",
     specificItem: "b",
     textDescription:"b",
@@ -67,7 +67,21 @@ function RequestDetails() {
       // ...
     }
   };
-  
+  function StatusButton(status){
+    if (status==='đang chờ chấp nhận'){
+      return(
+        <button onClick={handleCancelOrder}>Hủy đơn hàng</button>
+      )
+    }
+    else if (status==='hoàn thành'){
+      return;
+    }
+    else return(
+      <Link to='/ConfirmPriceSchedule'>
+        <button>Xác nhận chi tiết</button>
+      </Link>
+    )
+  }
   // Render the request details
   return (
     <div className="informationForm-container">
@@ -82,8 +96,12 @@ function RequestDetails() {
         <PositionForm formData={requestData} ></PositionForm>
         <MeetingTimeSchedule formData={requestData} />
         <ProviderForm formData={requestData} />
+        <div className="status-container">
+        <label>Trạng thái</label>
+            <h5 className='request-status'>{requestData.status}</h5>
+        </div>
         <div className="detail-button-container">
-          <button onClick={handleCancelOrder}>Hủy đơn hàng</button>
+          {StatusButton(requestData.status)}
           <Link to={'/RequestQueue'}>
             <button>Quay lại</button>
           </Link>

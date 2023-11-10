@@ -16,4 +16,17 @@
     transition: background-color 0.3s ease;
     margin: 0 10px;
   }
+  .status-container{
+    margin: 10px auto;
+    padding: 2px 2px;
+    width: 90%;
+    display: inline-block;
+    text-align: center;
+      
+  }
+  
 
+  
+  label {
+    float: left;
+  }
