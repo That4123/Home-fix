@@ -3,14 +3,14 @@ import '../styles/Home.css'; // Import CSS file
 
 function Home() {
 
-  // Get the subMenu element.
-  const subMenu = document.getElementById('subMenu');
+  // // Get the subMenu element.
+  // const subMenu = document.getElementById('subMenu');
 
-  // Toggle the visibility of the subMenu element when the noti icon is clicked.
-  const notiIcon = document.querySelector('.noti');
-  notiIcon.addEventListener('click', () => {
-  subMenu.classList.toggle('open-menu');
-  });
+  // // Toggle the visibility of the subMenu element when the noti icon is clicked.
+  // const notiIcon = document.querySelector('.noti');
+  // notiIcon.addEventListener('click', () => {
+  // subMenu.classList.toggle('open-menu');
+  // });
   
   return (
     <div>
