@@ -9,7 +9,7 @@ export const PositionForm= ({ formData, handleChange })=> {
                 name="position"
                 value={formData.position}
                 onChange={handleChange}
-                placeholder="vị trí"
+                placeholder="Vị trí"
             />
         </div>
     );
