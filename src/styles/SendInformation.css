@@ -26,7 +26,8 @@
     resize: none;
     margin:auto;
     width: 80%;
-    height: 3em
+    height: 3em;
+    padding-left: 10px;
 }
 .informationForm-container .informationForm-group textarea{
     margin:auto;
@@ -39,6 +40,7 @@
     margin:auto;
     width: 80%;
     overflow: hidden;
+    padding-left: 10px;
 }
 .image-button-container{
     margin: 0px auto;

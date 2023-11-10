@@ -1,0 +1,19 @@
+.detail-button-container {
+    display: flex;
+    justify-content: center; 
+  }
+  
+  /* CSS for the buttons */
+  
+  .detail-button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    transition: background-color 0.3s ease;
+    margin: 0 10px;
+  }
+

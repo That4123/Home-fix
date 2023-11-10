@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import "../styles/SendInformation.css";
 import {ItemTypeForm} from "../components/ItemTypeForm";
 import {SpecificItemForm} from "../components/SpecificItemForm";
@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import { MeetingTimeSchedule } from "../components/MeetingTimeScheduleForm";
 import { ProviderForm } from "../components/ProviderForm";
 import { PositionForm } from '../components/PositionForm';
+import "../styles/RequestDetail.css"
 function RequestDetails() {
   const { requestId } = useParams(); // Get the request ID from the URL params
 
@@ -59,7 +60,14 @@ function RequestDetails() {
   // const requestData=requestData1;
 
   // Extract properties from requestData object
-
+  const handleCancelOrder = () => {
+    const confirmCancel = window.confirm("Bạn có chắc chắn muốn hủy đơn hàng?");
+    if (confirmCancel) {
+      // Perform the cancellation logic here
+      // ...
+    }
+  };
+  
   // Render the request details
   return (
     <div className="informationForm-container">
@@ -74,10 +82,14 @@ function RequestDetails() {
         <PositionForm formData={requestData} ></PositionForm>
         <MeetingTimeSchedule formData={requestData} />
         <ProviderForm formData={requestData} />
-        <div className="submit-button-container">
-          <button type="submit">Xác nhận</button>
+        <div className="detail-button-container">
+          <button onClick={handleCancelOrder}>Hủy đơn hàng</button>
+          <Link to={'/RequestQueue'}>
+            <button>Quay lại</button>
+          </Link>
         </div>
       </form>
+      
     </div>
   );
 }
