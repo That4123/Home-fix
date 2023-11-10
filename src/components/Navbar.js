@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <nav
       className="navbar navbar-expand-lg border-bottom"
-      style={{ backgorundColor: "black" }}
+      style={{ backgroundColor: "black" }}
     >
       <div className="container-fluid">
         <Link to="/" className="me-3">
