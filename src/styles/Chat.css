@@ -62,7 +62,7 @@ background {
     height: 30px;
 }
 .icon{
-    background: url(../../public/assets/iconAccount.png) no-repeat;
+    background: url(/public/assets/iconAccount.png) no-repeat;
     float: left;
     margin-right: 10px;
     background-size: 30px;
@@ -141,7 +141,7 @@ background {
     
 }
 .msg-frame label .icon-img{
-    background: url(../../public/assets/iconImg.png) no-repeat;
+    background: url(/public/assets/iconImg.png) no-repeat;
     margin-right: 10px;
     margin-top: 7px;
     background-size: 40px;
