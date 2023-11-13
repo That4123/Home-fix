@@ -145,13 +145,12 @@ const FixQueue = () => {
 
           </div>
           <button className="btn1"onClick={handleCloseDetails}>Đóng</button>
-          <button className = "btn1 huy"  onClick={() => handleCancel(detailRequest.id)}>Yêu cầu huỷ</button>
-          <button className="btn1 send" onClick={()=>handleSendConfirmRequest(detailRequest.id)}>Chat với khách hàng</button>
+          {detailRequest.status_id != 5 && (
+          <button className = "btn1 huy"  onClick={() => handleCancel(detailRequest.id)}>Yêu cầu huỷ</button>)}
+          {detailRequest.status_id != 5 && (
+          <button className="btn1 send" onClick={()=>handleSendConfirmRequest(detailRequest.id)}>Chat với khách hàng</button>)}
           {detailRequest.status_id === 2 && (
-  <button className="btn1 payment" onClick={() => handlePayment(detailRequest.id)}>
-    Thanh toán
-  </button>
-)}
+          <button className="btn1 payment" onClick={() => handlePayment(detailRequest.id)}>Thanh toán</button>)}
         </div>
       )}
     </div>
