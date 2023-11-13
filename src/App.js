@@ -16,7 +16,7 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" exact Component={Home} />
+        {/* <Route path="/" exact Component={Home} /> */}
         <Route path="/SendInformation" exact Component={SendInformation} />
         <Route path="/RequestQueue" exact Component={RequestQueue} />
         <Route path="/requestDetail/:requestId" Component={RequestDetail} />
