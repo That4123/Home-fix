@@ -8,7 +8,8 @@ const FixQueue = () => {
     { id: 4, customerName: 'Khách hàng C', repairType: 'Sửa chữa điều hòa', address: '456 Đường XYZ', imgSrc: '/assets/cus1.png',imageArray: ['/assets/image1.png','/assets/image1.png'],descript: 'Sửa giúp chị cái đi em ơi', status: 'Đang thực hiện', status_id: 3, price: '400,000' },
     { id: 5, customerName: 'Khách hàng C', repairType: 'Sửa chữa điều hòa', address: '456 Đường XYZ', imgSrc: '/assets/cus1.png',imageArray: ['/assets/image1.png','/assets/image1.png'],descript: 'Sửa giúp chị cái đi em ơi', status: 'Đã thực hiện xong chờ nhận tiền', status_id:4, price: '1000,000'},
     { id: 6, customerName: 'Khách hàng C', repairType: 'Sửa chữa điều hòa', address: '456 Đường XYZ', imgSrc: '/assets/cus1.png',imageArray: ['/assets/image1.png','/assets/image1.png'],descript: 'Sửa giúp chị cái đi em ơi' , status: 'Công việc hoàn tất', status_id:5,price: '100,000'},
-    {id: 7, customerName: 'Khách hàng C', repairType: 'Sửa chữa điều hòa', address: '456 Đường XYZ', imgSrc: '/assets/cus1.png',imageArray: ['/assets/image1.png','/assets/image1.png'],descript: 'Sửa giúp chị cái đi em ơi', status: 'Công việc hoàn tất' ,status_id:5, price: '500,000'}
+    {id: 7, customerName: 'Khách hàng C', repairType: 'Sửa chữa điều hòa', address: '456 Đường XYZ', imgSrc: '/assets/cus1.png',imageArray: ['/assets/image1.png','/assets/image1.png'],descript: 'Sửa giúp chị cái đi em ơi', status: 'Công việc hoàn tất' ,status_id:5, price: '500,000'},
+    {id: 8, customerName: 'Khách hàng M', repairType: 'Sửa chữa điều hòa', address: '456 Đường XYZ', imgSrc: '/assets/cus1.png',imageArray: ['/assets/image1.png','/assets/image1.png'],descript: 'Sửa giúp chị cái đi em ơi', status: 'Đã duyệt chờ trả phí' ,status_id:2, price: '500,000'}
   ]);
   const [cancelRequestId, setCancelRequestId] = useState(null);
   const [detailRequest, setDetailRequestId] = useState(null);
