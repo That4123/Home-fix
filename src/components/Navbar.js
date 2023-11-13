@@ -7,7 +7,8 @@ function Navbar() {
   const navLink = [
     ["/SendInformation", "Send request"],
     ["/RequestQueue", "My request"],
-    ["/FixQueue", "Fix requests"],
+    ["/FixQueue", "New Requests"],
+    ["/ViewRequest", "View Request"]
   ];
   return (
     <nav

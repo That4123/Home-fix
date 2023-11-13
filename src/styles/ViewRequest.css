@@ -50,6 +50,25 @@ padding-left: 20px;
 background-color: #fff;
 border-radius: 30px;
 width: 100%;
+margin-bottom: 5px;
+}
+.NameCustomer h2{
+    display: inline-block;
+    width: max-content;
+    max-height: 36px;
+    margin: 0px;
+}
+.NameCustomer h3{
+    width: max-content;
+    float: right; 
+    margin: auto;
+    display: block;
+    align-items: center;
+    padding-right: 10px;
+    background-color: aqua ;
+    border-radius: 10px;
+    padding: 6px 10px;
+    font-size: 20px;
 }
 .btn1{
     float: right;
@@ -163,6 +182,8 @@ width: 100%;
     width: 100%;   
     margin-top: 10px; 
     border-radius: 20px;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
   }
   .Request-Description h3{
     padding :10px 20px;
@@ -176,7 +197,10 @@ width: 100%;
     padding: 5px 0px 15px 20px;
     font-size: 15px;
   }
- 
+  .Request-Description h5 {
+    padding: 5px 0px 15px 20px;
+    font-size: 15px;
+  }
   /* CSS cho overlay (nền mờ xung quanh hộp thoại) */
   .overlay {
     position: fixed;
@@ -198,4 +222,11 @@ width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.9); /* Màu nền mờ */
     z-index: 3; /* Đặt giá trị z-index dưới hộp thoại */
+  }
+  .btn1.payment {
+    background-color: rgb(107, 179, 107) ;
+  }
+  .btn1:hover{
+    background-color:darkgray;
+    border: none;
   }

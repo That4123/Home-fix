@@ -60,8 +60,8 @@ const FixQueue = () => {
           <h2 className='NameCustomer'> Khách hàng: {request.customerName}</h2>
           <div className='Request-Detail'>Loại sửa chữa: {request.repairType}<br />
           Địa chỉ: {request.address}<br /></div>
-          <button className = "btn chitiet" onClick={() => handleDetail(request.id)}>Chi tiết</button>
-          <button className = "btn huy"  onClick={() => handleCancel(request.id)}>Huỷ</button>
+          <button className = "btn1 chitiet" onClick={() => handleDetail(request.id)}>Chi tiết</button>
+          <button className = "btn1 huy"  onClick={() => handleCancel(request.id)}>Huỷ</button>
           </div>
         </li>
         
@@ -72,8 +72,8 @@ const FixQueue = () => {
         <div className="confirm-dialog">
           <div className="confirm-content">
             <p>Bạn có chắc chắn muốn huỷ yêu cầu này?</p>
-            <button className = "btn huy"onClick={handleConfirmCancel}>Xác nhận</button>
-            <button className= "btn "onClick={()=> setCancelRequestId(null)}>Không</button>
+            <button className = "btn1 huy"onClick={handleConfirmCancel}>Xác nhận</button>
+            <button className= "btn1 "onClick={()=> setCancelRequestId(null)}>Không</button>
           </div>
         </div>
         </div>
@@ -108,9 +108,9 @@ const FixQueue = () => {
           <h3>Mô tả</h3>
           <h4>{detailRequest.descript}</h4>
           </div>
-          <button className="btn"onClick={handleCloseDetails}>Đóng</button>
-          <button className = "btn huy"  onClick={() => handleCancel(detailRequest.id)}>Huỷ</button>
-          <button className="btn send" onClick={()=>handleSendConfirmRequest(detailRequest.id)}>Gửi yêu cầu xác nhận sửa chữa</button>
+          <button className="btn1"onClick={handleCloseDetails}>Đóng</button>
+          <button className = "btn1 huy"  onClick={() => handleCancel(detailRequest.id)}>Huỷ</button>
+          <button className="btn1 send" onClick={()=>handleSendConfirmRequest(detailRequest.id)}>Gửi yêu cầu xác nhận sửa chữa</button>
         </div>
       )}
     </div>
