@@ -6,7 +6,7 @@ import {SpecificItemForm} from "../components/SpecificItemForm";
 import { DescriptionForm } from "../components/DescriptionForm";
 import dayjs from "dayjs";
 import { MeetingTimeSchedule } from "../components/MeetingTimeScheduleForm";
-import { ProviderForm } from "../components/ProviderForm";
+// import { ProviderForm } from "../components/ProviderForm";
 
 function RequestDetails() {
   const { requestId } = useParams(); // Get the request ID from the URL params
@@ -51,7 +51,7 @@ function RequestDetails() {
           </label>
         </div>
         <MeetingTimeSchedule formData={requestData} />
-        <ProviderForm formData={requestData} />
+        {/* <ProviderForm formData={requestData} /> */}
         <div className="submit-button-container">
           <button type="submit">Xác nhận</button>
         </div>

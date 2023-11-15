@@ -5,7 +5,7 @@ import { SpecificItemForm } from "../components/SpecificItemForm";
 import { DescriptionForm } from "../components/DescriptionForm";
 import dayjs from "dayjs";
 import { MeetingTimeSchedule } from "../components/MeetingTimeScheduleForm";
-import { ProviderForm } from "../components/ProviderForm";
+// import { ProviderForm } from "../components/ProviderForm";
 // import {ItemTypeForm,SpecificItemForm} from "../components";
 
 const InformationForm = () => {

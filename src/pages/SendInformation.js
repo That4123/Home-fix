@@ -5,7 +5,7 @@ import { SpecificItemForm } from "../components/SpecificItemForm";
 import { DescriptionForm } from "../components/DescriptionForm";
 import dayjs from "dayjs";
 import { MeetingTimeSchedule } from "../components/MeetingTimeScheduleForm";
-import { ProviderForm } from "../components/ProviderForm";
+// import { ProviderForm } from "../components/ProviderForm";
 // import {ItemTypeForm,SpecificItemForm} from "../components";
 
 const InformationForm = () => {
@@ -91,7 +91,7 @@ const InformationForm = () => {
           formData={formData}
           handleChange={handleMeetingTimeSchedule}
         />
-        <ProviderForm formData={formData} handleChange={handleChange} />
+        {/* <ProviderForm formData={formData} handleChange={handleChange} /> */}
         <div className="submit-button-container">
           <button type="submit">Xác nhận</button>
         </div>

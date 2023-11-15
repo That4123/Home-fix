@@ -8,6 +8,8 @@ function Navbar() {
     ["/RequestQueue", "My request"],
     ["/FixQueue", "Fix requests"],
     ["/SendRequest", "Fixing"],
+    ["/ConfirmPriceSchedule", "Confirm deal"],
+    ["/Chat", "Chat"],
   ];
   return (
     <nav
@@ -40,7 +42,7 @@ function Navbar() {
         >
           <ul className="navbar-nav mt-2">
             {navLink.map((item, index) => (
-              <li className="nav-item active">
+              <li className="nav-item active" key={index}>
                 <Link to={item[0]} className="nav-link py-0">
                   <p
                     className={
