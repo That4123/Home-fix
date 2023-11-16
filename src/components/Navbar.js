@@ -1,20 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+
 function Navbar() {
   const location = useLocation();
   const navLink = [
     ["/SendInformation", "Send request"],
     ["/RequestQueue", "My request"],
-    ["/FixQueue", "Fix requests"],
-    ["/SendRequest", "Fixing"],
-    ["/ConfirmPriceSchedule", "Confirm deal"],
-    ["/Chat", "Chat"],
+    ["/FixQueue", "New Requests"],
+    ["/ViewRequest", "View Request"],
   ];
   return (
     <nav
       className="navbar navbar-expand-lg border-bottom"
-      style={{ backgorundColor: "black" }}
+      style={{ backgroundColor: "black" }}
     >
       <div className="container-fluid">
         <Link to="/" className="me-3">

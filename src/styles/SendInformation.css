@@ -1,28 +1,23 @@
-body{
-    background-color: #e49c9c26;
-    margin-top: 10px;
-    font-family: "Inter", Helvetica;
-}
-.form-container {
-    width: 40%;
+
+.informationForm-container {
+    width: 50%;
     margin:auto;
     padding: 20px;
     background-color: #e49c9c26;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.form-container .form-name{
+.informationForm-container .informationForm-name{
     text-align: center;
 }
-.form-group{
+.informationForm-container .informationForm-group{
     /* background-color: aqua; */
     margin: 10px auto;
     padding: 2px 2px;
     width: 90%;
     display: inline-block;
 }
-.form-group input,select{
-    /* background-color:bisque; */
+.informationForm-group input,select{
     float:right;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -30,10 +25,11 @@ body{
     background-color: #f8f8f8;
     resize: none;
     margin:auto;
-    width: 70%;
-    height: 3em
+    width: 80%;
+    height: 3em;
+    padding-left: 10px;
 }
-.form-group textarea{
+.informationForm-container .informationForm-group textarea{
     margin:auto;
     float:right;
     box-sizing: border-box;
@@ -42,8 +38,9 @@ body{
     background-color: #f8f8f8;
     resize: none;
     margin:auto;
-    width: 70%;
+    width: 80%;
     overflow: hidden;
+    padding-left: 10px;
 }
 .image-button-container{
     margin: 0px auto;
@@ -57,39 +54,52 @@ body{
 
 
 
-.form-group .MuiFormControl-root{
+.informationForm-container .informationForm-group .MuiFormControl-root{
     margin:auto;
     float:right;
     box-sizing: border-box;
     background-color: #f8f8f8;
     resize: none;
     margin:auto;
-    width: 70%;
+    width: 80%;
 }
-.form-group  .MuiInputBase-input {
+.informationForm-container .informationForm-group  .MuiInputBase-input {
     width: 100%;
+    text-align: center;
 }
-.submit-button-container{
+.informationForm-container .submit-button-container{
     display: inline-block;  
     margin:0 40%;
 }
-.provider{
+.submit-button-container button[type='submit']{
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    transition: background-color 0.3s ease;
+    margin: 0 10px;
+}
+.providerForm{
     position:relative;
 }
-.provider button{
-    position: absolute;
-    right: 3px; 
-    top: 3px;
-    bottom: 3px;
+
+.providerForm .provider-search-button{
+    position:absolute;
+    right:0;
     border: 0;
     color: black;
     outline: none;
-    margin: auto;
     padding: 3px 10px;
     z-index: 2;
     background-color: rgb(21, 179, 0);
     border-radius: 4px;
+    height: 3em;
+    transform: translateX(-1%);
 }
+
 
 
 

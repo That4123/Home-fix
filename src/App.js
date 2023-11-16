@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import SendInformation from "./pages/SendInformation";
@@ -9,8 +9,8 @@ import ConfirmPriceSchedule from "./pages/ConfirmPriceSchedule";
 import Chat from "./pages/Chat";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import FixQueue from "./pages/FixQueue";
-import "./styles/datnguyen.css";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import ViewRequest from "./pages/ViewRequest";
+
 const App = () => {
   const [user, setUser] = useState([]);
 
@@ -26,10 +26,10 @@ const App = () => {
       <Navbar />
       {/* <h1>DatNguyen-{user[0].Id}</h1> */}
       <Routes>
-        <Route path="/" exact Component={Home} />
+        {/* <Route path="/" exact Component={Home} /> */}
         <Route path="/SendInformation" exact Component={SendInformation} />
         <Route path="/RequestQueue" exact Component={RequestQueue} />
-        <Route path="/request/:requestId" Component={RequestDetail} />
+        <Route path="/requestDetail/:requestId" Component={RequestDetail} />
         <Route path="/FixQueue" exact Component={FixQueue} />
         <Route path="/SendRequest" exact Component={SendRequest} />
         <Route
@@ -38,6 +38,7 @@ const App = () => {
           Component={ConfirmPriceSchedule}
         />
         <Route path="/Chat" exact Component={Chat} />
+        <Route path="/ViewRequest" exact Component={ViewRequest} />
       </Routes>
     </Router>
   );

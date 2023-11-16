@@ -49,7 +49,7 @@ function RequestQueue() {
   const allRequestData= [requestData1, requestData2, requestData3];
 
   const allRequestDataItems = allRequestData.map((requestData) => (
-    <Link key={requestData.ID} to={'/request/${requestData.ID}'} className='request-link'>
+    <Link key={requestData.ID} to={ `/requestDetail/${requestData.ID}` }  className='request-link'>
       <div key={requestData.ID} className='request-container'>
         <h5 className='request-id'>Phiếu yêu cầu số {requestData.ID}</h5>
         <h5 className='request-status ${requestData.status}'>Trạng thái: {requestData.status}</h5>
