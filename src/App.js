@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import SendInformation from "./pages/SendInformation";
@@ -10,6 +10,9 @@ import Chat from "./pages/Chat";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import FixQueue from "./pages/FixQueue";
 import ViewRequest from "./pages/ViewRequest";
+import Testing from "./pages/Testing";
+import AddRequest from "./pages/AddRequest";
+import MyAppliedRequest from "./pages/MyAppliedRequest";
 
 const App = () => {
   const [user, setUser] = useState([]);
@@ -39,6 +42,10 @@ const App = () => {
         />
         <Route path="/Chat" exact Component={Chat} />
         <Route path="/ViewRequest" exact Component={ViewRequest} />
+        <Route path="/MyAppliedRequest" exact Component={MyAppliedRequest} />
+
+        <Route path="/Testing" exact Component={Testing} />
+        <Route path="/AddRequest" exact Component={AddRequest} />
       </Routes>
     </Router>
   );

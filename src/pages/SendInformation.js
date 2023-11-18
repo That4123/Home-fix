@@ -50,6 +50,7 @@ const InformationForm = () => {
             name="imageDescription"
             onChange={handleChange}
             type="file"
+            accept="image/*"
             multiple
           />
         </div>
