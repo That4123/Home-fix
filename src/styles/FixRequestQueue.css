@@ -82,14 +82,14 @@ width: 100%;
   }
   .detail-dialog {
     position: absolute;
-    top: 0;
+    top: 0px;
     left: 0;
     width: 100%;
-    min-height: 100%;
+    /* min-height: 100%; */
     font-size: 30px;
     background-color: #fff;
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 100px;
     z-index: 6; /* Đặt giá trị z-index cao hơn để hiển thị trên cùng */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }

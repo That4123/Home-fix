@@ -1,7 +1,7 @@
 // src/routes/user.js
 const express = require("express");
 const router = express.Router();
-const { getConnection } = require("../config/db");
+const { getConnection } = require("../../config/db");
 
 router.use(getConnection);
 

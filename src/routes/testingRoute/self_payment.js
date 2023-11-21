@@ -1,22 +1,22 @@
 // src/routes/user.js
 const express = require("express");
 const router = express.Router();
-const { getConnection } = require("../config/db");
+const { getConnection } = require("../../config/db");
 
 router.use(getConnection);
 
-router.get("/request", async (req, res) => {
+router.get("/self_payment", async (req, res) => {
   const connection = req.dbConnection;
 
-  const requestId = req.query.id;
+  const id = req.query.id;
 
-  if (!requestId) {
+  if (!id) {
     return res.status(400).json({ error: "Missing 'id' parameter" });
   }
 
   try {
     const [rows, fields] = await connection.query(
-      `CALL newrequest(${requestId})`
+      `select * from self_payment where id=${id}`
     );
     res.json(rows);
   } catch (error) {
@@ -27,21 +27,20 @@ router.get("/request", async (req, res) => {
   }
 });
 
-router.post("/request", async (req, res) => {
+router.post("/self_payment", async (req, res) => {
   const connection = req.dbConnection;
-
   try {
-    const { id, rcost } = req.body;
+    const { id, money } = req.body;
 
-    if (!id || !rcost) {
+    if (!id || !money) {
       return res.status(400).json({ error: "Missing fields" });
     }
 
-    await connection.query("INSERT INTO request (id, rcost) VALUES (?, ?)", [
+    await connection.query("INSERT INTO self_payment VALUES (?,?,?)", [
       id,
-      rcost,
+      uid,
+      money,
     ]);
-
     res.json({ success: true });
   } catch (error) {
     console.error("Error executing query:", error);

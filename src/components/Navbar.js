@@ -4,23 +4,21 @@ import { useLocation } from "react-router-dom";
 import "../styles/bootstrap.min.css";
 import { AccountLite } from "./AccountLite";
 
-function Navbar() {
+function Navbar(props) {
   const location = useLocation();
   const navLink = [
     ["/SendInformation", "Send request"],
     ["/RequestQueue", "My request"],
     ["/FixQueue", "New Requests"],
     ["/ViewRequest", "View Request"],
-    ["/Testing", "Testing"],
-    ["/AddRequest", "AddRequest"],
-    ["/MyAppliedRequest", "MyAppliedRequest"],
+    ["/FinancialMan", "Financial Management"],
   ];
   return (
-    <div className="row bg-dark">
+    <div className="row bg-dark fixed-top" style={{ height: "100px" }}>
       <div className="col-10">
         <nav
           className="navbar navbar-expand-lg"
-          style={{ backgroundColor: "black" }}
+          style={{ backgroundColor: "black", height: "100px" }}
         >
           <div className="container-fluid">
             <Link to="/" className="me-3">
@@ -50,15 +48,7 @@ function Navbar() {
                 {navLink.map((item, index) => (
                   <li className="nav-item active" key={index}>
                     <Link to={item[0]} className="nav-link py-0">
-                      <p
-                        className={
-                          location.pathname == item[0]
-                            ? "fs-4 mb-0 colorChange active"
-                            : "fs-4 mb-0 colorChange"
-                        }
-                      >
-                        {item[1]}
-                      </p>
+                      <p className="fs-4 mb-0 colorChange mx-2">{item[1]}</p>
                     </Link>
                   </li>
                 ))}
@@ -68,7 +58,7 @@ function Navbar() {
         </nav>
       </div>
       <div className="col-2 text-white">
-        <AccountLite></AccountLite>
+        <AccountLite user={props.user}></AccountLite>
       </div>
     </div>
   );

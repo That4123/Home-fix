@@ -1,6 +1,29 @@
-.colorChange.active{
-    color:#ED7D31;
-}
-.colorChange:hover{
-    color:#ED7D31;
-}
+/* basic height */
+.h-25px{height: 25px}
+.h-50px{height: 50px}
+.h-75px{height: 75px}
+.h-100px{line-height: 100px}
+/* basic width */
+.w-50px{width: 50px}
+.w-75px{width: 75px}
+.w-100px{width: 100px}
+.w-125px{width: 125px}
+.w-150px{width: 150px}
+/* basic line-height */
+.lh-25px{line-height: 25px}
+.lh-50px{line-height: 50px}
+.lh-75px{line-height: 75px}
+.lh-100px{line-height: 100px}
+/* basic color */
+.c-red{color: rgba(221, 0, 0, 0.8)}
+.c-green{color: rgba(0, 128, 0, 0.8)}
+.c-blue{color: rgba(0, 0, 255, 0.8)}
+.c-gray{color: rgba(128, 128, 128, 0.8)}
+.c-yellow{color: rgba(255, 255, 0, 0.8)}
+.c-purple{color: rgba(128, 0, 128, 0.8)}
+.c-orange{color: rgba(255, 166, 0, 0.8)}
+/* basic positon */
+.fixed{position: fixed}
+/* basic hover */
+.hover-bold:hover{font-weight: bold}
+.hover-underline:hover{text-decoration: underline}
