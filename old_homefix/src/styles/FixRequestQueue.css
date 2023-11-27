@@ -1,0 +1,201 @@
+* { 
+    margin: 0;
+    padding: 0;
+}
+.RequestList {
+    background-color: white !important;
+    padding: 0;
+    padding-top: 10px;
+}
+.image-box{
+    width: 162px;
+    display: block;
+    float:left;
+    background-color: #fff;
+    border-radius: 20%;
+}
+.profile-image {
+    width: 162px;
+    display: block;
+    float:left;
+    border-radius: 50%;
+    background-color: rebeccapurple;
+    
+}
+
+.Request{
+    width: 100%;
+    padding: 10px;
+    background-color:rgba(204, 204, 204,0.9);
+    margin-bottom: 10px;
+}
+.Request-box{
+    margin-left: 10px;
+    display: inline-block;
+    width: calc(100% - 172px);
+}
+.Request-Detail{
+    font-size:  20px;
+    line-height: 1.5;
+    margin-left: 20px;
+}
+.RequestList{
+    list-style: none;
+    padding-left: auto;
+}
+.NameCustomer {
+display: block;
+padding: 10px;
+padding-left: 20px; 
+background-color: #fff;
+border-radius: 30px;
+width: 100%;
+}
+.btn1{
+    float: right;
+    font-size: 20px;
+    margin-left: 30px;
+    padding:  3px 20px;
+    border-radius: 20px;
+    border-style:solid;
+    border-color: #000;
+    border-width: 1px;
+    min-width: 180px;
+}
+.huy {
+    background-color: rgba(241, 47, 47, 0.8) ;
+}
+.chitiet {
+    background-color: lightblue ;
+}
+.confirm-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 9; /* Đặt giá trị z-index cao hơn để hiển thị trên cùng */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  .detail-dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    font-size: 30px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 6; /* Đặt giá trị z-index cao hơn để hiển thị trên cùng */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  .detail-dialog h{
+    background-color: rgba(48,47,98,0.9);
+    font-size: 20px;
+    padding: 5px 10px;
+    color: white;
+    display: block;
+    max-width: fit-content;
+  }
+  .Detail-header-box{
+    display: block;
+    width: 100%;
+    padding-top: 10px;
+  }
+  .Detail-header-box img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    display: block;
+    float:left;
+
+  }
+  .Detail-request-box{
+    margin-left: 20px;
+    height: 100px;
+    display: inline-block;
+    width: calc(100% - 120px);
+  }
+  .Detail-request-box .cusName{
+    background-color: rgba(204, 204, 204, 0.8);
+    padding: 5px 20px; 
+    border-radius: 20px;
+    display: block;
+    font-size: 20px;
+  }
+  .Detail-request-box .Request-Detail{
+    font-size: 15px;
+  }
+  .Detail-Image{
+    background-color: #e4e4e4;
+    display: block;
+    width: 100%;   
+    margin-top: 10px; 
+    border-radius: 20px;
+  }
+  .Detail-Image h3 {
+    padding :10px 20px;
+    background-color: #ccc;
+    font-size: 20px;
+    font-weight: bold;
+    border-top-right-radius: 20px ;
+    border-top-left-radius: 20px ;
+  }
+  .Detail-Image-List {
+    list-style: none;
+    display: block;
+
+  }
+  .Detail-Image-List img{
+    width: 200px;
+    display:flexbox;
+    margin: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+  }
+  .Request-Description {
+    background-color: #e4e4e4;
+    display: block;
+    width: 100%;   
+    margin-top: 10px; 
+    border-radius: 20px;
+  }
+  .Request-Description h3{
+    padding :10px 20px;
+    background-color: #ccc;
+    font-size: 20px;
+    font-weight: bold;
+    border-top-right-radius: 20px ;
+    border-top-left-radius: 20px ;
+  }
+  .Request-Description h4 {
+    padding: 5px 0px 15px 20px;
+    font-size: 15px;
+  }
+ 
+  /* CSS cho overlay (nền mờ xung quanh hộp thoại) */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Màu nền mờ */
+    z-index: 9; /* Đặt giá trị z-index dưới hộp thoại */
+  }
+  .btn1.send {
+    background-color: #c4bbb2 ;
+  }
+  .overlay2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Màu nền mờ */
+    z-index: 3; /* Đặt giá trị z-index dưới hộp thoại */
+  }

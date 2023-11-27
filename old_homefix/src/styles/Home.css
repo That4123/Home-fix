@@ -1,0 +1,49 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: white;
+}
+
+main .mid-img .mi{
+    width: 100%;
+    position:  webkit-sticky;
+}
+
+main .mid-img .btn{
+    display: inline-block;
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 24px 34px;
+    width: 144+72px;
+    height: 72px;
+    font-size: 20px;
+    text-align: center;
+    background: rgb(230,115,0);
+    border-radius: 20px;
+    position: absolute;
+    top: 69%;
+    left: 42%;
+    right: 42%;
+    cursor: pointer;
+}
+
+main .end-note{
+    align-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+main .end-note .qua{
+    margin: 30px;
+    font-size: 30px;
+}
+main .end-note p{
+    font-size: 24px;
+}

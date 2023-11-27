@@ -1,0 +1,58 @@
+
+.Login-button {
+    display: block;
+    float: right;
+    background-color: rgb(201, 194, 194);
+    font-weight: bolder;
+    padding: 0 20px;
+    border: none;
+    height: 84px;
+}
+.Login-button:hover{
+    background-color: gray;
+}
+.homepageTab {
+    width: 100%;
+    margin-top: -20px;
+    top: 0;
+}
+.NavbarList {
+    list-style: none;
+    width: 100%;
+}
+.homenavbar p{
+    display: block;
+    float:left;
+    line-height: 74px;
+    padding: 5px 25px;
+    margin-right: 5px;
+}
+nav {
+    height: 84px;
+    background: #a5a5a5;
+    display: block;
+    width: 100%;
+}
+.logo{
+    float: left;
+    width: 160px;
+    height: 84px;
+    display: block;
+    cursor: pointer;
+}
+
+.active{
+    background-color: white !important;
+}
+.hicon {
+    display: block;
+    float: right;
+    height: 100%;
+}
+.hicon img{
+    padding: 10px;
+    height: 100%;
+}
+.hicon img:hover{
+    background-color: white;
+}
