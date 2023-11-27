@@ -21,8 +21,6 @@ async function authorizeStudent(req, res, next) {
         connect_DB.query(sql, [
             req.cur_member.user_id,
             req.cur_member.email,
-            req.cur_member.state,
-            req.cur_member.role
         ], function (err, result, field) {
             if (err) {
                 res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
