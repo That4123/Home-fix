@@ -5,6 +5,7 @@ import "./SendInformation.css";
 import { ProviderForm } from "./ProviderForm";
 
 import {PositionForm}  from './CityDropdown';
+import axios from 'axios'
 
 const InformationForm = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const InformationForm = () => {
     position: [],
     meetingTimeSchedule: "",
     provider: "nhà sửa chữa An Sơn",
+    providerId:2,
   });
 
   const handleChange = (e) => {
@@ -48,9 +50,19 @@ const InformationForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
+    axios.post("/api/sendInformation/sendInformation", {
+        service_order:formData,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
 
+          console.log(error);
+      })
   };
-  const itemTypes = ['Máy giặt', 'Điều hòa', 'Đường ống nước', 'Đồ bếp', '1', '2'];
+  const itemTypes = ['Nội thất', 'Đồ gia dụng', 'Dụng cụ nhà bếp', 'Vật dụng công nghệ'];
   return (
     <div className="informationForm-container">
         <h2 className="informationForm-name">Phiếu yêu cầu sửa chữa</h2>

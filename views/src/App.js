@@ -14,6 +14,7 @@ import PrivateRoutes from './components/shared/private_routes';
 import ProtectedTest from './components/(test_only)protected_test/protected_test';
 import PublicTest from './components/(test_only)public_test/public_test';
 import SignUp from './components/signup/signup';
+import SendInformation from './components/SendInformation/SendInformation'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route element={<PrivateRoutes validateRoute={"protectedTest"} />} >
           <Route path='protectedTest' element={<ProtectedTest />} />
         </Route>
+        <Route path='sendInformation' element={<SendInformation/>}/>
         <Route path="*" element={<NoPage />} />
       </Route>
     </Routes>

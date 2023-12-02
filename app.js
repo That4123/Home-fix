@@ -12,6 +12,7 @@ const signinRoute = require('./routes/signin');
 const protectedTestRoute = require("./routes/protected_test");
 const registrationRoute = require("./routes/registration");
 const publicTestRoute = require("./routes/public_test");
+const SendInformationRoute=require("./routes/send_information");
 
 
 const limiter = rateLimit({
@@ -51,6 +52,8 @@ app.use("/api/protectedTest", protectedTestRoute);
 app.use("/api/register", registrationRoute);
 
 app.use("/api/publicTest", publicTestRoute);
+
+app.use("/api/sendInformation",SendInformationRoute);
 
 
 app.listen(8080);

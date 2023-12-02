@@ -66,9 +66,9 @@ const PositionForm = ({ onLocationChange }) => {
 
   useEffect(() => {
     onLocationChange({
-      province: selectedCity,
-      district: selectedDistrict,
-      town: selectedWard,
+      province: selectedCity? selectedCity.name:'',
+      district: selectedDistrict? selectedDistrict.name:'',
+      town: selectedWard? selectedWard.name:'',
       street: street,
     });
   }, [selectedCity, selectedDistrict, selectedWard, street]);
