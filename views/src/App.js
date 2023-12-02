@@ -14,7 +14,7 @@ import PrivateRoutes from './components/shared/private_routes';
 import ProtectedTest from './components/(test_only)protected_test/protected_test';
 import PublicTest from './components/(test_only)public_test/public_test';
 import SignUp from './components/signup/signup';
-
+import ConfirmPriceSchedule from './components/confirm_price_schedule/ConfirmPriceSchedule';
 function App() {
   return (
     <Routes>
@@ -23,8 +23,10 @@ function App() {
         <Route path='signin' element={<SignIn />} />
         <Route path='signup' element={<SignUp />} />
         <Route path='publicTest' element={<PublicTest />} />
+        <Route path='confirmPriceSchedule/:orderId' element={<ConfirmPriceSchedule />} />
         <Route element={<PrivateRoutes validateRoute={"protectedTest"} />} >
           <Route path='protectedTest' element={<ProtectedTest />} />
+          
         </Route>
         <Route path="*" element={<NoPage />} />
       </Route>

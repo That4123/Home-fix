@@ -8,10 +8,12 @@ import axios from 'axios'
 import { useState, useEffect } from "react";
 import Header from '../shared/header';
 import Cookies from "universal-cookie";
+import '../../components/signin/signin.css'
 const cookies = new Cookies();
 
+
 function SignIn() {
-    const [email, setEmail] = useState("");
+    const [user_name, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
@@ -19,7 +21,7 @@ function SignIn() {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post("/api/signin", {
-            email,
+            user_name,
             password
         })
             .then((response) => {
@@ -35,37 +37,38 @@ function SignIn() {
             })
     }
     return (
-        <form>
-            <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">
-                    Email
-                </label>
-                <input
-                    type="email"
+        <>
+        <div class="wrapper">
+                <form action="Home.js" method="GET">
+                    <h2>Đăng nhập</h2>
+                    <div class="input-box">
+                        <input type="text" placeholder="Tên đăng nhập" required
                     className="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="exampleInputPassword1" className="form-label">
-                    Mật khẩu
-                </label>
-                <input
-                    type="password"
-                    className="form-control"
+                    value={user_name}
+                    onChange={(e) => setEmail(e.target.value)}></input>
+                        <i class='bx bxs-user'></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="password" placeholder="Mật khẩu" required  className="form-control"
                     id="exampleInputPassword1"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                    onChange={(e) => setPassword(e.target.value)}>
+                        </input>
+                        <i class='bx bxs-lock'></i>
+                    </div>
+
+                    <button type="submit" class="btn" onClick={(e) => handleSubmit(e)}>Đăng nhập</button>
+                    <div class="signup">
+                        <p>Chưa có tài khoản? <a href="./signup">Đăng kí</a></p>
+                    </div>
+                </form>
+                <p>{errorMessage ? errorMessage : ""}</p>
             </div>
-            <button type="submit" className="btn btn-primary" onClick={(e) => handleSubmit(e)}>
-                Đăng nhập
-            </button>
-            <p>{errorMessage ? errorMessage : ""}</p>
-        </form>
+        </>
+       
     )
 
 }

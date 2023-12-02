@@ -8,6 +8,7 @@ import axios from 'axios'
 import { useState, useEffect } from "react";
 import Header from '../shared/header';
 import Cookies from "universal-cookie";
+import '../../components/signup/signup.css'
 const cookies = new Cookies();
 
 function SignUp() {
@@ -15,15 +16,34 @@ function SignUp() {
     const [user_name, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [phone_number, setPhoneNumber] = useState("");
+    const [name_customer, setNameCustomer] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
+    const [passwordsMatch, setPasswordsMatch] = useState(false);
+
+    const handlePasswordChange = () => {
+    const password1El = document.getElementById('password1');
+    const password2El = document.getElementById('password2');
+
+    // Check if passwords match
+    if (password1El.value === password2El.value) {
+      setPasswordsMatch(true);
+      password1El.style.borderColor = 'green';
+      password2El.style.borderColor = 'green';
+    } else {
+      setPasswordsMatch(false);
+      password1El.style.borderColor = 'red';
+      password2El.style.borderColor = 'red';
+    }
+  };
     // const [login, setLogin] = useState(false);
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post("/api/register", {
-            user_id,
             user_name,
-            email,
+            name_customer,
+            phone_number,
             password
         })
             .then((response) => {
@@ -39,63 +59,72 @@ function SignUp() {
             })
     }
     return (
+        <>
+
+
+
+        <div className="wrapper">
         <form>
-            <div className="mb-3">
-                <label htmlFor="exampleInputId1" className="form-label">
-                    Mã số người dùng (dùng mssv nếu đăng ký tài khoản SV)
-                </label>
-                <input
-                    type="text"
-                    className="form-control"
-                    id="exampleInputId1"
-                    aria-describedby="idHelp"
-                    value={user_id}
-                    onChange={(e) => setUserID(e.target.value)}
-                />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="exampleInputName1" className="form-label">
-                    Tên
-                </label>
-                <input
-                    type="text"
-                    className="form-control"
-                    id="exampleInputName1"
-                    aria-describedby="nameHelp"
-                    value={user_name}
-                    onChange={(e) => setUserName(e.target.value)}
-                />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">
-                    Email
-                </label>
-                <input
-                    type="email"
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="exampleInputPassword1" className="form-label">
-                    Mật khẩu
-                </label>
-                <input
-                    type="password"
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </div>
-            <button type="submit" className="btn btn-primary" onClick={(e) => handleSubmit(e)}>
-                Đăng ký
-            </button>
-            <p>{errorMessage ? errorMessage : ""}</p>
+          <h2>Đăng kí</h2>
+          <div className="input-box">
+            <input type="text" placeholder="Tên đăng nhập" required  onChange={(e) => setUserName(e.target.value)}/>
+            <i className="bx bxs-user"></i>
+          </div>
+
+          <div className="input-box">
+            <input type="text" placeholder="Tên" required  onChange={(e) => setNameCustomer(e.target.value)}/>
+            <i className="bx bx-text"></i>
+          </div>
+
+          <div className="input-box">
+            <input
+              type="tel"
+              placeholder="Số điện thoại (VD: 032-658-1111)"
+              required
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+            <i className="bx bxs-phone"></i>
+          </div>
+
+          <div className="input-box">
+            <input
+              type="password"
+              id="password1"
+              placeholder="Mật khẩu"
+              required
+              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+              title="Please include at least 1 uppercase character, 1 lowercase character, and 1 number."
+              onChange={(e) => {setPassword(e.target.value); handlePasswordChange();}}
+            />
+            <i className="bx bxs-lock"></i>
+          </div>
+
+          <div className="input-box">
+            <input
+              type="password"
+              id="password2"
+              placeholder="Nhập lại mật khẩu"
+              required
+              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+              onChange={handlePasswordChange}
+            />
+            <i className="bx bxs-lock-alt"></i>
+          </div>
+
+          <button type="submit" className="btn-signup" disabled={!passwordsMatch} onClick={(e) => handleSubmit(e)} >
+            Đăng kí
+          </button>
+          <p>{errorMessage ? errorMessage : ""}</p>
+          <a href="./login" className="btn-close">
+            Quay lại
+          </a>
         </form>
+      </div>
+        
+        
+        </>
+        
     )
 
 }

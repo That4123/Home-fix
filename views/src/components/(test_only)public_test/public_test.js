@@ -63,7 +63,7 @@ function PublicTest() {
         <>
             <h1>Đây là trang không cần đăng nhập cũng vào được</h1>
             <h3>Tuy vậy, sẽ có những thứ ẩn cần đăng nhập với quyền nhất định để thấy được</h3>
-
+            <a href={"./confirmPriceSchedule/" + 2}>CPS</a>
             {commentFrame}
             {memberConfig}
 

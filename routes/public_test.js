@@ -5,5 +5,6 @@ const path = require("path");
 
 public_test_router.post("/loadCommentFrame", public_test_controller.loadCommentFrame);
 public_test_router.post("/loadMemberConfig", public_test_controller.loadMemberConfig);
+public_test_router.post("/loadRole", public_test_controller.loadRole)
 
 module.exports = public_test_router;

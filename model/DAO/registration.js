@@ -14,8 +14,8 @@ function checkNoEmpty(res, obj) {
     return true;
 }
 
-function checkNoDuplicate(res, user_id, email, valid) {
-    connect_DB.query("SELECT user_name FROM user_provider WHERE user_name= ? UNION SELECT user_name FROM user_customer WHERE user_name= ?", [email,email], function (err, result, field) {
+function checkNoDuplicate(res, user_name, valid) {
+    connect_DB.query("SELECT user_name FROM user_provider WHERE user_name= ? UNION SELECT user_name FROM user_customer WHERE user_name= ?", [user_name,user_name], function (err, result, field) {
         if (err) {
             res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
             valid(false);
@@ -32,7 +32,7 @@ function checkNoDuplicate(res, user_id, email, valid) {
 
 function validate(res, obj, register) {
     if (checkNoEmpty(res, obj)) {
-        checkNoDuplicate(res, obj.student_id, obj.email, function (valid) {
+        checkNoDuplicate(res, obj.user_name, function (valid) {
             register(valid);
         });
     }
@@ -43,21 +43,29 @@ function validate(res, obj, register) {
 function register(res, obj) {
     validate(res, obj, function (valid) {
         if (valid) {
-            let sql = "INSERT INTO user_customer (user_name, password) VALUES (?, ?)"
+            let sql = "INSERT INTO user_customer (user_name, password, name, phone_number) VALUES (?, ?, ?, ?)"
             connect_DB.query(sql, [
-                obj.email,
-                obj.password
+                obj.user_name,
+                obj.password,
+                obj.name_customer,
+                obj.phone_number
             ], function (err, result) {
                 console.log("111111");
                 if (err)
                     res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
                 else {
+                    let sql = "SELECT customer_id FROM user_customer WHERE name = ?"
+                    connect_DB.query(sql, [
+                        obj.name_customer
+                    ], function (err, result) {
                     let member = {
-                        user_id: obj.user_id,
-                        user_name:obj.email,
+                        user_id: result[0].customer_id,
+                        user_name:obj.user_name,
                     };
                     const token = jwt.sign(member, "RANDOM-TOKEN", { expiresIn: "15m" });
                     res.json({ member: member, token });
+                    }
+                    )
                 }
             })
         }

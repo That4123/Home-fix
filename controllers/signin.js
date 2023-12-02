@@ -3,7 +3,7 @@ var authentication_model = require("../model/DAO/authentication")
 module.exports = {
     signin: function (req, res) {
         let obj = {
-            email: req.body.email,
+            user_name: req.body.user_name,
             password: req.body.password
         };
         if (authentication_model.checkNoEmpty(obj)) {

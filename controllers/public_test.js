@@ -7,5 +7,6 @@ module.exports = {
     }],
     loadMemberConfig: [authorization_model.loadCurMember, authorization_model.authorizeAdmin, function (req, res) {
         res.json({})
-    }]
+    }],
+    loadRole: [authorization_model.loadCurMember, authorization_model.role]
 }

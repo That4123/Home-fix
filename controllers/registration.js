@@ -7,9 +7,9 @@ module.exports = {
             bcrypt.hash(req.body.password, 10)
                 .then((hashedPassword) => {
                     let user = {
-                        user_id: req.body.user_id,
+                        name_customer: req.body.name_customer,
                         user_name: req.body.user_name,
-                        email: req.body.email,
+                        phone_number: req.body.phone_number,
                         password: hashedPassword
                     };
                     registration_model.register(res, user);

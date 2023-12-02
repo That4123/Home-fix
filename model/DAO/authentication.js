@@ -14,7 +14,7 @@ function checkNoEmpty(obj) {
 }
 
 function signin(res, obj) {
-    connect_DB.query("SELECT user_name,password FROM user_provider WHERE user_name = ? UNION SELECT user_name,password FROM user_customer WHERE user_name = ?", [obj.email,obj.email], function (err, result, field) {
+    connect_DB.query("SELECT user_name,password FROM user_provider WHERE user_name = ? UNION SELECT user_name,password FROM user_customer WHERE user_name = ?", [obj.user_name,obj.user_name], function (err, result, field) {
         if (err) {
             res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
         }
