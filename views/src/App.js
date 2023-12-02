@@ -15,6 +15,8 @@ import ProtectedTest from './components/(test_only)protected_test/protected_test
 import PublicTest from './components/(test_only)public_test/public_test';
 import SignUp from './components/signup/signup';
 import ConfirmPriceSchedule from './components/confirm_price_schedule/ConfirmPriceSchedule';
+import SendInformation from './components/SendInformation/SendInformation'
+
 function App() {
   return (
     <Routes>
@@ -28,6 +30,7 @@ function App() {
           <Route path='protectedTest' element={<ProtectedTest />} />
           
         </Route>
+        <Route path='sendInformation' element={<SendInformation/>}/>
         <Route path="*" element={<NoPage />} />
       </Route>
     </Routes>

@@ -1,0 +1,111 @@
+
+.informationForm-container {
+    width: 50%;
+    margin:auto;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 16px;
+    border-style: solid;
+    border-color: black;
+    border-width: 4px;
+    
+}
+.informationForm-container .informationForm-name{
+    text-align: center;
+}
+.informationForm-container .informationForm-group{
+    /* background-color: aqua; */
+    margin: 10px auto;
+    padding: 2px 2px;
+    width: 90%;
+    display: inline-block;
+}
+.informationForm-group input,select{
+    float:right;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    margin:auto;
+    width: 80%;
+    height: 3em;
+    padding-left: 10px;
+}
+.informationForm-container .informationForm-group textarea{
+    margin:auto;
+    float:right;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    margin:auto;
+    width: 80%;
+    overflow: hidden;
+    padding-left: 10px;
+}
+.image-button-container{
+    margin: 0px auto;
+    padding: 2px 2px;
+    width: 90%;
+    display: inline-block;
+}
+.image-button-container input{
+    float: right;
+}
+
+
+
+.informationForm-container .informationForm-group .MuiFormControl-root{
+    margin:auto;
+    float:right;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    resize: none;
+    margin:auto;
+    width: 80%;
+}
+.informationForm-container .informationForm-group  .MuiInputBase-input {
+    width: 100%;
+    text-align: center;
+}
+.informationForm-container .submit-button-container{
+    display: inline-block;  
+    margin:0 40%;
+}
+.submit-button-container button[type='submit']{
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: black; /* Button background color */
+    color: #fff; /* Button text color */
+    transition: background-color 0.3s ease;
+    margin: 0 10px;
+}
+.providerForm{
+    position:relative;
+}
+
+.providerForm .provider-search-button{
+    position:absolute;
+    right:0;
+    border: 0;
+    color: white;
+    outline: none;
+    padding: 3px 10px;
+    z-index: 2;
+    background-color: black;
+    border-radius: 4px;
+    height: 3em;
+    transform: translateX(-1%);
+}
+
+
+
+
+
+    

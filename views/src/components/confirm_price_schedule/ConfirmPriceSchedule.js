@@ -155,7 +155,7 @@ function Confirm () {
                 <div style={{fontSize:"30px"}}>Xác nhận giá sửa chữa và lịch sửa chữa</div>
                 <div className="user-info-area">
                         <div className="user-info">
-                           {info_order.order_id}
+                           a
                         </div>
                         <div className="user-info">
                            aaa

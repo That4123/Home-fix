@@ -19,6 +19,7 @@
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
-    "mysql2": "^3.6.4"
+    "mysql2": "^3.6.4",
+    "reactjs-popup": "^2.0.6"
   }
 }
