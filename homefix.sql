@@ -208,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `user_customer` (
 --
 
 INSERT INTO `user_customer` (`customer_id`, `user_name`, `password`, `name`, `balance`, `phone_number`) VALUES
-(1, 'customer1', '$2b$10$LmHWQ8e/4zG1lhc6LJtVZOYEzRPw86fgOpuj7/GBJFwNAQ4AXOQkK', '', 0.00, '');
+(1, 'customer1', '$2b$10$LmHWQ8e/4zG1lhc6LJtVZOYEzRPw86fgOpuj7/GBJFwNAQ4AXOQkK', 'Trần Thị A', 0.00, '');
 
 -- --------------------------------------------------------
 
@@ -243,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `user_provider` (
 --
 
 INSERT INTO `user_provider` (`provider_id`, `user_name`, `password`, `name`, `balance`, `province`, `district`, `town`, `street`, `phone_number`) VALUES
-(2, 'provider_test', '$2b$10$gmZJOS1l9LGpT3HyDPMWkOx.E23.QneEZ0ISy9FDosVE9g8zBz2mm', 'provider_test', 0.00, 'Hcm', 'q10', 'phú ', '112', '');
+(2, 'provider1', '$2b$10$iZkUu9bm2731fYMEd75aGOY6jwpYUPomTtmBOa6zTj2AW8cD9FVlW', 'Nguyễn Văn A', 0.00, 'Hcm', 'q10', 'phú ', '112', '');
 
 --
 -- Constraints for dumped tables

@@ -17,7 +17,7 @@ import SignUp from './components/signup/signup';
 import ConfirmPriceSchedule from './components/confirm_price_schedule/ConfirmPriceSchedule';
 import SendInformation from './components/SendInformation/SendInformation';
 import CustomerOrderQueue from './components/customer_order_queue/RequestQueue';
-
+import Chat from './components/chat/Chat';
 function App() {
   return (
     <Routes>
@@ -27,6 +27,7 @@ function App() {
         <Route path='signup' element={<SignUp />} />
         <Route path='publicTest' element={<PublicTest />} />
         <Route path='confirmPriceSchedule/:orderId' element={<ConfirmPriceSchedule />} />
+        <Route path='chat/:name' element={<Chat />} />
         <Route element={<PrivateRoutes validateRoute={"protectedTest"} />} >
           <Route path='protectedTest' element={<ProtectedTest />} />
           
