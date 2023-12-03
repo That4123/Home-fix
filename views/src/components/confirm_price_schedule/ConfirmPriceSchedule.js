@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route, Link, NavLink, Outlet, Navigate, useNavig
 import axios from 'axios'
 import Cookies from "universal-cookie";
 import {useParams} from 'react-router-dom';
-import { delay } from './utils';
+
 const cookies = new Cookies();
 
   
