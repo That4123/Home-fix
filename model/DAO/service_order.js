@@ -18,8 +18,6 @@ function makeOrder(req, res) {
         'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     ];
     
-    console.log(req.body.service_order);
-    
     const serviceOrder = req.body.service_order;
     
     connect_DB.query(sql.join(''), [
@@ -33,19 +31,30 @@ function makeOrder(req, res) {
         serviceOrder.position.street,
         serviceOrder.meetingTimeSchedule,
         'Đang xác nhận',
-        1,  // Assuming customer_id is always 1, you may need to modify this
+        serviceOrder.userId, 
         serviceOrder.providerId,
     ], function (err, result, field) {
         if (err) {
-            console.log('loi1',err,field,result);
             res.status(500).json({ message: err });
         }
         else {
-            console.log('success2');
             res.status(200).json({message:"Gửi yêu cầu thành công"});
         }
     })
 
 }
+function cancelOrder(req,res){
+    const sql = 'UPDATE service_order SET status = \'Đã hủy\' WHERE order_id = ?';
+    connect_DB.query(sql, [
+        req.body.order_id,
+    ], function (err, result, field) {
+        if (err) {
+            res.status(500).json({ message: err });
+        }
+        else{
+            res.status(200).json({message:"Thành công hủy yêu cầu"});
+        }
+    })
+}
 
-module.exports = { checkNoEmpty, makeOrder }
+module.exports = { checkNoEmpty, makeOrder,cancelOrder }

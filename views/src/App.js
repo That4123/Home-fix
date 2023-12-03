@@ -15,7 +15,8 @@ import ProtectedTest from './components/(test_only)protected_test/protected_test
 import PublicTest from './components/(test_only)public_test/public_test';
 import SignUp from './components/signup/signup';
 import ConfirmPriceSchedule from './components/confirm_price_schedule/ConfirmPriceSchedule';
-import SendInformation from './components/SendInformation/SendInformation'
+import SendInformation from './components/SendInformation/SendInformation';
+import CustomerOrderQueue from './components/customer_order_queue/RequestQueue';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           
         </Route>
         <Route path='sendInformation' element={<SendInformation/>}/>
+        <Route path='CustomerOrderQueue' element={<CustomerOrderQueue/>}/>
         <Route path="*" element={<NoPage />} />
       </Route>
     </Routes>

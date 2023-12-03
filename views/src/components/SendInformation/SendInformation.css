@@ -4,7 +4,7 @@
     margin:auto;
     margin-top: 20px;
     padding: 20px;
-    background-color: white;
+    background-color: #dddcdc;
     border-radius: 16px;
     border-style: solid;
     border-color: black;
@@ -75,17 +75,6 @@
     display: inline-block;  
     margin:0 40%;
 }
-.submit-button-container button[type='submit']{
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: black; /* Button background color */
-    color: #fff; /* Button text color */
-    transition: background-color 0.3s ease;
-    margin: 0 10px;
-}
 .providerForm{
     position:relative;
 }
@@ -104,8 +93,67 @@
     transform: translateX(-1%);
 }
 
+.cfm-config-ctn{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cfm-config-ctn .popup-confirm-config{
+    position: relative !important;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    width: 35%;
+}
+
+.popup-confirm-config h2{
+    text-align: center;
+}
+.informationForm-container button{
+    color:rgb(255, 255, 255);
+    background-color: #013282;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.informationForm-container button:hover{
+    background-color: #000000;
+}
+
+.popup-confirm-config h2{
+    text-align: center;
+    border-bottom: 1px solid #000000;
+    ;
+}
 
 
-
-
-    
+.cfm-config-btn{
+    color:rgb(255, 255, 255);
+    background-color: #01317e;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    align-items: center;
+}
+.cfm-config-btn:hover{
+    background-color: #000000;
+}
+.popup-confirm-config p{
+    text-align: center;
+}
+.btn-ctn-cfm-cfg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

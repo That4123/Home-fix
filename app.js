@@ -13,8 +13,8 @@ const protectedTestRoute = require("./routes/protected_test");
 const registrationRoute = require("./routes/registration");
 const publicTestRoute = require("./routes/public_test");
 const SendInformationRoute=require("./routes/send_information");
-const confirmPriceScheduleRoute = require("./routes/confirm_price_schedule")
-
+const confirmPriceScheduleRoute = require("./routes/confirm_price_schedule");
+const orderQueueRoute = require("./routes/order_queue");
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100 // limit each IP to 100 requests per windowMs
@@ -55,5 +55,8 @@ app.use("/api/publicTest", publicTestRoute);
 
 app.use("/api/sendInformation",SendInformationRoute);
 
-app.use("/api/confirmPriceSchedule", confirmPriceScheduleRoute)
+app.use("/api/confirmPriceSchedule", confirmPriceScheduleRoute);
+
+app.use("/api/orderQueue",orderQueueRoute);
+
 app.listen(8080);

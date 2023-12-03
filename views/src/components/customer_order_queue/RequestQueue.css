@@ -1,0 +1,125 @@
+  .allRequest-container {
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    
+  }
+  
+  .allRequest-container h2 {
+    text-align: center;
+    
+  }
+  
+  .request-container-ctmq {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    height: fit-content;
+  }
+  
+  .request-id {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-decoration: none ;
+  }
+  
+
+
+  .request-container-ctmq {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #dddcdc;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 10px;
+  }
+  
+  .request-container-ctmq .avt-request-queue {
+    margin-right: 10px;
+  }
+  
+  .request-container-ctmq .avt-request-queue img {
+    max-width: 100px;
+    border-radius: 50%;
+  }
+  .txt-request-ctn-ctmq{
+    width: 100%;
+  }
+  .request-container-ctmq .request-id {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 20px;
+    background: aliceblue;
+  }
+  
+  .request-container-ctmq .specific-item-info {
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  .request-container-ctmq .request-status {
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+
+  }
+  
+  .request-container-ctmq .btn-ctn-ctmq {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .request-container-ctmq .btn-ctn-ctmq button {
+    background-color: #01317e;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin:10px
+  }
+  
+  .request-container-ctmq .btn-ctn-ctmq button:hover {
+    background-color: #000000;
+  }
+  .popup-confirm-config h2{
+    text-align: center;
+    border-bottom: 1px solid #000000;
+    ;
+}
+
+
+.cfm-config-btn{
+    color:rgb(255, 255, 255);
+    background-color: #01317e;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    align-items: center;
+}
+.cfm-config-btn:hover{
+    background-color: #000000;
+}
+.popup-confirm-config p{
+    text-align: center;
+}
+.btn-ctn-cfm-cfg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

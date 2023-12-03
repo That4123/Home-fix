@@ -7,7 +7,7 @@ module.exports = {
         }
         else{
             console.log(123);
-            res.status(500).json({message:'server error'});
+            res.status(500).json({message:'Vui lòng không bỏ trống trường nào'});
         }
     },
 }

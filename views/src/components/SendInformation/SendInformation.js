@@ -1,12 +1,42 @@
 import React, { useState,useEffect   } from "react";
 
-
+import Modal from 'react-modal';
 import "./SendInformation.css";
 import { ProviderForm } from "./ProviderForm";
 
 import {PositionForm}  from './CityDropdown';
 import axios from 'axios'
-
+const ModalNoti = ({isModalOpen, closeModal, errorMessage}) => {
+  const modalContent = () => {
+    if (errorMessage) {
+      console.log(errorMessage);
+      return <p>{errorMessage}</p>;
+    }
+    return (
+      <>
+        <div className='upload-file-ctn'>
+          <label className='upload-file-lb'>Thành công</label>
+        </div>
+      </>
+    );
+  };
+  
+  return (
+    <Modal 
+      className={"popup-confirm-config"} 
+      overlayClassName={"cfm-config-ctn"}
+      isOpen={isModalOpen}
+      onRequestClose={closeModal}
+      ariaHideApp={false}
+    >
+      <h2>Thông báo</h2>
+      {modalContent()}
+      <div className='btn-ctn-cfm-cfg'>
+        <button onClick={() => closeModal()} className="cfm-config-btn">Đóng</button>
+      </div>
+    </Modal>
+  );
+};
 const InformationForm = () => {
   const [formData, setFormData] = useState({
     itemType: "",
@@ -16,9 +46,10 @@ const InformationForm = () => {
     position: [],
     meetingTimeSchedule: "",
     provider: "nhà sửa chữa An Sơn",
+    userId:3,
     providerId:2,
   });
-
+  const [errorMessage,setErrorMessage]=useState('');
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -29,7 +60,6 @@ const InformationForm = () => {
   const handleDateTimeChange = (e) => {
     const { name, value } = e.target;
     const formattedTime = value.replace("T", " ").toString().substring(0, 16);
-    console.log(formattedTime);
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: formattedTime,
@@ -48,18 +78,26 @@ const InformationForm = () => {
     }));
     console.log(formData.position);
   };
+  const [modalSubmit,setModalSubmit]=useState(false);
+  const closeModalSubmit=()=>{
+    setModalSubmit(false);
+  }
+  const openModelSubmit=()=>{
+    setModalSubmit(true);
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     axios.post("/api/sendInformation/sendInformation", {
         service_order:formData,
     })
       .then((response) => {
-        console.log(response);
+        setErrorMessage(response.data.message);
+        openModelSubmit();
+
       })
       .catch((error) => {
-
-          console.log(error);
+        setErrorMessage(error.response.data.message);
+        openModelSubmit();
       })
   };
   const itemTypes = ['Nội thất', 'Đồ gia dụng', 'Dụng cụ nhà bếp', 'Vật dụng công nghệ'];
@@ -70,6 +108,7 @@ const InformationForm = () => {
             <div className="informationForm-group">
                 <label>Loại vật dụng </label>
                 <select  name="itemType" value={formData.itemType} onChange={handleChange}>
+                    <option value=''>Chọn loại vật dụng</option>
                     {itemTypes.map((itemType) => (
                         <option key={itemType} value={itemType}>{itemType}</option>
                     ))}
@@ -141,6 +180,7 @@ const InformationForm = () => {
             <button type="submit">Xác nhận</button>
             </div>
         </form>
+        <ModalNoti isModalOpen={modalSubmit} closeModal={closeModalSubmit} errorMessage={errorMessage} />
     </div>
   );
 };
