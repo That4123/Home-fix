@@ -11,5 +11,9 @@ module.exports = {
     },
     getCSP: function(req, res){
         order_model.getCSP(req.body, res);
+    },
+    updateAfterCSP: function(req, res){
+        console.log(req.body)
+        order_model.updateAfterCSP(req.body, res);
     }
 }

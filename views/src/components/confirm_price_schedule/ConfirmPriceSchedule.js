@@ -13,15 +13,6 @@ const cookies = new Cookies();
   
 function Confirm () {
     
-    const order_info = {cus_name: "Phạm Thị A",
-                      type: "Sửa máy giặt",
-                      address: "QL1B - Phường XX, Quận XX, tp. HCM",
-                      status_response: 1,
-                      staff_name: "Thợ sửa 1",
-                      cus_phone_number: "012345678",
-                      staff_phone_number: "012345679",
-                      order_id: "1012"
-                    };
     const [info_order, setInfoOrder] = useState([])
     const id = useParams();
     const token = cookies.get("TOKEN");
@@ -46,13 +37,15 @@ function Confirm () {
             handleTime(response.data[0].time_schedule);
        }
     }).catch((error) => { });}, [])
+
+
     useEffect(()=> {    
         axios.post("/api/confirmPriceSchedule/getInfoOrder", {order_id: id}).
     then((response) => {
        setInfoOrder(response.data);
-       setIsReturn(true);
+       setIsReturn(true);    
     }).catch((error) => { });}, [])
-    
+
     
     const [open, setOpen] = useState(false);
     const [datetime, setDateTime] = useState("");
@@ -82,11 +75,16 @@ function Confirm () {
         setTime(time_)
         setDay(date)
     }
-    
+    const handleUpdate = () => {
+        axios.post("/api/confirmPriceSchedule/updateAfterCSP", {id}).
+    then((response) => {
+    }).catch((error) => { });
+    }
     
 
     
     if (isReturn && role === "provider") {
+        
         return (
             <div className="background-white">
                 <div style={{fontSize:"30px"}}>Gửi yêu cầu xác nhận giá sửa chữa và lịch sửa chữa</div>
@@ -111,8 +109,8 @@ function Confirm () {
                     qua cuộc gọi điện thoại qua số điện thoại được cung cấp phía trên 
                     hoặc qua room chat bằng cách bấm nút “Trò chuyện”.
                     </div>
-                    <a className= "communicate-btn" href="/chat" target="_blank" >
-                        <button type="submit">Trò chuyện</button>
+                    <a className= "communicate-btn" href={"/chat/"+ info_order[0].customer_name} target="_blank">
+                        <button type="submit" >Trò chuyện</button>
                     </a>
                 </div>
                 <form className="form-confirm" onSubmit={handleChange}>
@@ -155,6 +153,7 @@ function Confirm () {
         )
     }
     else if (isReturn && role === "customer") {
+
         return (
             <div className="background-white">
                 <div style={{fontSize:"30px"}}>Xác nhận giá sửa chữa và lịch sửa chữa</div>
@@ -179,7 +178,7 @@ function Confirm () {
                     qua cuộc gọi điện thoại qua số điện thoại được cung cấp phía trên 
                     hoặc qua room chat bằng cách bấm nút “Trò chuyện”.
                     </div>
-                    <a className= "communicate-btn" href="/chat">
+                    <a className= "communicate-btn" href={"/chat/"+ info_order[0].provider_name} target="_blank" rel="noopener noreferrer">
                         <button type="submit">Trò chuyện</button>
                     </a>
                 </div>
@@ -196,7 +195,7 @@ function Confirm () {
                     </div>
                     <div className="submit-area">
                     Xác nhận thông tin đơn hàng
-                    <button type="submit" onClick={handleClickToOpen}> Xác nhận</button>
+                    <button type="submit" onClick={(e) => {handleClickToOpen(e); handleUpdate()}}> Xác nhận</button>
                     </div>
                 </div>
                 <Modal

@@ -62,7 +62,20 @@ function getCSP(req, res){
         }
     })
 }
+function updateAfterCSP(req, res){
+    connect_DB.query(`UPDATE service_order
+        SET status = 'Đang chờ thực hiện'
+        WHERE order_id = ?;`, [req.id.orderId],function (err, result, field) {
+            if (err) {
+                res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
+            }
+            else {
+                res.json(result)
+            }
+        })
+}
 module.exports = {
     getInfoOrder,
     setCSP,
-    getCSP}
+    getCSP,
+updateAfterCSP}

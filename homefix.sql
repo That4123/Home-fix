@@ -208,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `user_customer` (
 --
 
 INSERT INTO `user_customer` (`customer_id`, `user_name`, `password`, `name`, `balance`, `phone_number`) VALUES
-(1, 'customer1', '$2b$10$LmHWQ8e/4zG1lhc6LJtVZOYEzRPw86fgOpuj7/GBJFwNAQ4AXOQkK', '', 0.00, '');
+(1, 'customer1', '$2b$10$LmHWQ8e/4zG1lhc6LJtVZOYEzRPw86fgOpuj7/GBJFwNAQ4AXOQkK', 'Trần Thị A', 0.00, '');
 
 -- --------------------------------------------------------
 
