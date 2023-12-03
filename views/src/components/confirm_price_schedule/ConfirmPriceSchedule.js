@@ -7,8 +7,12 @@ import { BrowserRouter, Routes, Route, Link, NavLink, Outlet, Navigate, useNavig
 import axios from 'axios'
 import Cookies from "universal-cookie";
 import {useParams} from 'react-router-dom';
+import { delay } from './utils';
 const cookies = new Cookies();
+
+  
 function Confirm () {
+    
     const order_info = {cus_name: "Phạm Thị A",
                       type: "Sửa máy giặt",
                       address: "QL1B - Phường XX, Quận XX, tp. HCM",
@@ -18,85 +22,86 @@ function Confirm () {
                       staff_phone_number: "012345679",
                       order_id: "1012"
                     };
-    const [info_order, setInfoOrder] = useState()
+    const [info_order, setInfoOrder] = useState([])
     const id = useParams();
     const token = cookies.get("TOKEN");
     const navigate = useNavigate();
     const [role, setRole] = useState();
-    
-    axios.post("/api/confirmPriceSchedule/loadRole", {}, {
+    const [isReturn, setIsReturn] = useState(false)
+    useEffect(()=> {axios.post("/api/confirmPriceSchedule/loadRole", {}, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }).then((response) => {
        setRole(response.data.role)
        
-    }).catch((error) => { });
-    /*
-    axios.post("/api/confirmPriceSchedule/getInfoOrder", {order_id: id}).
+    }).catch((error) => { });}, [])
+
+    useEffect(()=> {    
+        axios.post("/api/confirmPriceSchedule/getCSP", {order_id: id}).
     then((response) => {
-       setInfoOrder(response.data[0])
-    }).catch((error) => { });
-   
-    const initialized = useRef(false);
-    useEffect(() => {
-        if (!initialized.current){
-        initialized.current = true;
-        const fetchRole = axios.post("/api/confirmPriceSchedule/loadRole", {}, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-      
-        const fetchOrderInfo = axios.post("/api/confirmPriceSchedule/getInfoOrder", { order_id: id });
-        axios.all([fetchRole, fetchOrderInfo])
-          .then(axios.spread((roleResponse, orderInfoResponse) => {
-            // Handle the role response
-            setRole(roleResponse.data.role);
-      
-            // Handle the order information response
-            setInfoOrder(orderInfoResponse.data[0]);
-          }))
-          .catch((error) => {
-            // Handle errors
-          });
-        }
-      }, []);
-    */
+       if (response.data.length !== 0) {
+            setDateTime(response.data[0].time_schedule);
+            setPrice(response.data[0].price);
+            handleTime(response.data[0].time_schedule);
+       }
+    }).catch((error) => { });}, [])
+    useEffect(()=> {    
+        axios.post("/api/confirmPriceSchedule/getInfoOrder", {order_id: id}).
+    then((response) => {
+       setInfoOrder(response.data);
+       setIsReturn(true);
+    }).catch((error) => { });}, [])
+    
+    
     const [open, setOpen] = useState(false);
+    const [datetime, setDateTime] = useState("");
+    const [price, setPrice] = useState(0);
     const handleClickToOpen = (e) => {
         e.preventDefault()
         setOpen(true);
+        axios.post("/api/confirmPriceSchedule/setCSP", {id, datetime, price}).
+        then((response) => {
+        }).catch((error) => { });
     };
- 
+    const handleChange = (e) => {
+        console.log(e.target.value)
+    }
     const handleToClose = () => {
         setOpen(false);
     };
-    const [time, setTime] = useState("2023-10-26T11:39");
-    const [price, setPrice] = useState(0);
-    const datetimeString = "2023-10-26T11:39";
-    const datetime = new Date(datetimeString);
+    const [time, setTime] = useState("");
+    const [day, setDay] = useState("")
+    const handleTime = (date_time) => {
+        const datetime = new Date(date_time);
+        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
 
-    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-    const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+        const date = datetime.toLocaleDateString(undefined, dateOptions);
+        const time_ = datetime.toLocaleTimeString(undefined, timeOptions);
+        setTime(time_)
+        setDay(date)
+    }
+    
+    
 
-    const date = datetime.toLocaleDateString(undefined, dateOptions);
-    const time_ = datetime.toLocaleTimeString(undefined, timeOptions);
-    if (role === "provider") {
+    
+    if (isReturn && role === "provider") {
         return (
             <div className="background-white">
                 <div style={{fontSize:"30px"}}>Gửi yêu cầu xác nhận giá sửa chữa và lịch sửa chữa</div>
                 <div className="user-info-area">
-                    <div className="user-info">
-                        <div>Khách hàng: {info_order.cus_name}</div>
-                        <div>Yêu cầu sửa: {info_order.item_type}</div>
-                        <div>Địa chỉ: {info_order.street} {info_order.town} {info_order.district} {info_order.province}</div>
-                        <div>Số điện thoại: {info_order.customer_phone_number}</div>
+                <div className="user-info">
+                        <div>Khách hàng: {info_order[0].customer_name}</div>
+                        <div>Yêu cầu sửa: {info_order[0].item_type}</div>
+                        <div>Địa chỉ: {info_order[0].street} {info_order[0].town} {info_order[0].district} {info_order[0].province}</div>
+                        <div>Số điện thoại: {info_order[0].customer_phone_number}</div>
+                       
                     </div>
                     <div className="user-info">
-                        <div>Thợ sửa: {info_order.provider_name}</div>
-                        <div>Mã đơn hàng: {info_order.order_id}</div>
-                        <div>Số điện thoại: {info_order.provider_phone_number}</div>
+                        <div>Thợ sửa: {info_order[0].provider_name}</div>
+                        <div>Mã đơn hàng: {info_order[0].order_id}</div>
+                        <div>Số điện thoại: {info_order[0].provider_phone_number}</div>
                     </div>
                 </div>
                 <div className="communicate-area">
@@ -110,20 +115,20 @@ function Confirm () {
                         <button type="submit">Trò chuyện</button>
                     </a>
                 </div>
-                <form className="form-confirm">
+                <form className="form-confirm" onSubmit={handleChange}>
                     <div>Lịch sửa chữa:</div>
                     <div className = "form-confirm-date-time">
                         <label>Thời gian</label>
-                        <input type = "datetime-local" className="input-order-info" name="Giờ"/>
+                        <input type = "datetime-local" className="input-order-info" name="Giờ" onChange = {(e) => setDateTime(e.target.value)}/>
                     </div>
                     <div className = "form-confirm-price">
                         <label>Giá đề xuất</label>
-                        <input type = "number" className="input-order-info" name="Chi phí"/>
+                        <input type = "number" className="input-order-info" name="Chi phí" onChange = {(e) => setPrice(e.target.value)}/>
                         <label>VND</label>
                     </div>
                     <div className="submit-area">
                     Gửi yêu cầu xác nhận xác nhận thông tin đơn hàng
-                    <button type="submit" onClick={handleClickToOpen}> Gửi</button>
+                    <button type="submit"  onClick={handleClickToOpen} > Gửi</button>
                     </div>
                 </form>
                 <div>
@@ -149,17 +154,23 @@ function Confirm () {
             </div>
         )
     }
-    else {
+    else if (isReturn && role === "customer") {
         return (
             <div className="background-white">
                 <div style={{fontSize:"30px"}}>Xác nhận giá sửa chữa và lịch sửa chữa</div>
                 <div className="user-info-area">
-                        <div className="user-info">
-                           a
-                        </div>
-                        <div className="user-info">
-                           aaa
-                        </div>
+                <div className="user-info">
+                        <div>Khách hàng: {info_order[0].customer_name}</div>
+                        <div>Yêu cầu sửa: {info_order[0].item_type}</div>
+                        <div>Địa chỉ: {info_order[0].street} {info_order[0].town} {info_order[0].district} {info_order[0].province}</div>
+                        <div>Số điện thoại: {info_order[0].customer_phone_number}</div>
+                       
+                    </div>
+                    <div className="user-info">
+                        <div>Thợ sửa: {info_order[0].provider_name}</div>
+                        <div>Mã đơn hàng: {info_order[0].order_id}</div>
+                        <div>Số điện thoại: {info_order[0].provider_phone_number}</div>
+                    </div>
                 </div>
                 <div className="communicate-area">
                     <div className="communicate-note">
@@ -176,7 +187,7 @@ function Confirm () {
                     <div>Lịch sửa chữa:</div>
                     <div className = "form-confirm-date-time">
                         <label>Thời gian</label>
-                        <div type = "datetime-local" className="input-order-info" name="Giờ"> {date} {time_} </div>
+                        <div type = "datetime-local" className="input-order-info" name="Giờ"> {time} {day} </div>
                     </div>
                     <div className = "form-confirm-price">
                         <label>Giá đề xuất</label>
@@ -208,6 +219,7 @@ function Confirm () {
             
         )
     }
+    else return (<></>)
 }
 export default Confirm;
 

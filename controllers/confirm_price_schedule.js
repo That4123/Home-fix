@@ -6,4 +6,10 @@ module.exports = {
     getInfoOrder: function(req, res){
         order_model.getInfoOrder(req.body.order_id.orderId, res);
     },
+    setCSP: function(req, res){
+        order_model.setCSP(req.body, res);
+    },
+    getCSP: function(req, res){
+        order_model.getCSP(req.body, res);
+    }
 }

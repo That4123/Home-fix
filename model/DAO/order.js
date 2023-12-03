@@ -41,5 +41,28 @@ WHERE
             res.json(result)
         }
     })
+};
+function setCSP(req, res){
+    connect_DB.query(`INSERT INTO agreement (price, time_schedule, order_id) VALUES (?, ?, ?);`, [req.price, req.datetime, req.id.orderId], function (err, result, field) {
+        if (err) {
+            res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
+        }
+        else {
+            res.json(result)
+        }
+    })
 }
-module.exports = {getInfoOrder}
+function getCSP(req, res){
+    connect_DB.query(`SELECT * FROM agreement WHERE order_id = ?;`, [req.order_id.orderId], function (err, result, field) {
+        if (err) {
+            res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
+        }
+        else {
+            res.json(result)
+        }
+    })
+}
+module.exports = {
+    getInfoOrder,
+    setCSP,
+    getCSP}
