@@ -1,10 +1,10 @@
-const { crossOriginResourcePolicy } = require('helmet');
+
 var connect_DB = require('./connect_db');
 
 
 function getAllOrder(req, res) {
     const sql = [
-        'SELECT * FROM service_order WHERE `customer_id`=?'
+        'SELECT * FROM service_order WHERE `provider_id`=?'
     ];
     
     connect_DB.query(sql.join(''), [
@@ -20,4 +20,4 @@ function getAllOrder(req, res) {
 
 }
 
-module.exports = {getAllOrder }
+module.exports = {getAllOrder}

@@ -6,6 +6,10 @@ import { ProviderForm } from "./ProviderForm";
 
 import {PositionForm}  from './CityDropdown';
 import axios from 'axios'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+const token = cookies.get('TOKEN');
+
 const ModalNoti = ({isModalOpen, closeModal, errorMessage}) => {
   const modalContent = () => {
     if (errorMessage) {
@@ -15,7 +19,7 @@ const ModalNoti = ({isModalOpen, closeModal, errorMessage}) => {
     return (
       <>
         <div className='upload-file-ctn'>
-          <label className='upload-file-lb'>Thành công</label>
+          <label className='upload-file-lb'>{errorMessage}</label>
         </div>
       </>
     );
@@ -46,7 +50,6 @@ const InformationForm = () => {
     position: [],
     meetingTimeSchedule: "",
     provider: "nhà sửa chữa An Sơn",
-    userId:3,
     providerId:2,
   });
   const [errorMessage,setErrorMessage]=useState('');
@@ -86,16 +89,22 @@ const InformationForm = () => {
     setModalSubmit(true);
   }
   const handleSubmit = (e) => {
+    console.log("send information: handle submit");
     e.preventDefault();
     axios.post("/api/sendInformation/sendInformation", {
         service_order:formData,
+    },{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     })
       .then((response) => {
+        console.log("send information, handle submit success");
         setErrorMessage(response.data.message);
         openModelSubmit();
-
       })
       .catch((error) => {
+        console.log("send information, handle submit fail");
         setErrorMessage(error.response.data.message);
         openModelSubmit();
       })

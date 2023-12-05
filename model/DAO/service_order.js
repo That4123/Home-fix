@@ -31,7 +31,7 @@ function makeOrder(req, res) {
         serviceOrder.position.street,
         serviceOrder.meetingTimeSchedule,
         'Đang xác nhận',
-        serviceOrder.userId, 
+        req.cur_member.user_id,
         serviceOrder.providerId,
     ], function (err, result, field) {
         if (err) {
@@ -56,6 +56,19 @@ function cancelOrder(req,res){
         }
     })
 }
+function acceptOrder(req,res){
+    const sql = 'UPDATE service_order SET status = \'Đang chờ thực hiện\' WHERE order_id = ?';
+    connect_DB.query(sql, [
+        req.body.order_id,
+    ], function (err, result, field) {
+        if (err) {
+            res.status(500).json({ message: err });
+        }
+        else{
+            res.status(200).json({message:"Thành công chấp nhận yêu cầu"});
+        }
+    })
+}
 function getOrderDetails(req,res){
     const sql = 'SELECT * FROM service_order WHERE order_id=?';
     connect_DB.query(sql, [
@@ -67,15 +80,40 @@ function getOrderDetails(req,res){
         else if (result.length===0){
             res.status(404).json({message:"yêu cầu không tồn tại"});
         }
-        else{
+        else {
             console.log(result);
+        
             const formattedOrder = {
                 ...result[0],
-                start_time: new Date(result[0].start_time).toLocaleString('en-US')
+                start_time: new Date(result[0].start_time).toLocaleString('en-US'),
+                time_range: new Date(result[0].time_range).toLocaleString('en-US'),
             };
-            res.status(200).json({message:"Thành lấy thông tin yêu cầu",service_order:formattedOrder});
-        }
+        
+            const providerQuery = 'SELECT name FROM user_provider WHERE provider_id = ?';
+            connect_DB.query(providerQuery, [result[0].provider_id], function (errProvider, resultProvider, fieldProvider) {
+                if (errProvider) {
+                    res.status(500).json({ message: errProvider });
+                } else {
+                    if (resultProvider.length > 0) {
+                        formattedOrder.provider_name = resultProvider[0].name;
+                    }
+        
+                    // Fetch customer name based on customer ID
+                    const customerQuery = 'SELECT name FROM user_customer WHERE customer_id = ?';
+                    connect_DB.query(customerQuery, [result[0].customer_id], function (errCustomer, resultCustomer, fieldCustomer) {
+                        if (errCustomer) {
+                            res.status(500).json({ message: errCustomer });
+                        } else {
+                            if (resultCustomer.length > 0) {
+                                formattedOrder.customer_name = resultCustomer[0].name;
+                            }
+                            res.status(200).json({ message: "Thành công lấy thông tin yêu cầu", service_order: formattedOrder });
+                        }
+                    });
+                }
+            });
+        }        
     })
 }
 
-module.exports = { checkNoEmpty, makeOrder,cancelOrder,getOrderDetails }
+module.exports = { checkNoEmpty, makeOrder,cancelOrder,getOrderDetails,acceptOrder }

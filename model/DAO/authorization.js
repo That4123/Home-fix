@@ -8,11 +8,12 @@ async function loadCurMember(req, res, next) {
         const decodeToken = await jwt.verify(token, "RANDOM-TOKEN");
         const cur_member = await decodeToken;
         req.cur_member = cur_member
-        next();
     }
     catch (error) {
         res.status(401).json({ message: "Người dùng chưa đăng nhập hoặc phiên đã hết hạn" });
+        return;
     }
+    next();
 }
 function role(req, res){
     if (req.cur_member){
@@ -24,16 +25,15 @@ function role(req, res){
                 res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
             }
             else if (result.length == 0){
-                res.json({role: "provider"})
+                res.json({role: "provider",providerId:result[0].provider_id,name:result[0].name})
             }
             else {
-                res.json({role: "customer"})
+                res.json({role: "customer",customerId:result[0].customer_id,name:result[0].name})
             }
         })
     }
 }
 async function authorizeStudent(req, res, next) {
-    console.log(req.cur_member)
     if (req.cur_member) {
         let sql = "SELECT * FROM user WHERE user_id = ? AND email = ? AND state = ? AND role = ?";
         connect_DB.query(sql, [

@@ -27,6 +27,24 @@ const ModalNoti = ({ isModalOpen, closeModal, message,selectedOrder, cancelOrder
     </Modal>
   );
 };
+const ModalActionNoti = ({ isModalOpen, closeModal, message,selectedOrder, action }) => {
+  return (
+    <Modal 
+      className={"popup-confirm-config"} 
+      overlayClassName={"cfm-config-ctn"}
+      isOpen={isModalOpen}
+      onRequestClose={closeModal}
+      ariaHideApp={false}
+    >
+      <h2>Thông báo</h2>
+      <p>{message}</p>
+      <div className='btn-ctn-cfm-cfg'>
+        <button onClick={closeModal} className="cfm-config-btn">Đóng</button>
+        <button onClick={() => { closeModal(); action(selectedOrder.order_id); }} className="cfm-config-btn">Xác nhận</button>
+      </div>
+    </Modal>
+  );
+};
 function RequestQueue() {
   const [isLoading, setLoading] = useState(true);
   const [serviceOrderList, setServiceOrderList] = useState([]);
@@ -34,7 +52,7 @@ function RequestQueue() {
   const [selectedOrder,setSelectedOrder]=useState();
   useEffect(() => {
     axios
-      .post('/api/orderQueue/customer/getAllOrder', {
+      .post('/api/orderQueue/provider/getAllOrder', {
         // customerId:3,
       }, {
         headers: {
@@ -58,7 +76,31 @@ function RequestQueue() {
   }
   const cancelOrder=(order_id)=>{
     axios
-      .post('/api/orderQueue/customer/cancelOrder', {
+      .post('/api/orderQueue/provider/cancelOrder', {
+        order_id:order_id,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setErrorMessage('');
+        setLoading(true);
+      })
+      .catch((error) => {
+        setErrorMessage(error.response.data.message);
+        console.error(error.response.data.message);
+        setLoading(true);
+      });
+  }
+  const [isModalAcceptOrder,setModalAcceptOrder]=useState(false);
+  const handleAcceptOrder=()=>{
+    setModalAcceptOrder(true);
+  }
+  const acceptOrder=(order_id)=>{
+    axios
+      .post('/api/orderQueue/provider/acceptOrder', {
         order_id:order_id,
       }, {
         headers: {
@@ -87,9 +129,14 @@ function RequestQueue() {
           <p className={`request-status ${requestData.status}`}>Trạng thái: {requestData.status}</p>
           <div className='btn-ctn-ctmq'>
           {requestData.status==='Đang xác nhận' && (
+            <>
             <button onClick={() => { setSelectedOrder(requestData); handleCancelOrder(); }}>
-              Hủy
+              Từ chối
             </button>
+            <button onClick={() => { setSelectedOrder(requestData); handleAcceptOrder(); }}>
+              Chấp nhận
+            </button>
+            </>
           )}
             <Link to={`details/${requestData.order_id}`}>
               <button>Chi tiết</button>
@@ -102,6 +149,13 @@ function RequestQueue() {
         message={'Bạn chắc chắn muốn hủy yêu cầu này'}
         selectedOrder={selectedOrder}
         cancelOrder={cancelOrder}
+        />
+        <ModalActionNoti 
+        isModalOpen={isModalAcceptOrder} 
+        closeModal={()=>setModalAcceptOrder(false)}
+        message={'Bạn chắc chắn muốn chấp nhận yêu cầu này'}
+        selectedOrder={selectedOrder}
+        action={acceptOrder}
         />
       </div>
   );
@@ -128,3 +182,4 @@ function RequestQueue() {
 }
 
 export default RequestQueue;
+export {ModalActionNoti}

@@ -17,8 +17,12 @@ import SignUp from './components/signup/signup';
 import ConfirmPriceSchedule from './components/confirm_price_schedule/ConfirmPriceSchedule';
 import SendInformation from './components/SendInformation/SendInformation';
 import CustomerOrderQueue from './components/customer_order_queue/RequestQueue';
-import Chat from './components/chat/Chat';
+import ProviderOrderQueue from './components/provider_order_queue/RequestQueue';
+// import Chat from './components/chat/Chat';
 import CustomerOrderDetails from './components/customer_order_queue/request_detail/RequestDetail'
+import ProviderOrderDetails from './components/provider_order_queue/request_detail/RequestDetail'
+
+
 function App() {
   return (
     <Routes>
@@ -28,7 +32,7 @@ function App() {
         <Route path='signup' element={<SignUp />} />
         <Route path='publicTest' element={<PublicTest />} />
         <Route path='confirmPriceSchedule/:orderId' element={<ConfirmPriceSchedule />} />
-        <Route path='chat/:name' element={<Chat />} />
+        {/* <Route path='chat/:name' element={<Chat />} /> */}
         <Route element={<PrivateRoutes validateRoute={"protectedTest"} />} >
           <Route path='protectedTest' element={<ProtectedTest />} />
           
@@ -36,6 +40,8 @@ function App() {
         <Route path='sendInformation' element={<SendInformation/>}/>
         <Route path='CustomerOrderQueue' element={<CustomerOrderQueue/>}/>
         <Route path='CustomerOrderQueue/details/:order_id' element={<CustomerOrderDetails/>} />
+        <Route path='ProviderOrderQueue' element={<ProviderOrderQueue/>}/>
+        <Route path='ProviderOrderQueue/details/:order_id' element={<ProviderOrderDetails/>} />
         <Route path="*" element={<NoPage />} />
       </Route>
     </Routes>

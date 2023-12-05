@@ -14,7 +14,7 @@ function checkNoEmpty(obj) {
 }
 
 function signin(res, obj) {
-    connect_DB.query("SELECT user_name,password FROM user_provider WHERE user_name = ? UNION SELECT user_name,password FROM user_customer WHERE user_name = ?", [obj.user_name,obj.user_name], function (err, result, field) {
+    connect_DB.query("SELECT user_name, password, name, provider_id as user_id FROM user_provider WHERE user_name = ? UNION SELECT user_name, password, name, customer_id as user_id FROM user_customer WHERE user_name = ?", [obj.user_name,obj.user_name], function (err, result, field) {
         if (err) {
             res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
         }
@@ -31,8 +31,12 @@ function signin(res, obj) {
                     else {
                         let member = {
                             user_name: result[0].user_name,
+                            name: result[0].name,
+                            user_id:result[0].user_id,
+
                         };
-                        const token = jwt.sign(member, "RANDOM-TOKEN", { expiresIn: "15m" });
+                        console.log(member);
+                        const token = jwt.sign(member, "RANDOM-TOKEN", { expiresIn: "59m" });
                         res.json({ member: member, token });
                     }
                 })

@@ -6,6 +6,8 @@ import providerAvt from '../provider_avt.jpg';
 import './RequestDetail.css';
 import ImageCusDetail from './image1.png'
 import Cookies from 'universal-cookie';
+import {ModalActionNoti} from '../RequestQueue'
+
 const cookies = new Cookies();
 const token = cookies.get('TOKEN');
 const ModalNoti=({isModalNotiOpen,setModalNoti,message,setLoading})=>{
@@ -35,9 +37,35 @@ function RequestDetails() {
   const [isModalNotiOpen, setModalNoti] = useState(false);
 
   const { order_id } = useParams();
+  const [isModalAcceptOrder,setModalAcceptOrder]=useState(false);
+  const handleAcceptOrder=()=>{
+    setModalAcceptOrder(true);
+  }
+  const acceptOrder=(order_id)=>{
+    axios
+      .post('/api/orderQueue/provider/acceptOrder', {
+        order_id:order_id,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setErrorMessage('');
+        setSelectedOrder((prevOrder) => ({
+          ...prevOrder,
+          status: 'Đang chờ thực hiện',
+        }));
+      })
+      .catch((error) => {
+        setErrorMessage(error.response.data.message);
+        console.error(error.response.data.message);
+      });
+  }
   const cancelOrder = () => {
     axios
-      .post('/api/orderQueue/customer/cancelOrder', {
+      .post('/api/orderQueue/provider/cancelOrder', {
         order_id: order_id,
       }, {
         headers: {
@@ -61,7 +89,7 @@ function RequestDetails() {
   useEffect(() => {
     axios
       .post(
-        '/api/orderQueue/customer/getOrderDetails',
+        '/api/orderQueue/provider/getOrderDetails',
         {
           order_id: order_id,
         },
@@ -93,9 +121,9 @@ function RequestDetails() {
         return (
           <>
             <button name="cancelOrder" className="action-button" onClick={()=>cancelOrder(order_id)}>Hủy đơn hàng</button>
-            <Link to='/ConfirmPriceScheduleCus'>
-              <button name="confirmDetails" className="action-button">Xác nhận chi tiết</button>
-            </Link>
+            <button className="action-button" onClick={() => { handleAcceptOrder(); }}>
+              Chấp nhận
+            </button>
           </>
         )
       } else if (status === 'Đã hủy') {
@@ -164,6 +192,13 @@ function RequestDetails() {
           </div>
 
           {StatusButton(selectedOrder.status)}
+          <ModalActionNoti 
+          isModalOpen={isModalAcceptOrder} 
+          closeModal={()=>setModalAcceptOrder(false)}
+          message={'Bạn chắc chắn muốn chấp nhận yêu cầu này'}
+          selectedOrder={selectedOrder}
+          action={acceptOrder}
+          />
           <ModalNoti isModalNotiOpen={isModalNotiOpen} setModalNoti={setModalNoti} message={responseMessage} setLoading={setLoading}/>
         </div>
       )}
