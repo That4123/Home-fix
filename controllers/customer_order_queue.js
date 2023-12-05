@@ -8,4 +8,7 @@ module.exports = {
     cancelOrder:function (req, res) {
         service_order_model.cancelOrder(req,res);
     },
+    getOrderDetails:function (req, res) {
+        service_order_model.getOrderDetails(req,res);
+    },
 }

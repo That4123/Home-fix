@@ -9,7 +9,7 @@ import providerAvt from './provider_avt.jpg';
 const cookies = new Cookies();
 
 const token = cookies.get('TOKEN');
-const ModalNoti = ({ isModalOpen, closeModal, message,selectedId, cancelOrder }) => {
+const ModalNoti = ({ isModalOpen, closeModal, message,selectedOrder, cancelOrder }) => {
   return (
     <Modal 
       className={"popup-confirm-config"} 
@@ -22,7 +22,7 @@ const ModalNoti = ({ isModalOpen, closeModal, message,selectedId, cancelOrder })
       <p>{message}</p>
       <div className='btn-ctn-cfm-cfg'>
         <button onClick={closeModal} className="cfm-config-btn">Đóng</button>
-        <button onClick={() => { closeModal(); cancelOrder(selectedId); }} className="cfm-config-btn">Xác nhận</button>
+        <button onClick={() => { closeModal(); cancelOrder(selectedOrder.order_id); }} className="cfm-config-btn">Xác nhận</button>
       </div>
     </Modal>
   );
@@ -87,15 +87,15 @@ function RequestQueue() {
           <p className='specific-item-info'>Yêu cầu sửa: {requestData.specific_item}</p>
           <p className={`request-status ${requestData.status}`}>Trạng thái: {requestData.status}</p>
           <div className='btn-ctn-ctmq'>
-            <button  onClick={()=>{setSelectedOrder(requestData.order_id);handleCancelOrder()}}>Hủy</button>
-            <button>Chi tiết</button>
+            <button  onClick={()=>{setSelectedOrder(requestData);handleCancelOrder()}}>Hủy</button>
+            <button>Chi tiết </button>
           </div>
         </div>
         <ModalNoti 
         isModalOpen={isModalCancelOrder} 
         closeModal={()=>setModalCancelOrder(false)}
         message={'Bạn chắc chắn muốn hủy yêu cầu này'}
-        selectedId={selectedOrder}
+        selectedOrder={selectedOrder}
         cancelOrder={cancelOrder}
         />
       </div>

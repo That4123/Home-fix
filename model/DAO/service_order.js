@@ -56,5 +56,26 @@ function cancelOrder(req,res){
         }
     })
 }
+function getOrderDetails(req,res){
+    const sql = 'SELECT * FROM service_order WHERE order_id=?';
+    connect_DB.query(sql, [
+        req.body.order_id,
+    ], function (err, result, field) {
+        if (err) {
+            res.status(500).json({ message: err });
+        }
+        else if (result.length===0){
+            res.status(404).json({message:"yêu cầu không tồn tại"});
+        }
+        else{
+            console.log(result);
+            const formattedOrder = {
+                ...result[0],
+                start_time: new Date(result[0].start_time).toLocaleString('en-US')
+            };
+            res.status(200).json({message:"Thành lấy thông tin yêu cầu",service_order:formattedOrder});
+        }
+    })
+}
 
-module.exports = { checkNoEmpty, makeOrder,cancelOrder }
+module.exports = { checkNoEmpty, makeOrder,cancelOrder,getOrderDetails }

@@ -18,6 +18,7 @@ import ConfirmPriceSchedule from './components/confirm_price_schedule/ConfirmPri
 import SendInformation from './components/SendInformation/SendInformation';
 import CustomerOrderQueue from './components/customer_order_queue/RequestQueue';
 import Chat from './components/chat/Chat';
+import CustomerOrderDetails from './components/customer_order_queue/request_detail/RequestDetail'
 function App() {
   return (
     <Routes>
@@ -34,6 +35,7 @@ function App() {
         </Route>
         <Route path='sendInformation' element={<SendInformation/>}/>
         <Route path='CustomerOrderQueue' element={<CustomerOrderQueue/>}/>
+        <Route path='CustomerOrderQueue/details/:order_id' element={<CustomerOrderDetails/>} />
         <Route path="*" element={<NoPage />} />
       </Route>
     </Routes>
