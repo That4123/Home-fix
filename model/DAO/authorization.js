@@ -25,10 +25,10 @@ function role(req, res){
                 res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
             }
             else if (result.length == 0){
-                res.json({role: "provider",providerId:result[0].provider_id,name:result[0].name})
+                res.json({role: "provider"})
             }
             else {
-                res.json({role: "customer",customerId:result[0].customer_id,name:result[0].name})
+                res.json({role: "customer"})
             }
         })
     }
