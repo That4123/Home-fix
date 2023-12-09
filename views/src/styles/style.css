@@ -1,0 +1,6 @@
+.hover-bg-gray:hover{background-color: gray;}
+.hover-c-white:hover{color: white;}
+.hover-mouse:hover{cursor: pointer;}
+.c-gray{color:gray}
+.border-green{border: 1px solid rgb(16, 196, 16)}
+.hover-bg-green:hover{background-color: rgb(16, 196, 16)}

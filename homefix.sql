@@ -282,6 +282,52 @@ ALTER TABLE `service_order`
   ADD CONSTRAINT `service_order_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `user_customer` (`customer_id`),
   ADD CONSTRAINT `service_order_ibfk_2` FOREIGN KEY (`provider_id`) REFERENCES `user_provider` (`provider_id`);
 
+DROP TABLE IF EXISTS CompletedOrder;
+CREATE TABLE CompletedOrder (
+	order_id INT,
+    description TEXT,
+    order_status ENUM ('total','partial','not'),
+    wage INT,
+    PRIMARY KEY (order_id)
+);
+
+DROP TABLE IF EXISTS CompletedOrderPic;
+CREATE TABLE CompletedOrderPic (
+	pic_id INT,
+    order_id INT,
+    image TEXT,
+    PRIMARY KEY (pic_id, order_id)
+);
+
+DROP TABLE IF EXISTS CompletedOrderPriceList;
+CREATE TABLE CompletedOrderPriceList (
+    component_id INT,
+    order_id INT,
+    component_name VARCHAR(50),
+    cost INT,
+    description text,
+    PRIMARY KEY (component_id, order_id)
+);
+
+INSERT INTO CompletedOrder (order_id, description, order_status,wage)
+VALUES
+(1,'Máy bị cháy cuộn dây', 'total',100000),
+(2,'Lỗi nguồn điện, đã tiến hành đo áp và thay thế', 'total',100000),
+(3,'Thiết bị lỗi phần điện tử, không phải phần cơ như mô tả. Không thể sửa chữa','not',100000),
+(4,'Bị mất linh kiện, đã bổ sung nhưng máy chạy vẫn bị rung lắc','partial',100000);
+
+INSERT INTO CompletedOrderPic (pic_id, order_id, image)
+VALUES
+(1,1, 'https://i.pinimg.com/736x/8d/85/02/8d850252f18eb6016ffae77c07e61438.jpg'),
+(2,1, 'https://i.pinimg.com/736x/8d/85/02/8d850252f18eb6016ffae77c07e61438.jpg'),
+(3,1,'https://i.pinimg.com/736x/8d/85/02/8d850252f18eb6016ffae77c07e61438.jpg'),
+(4,1,'https://i.pinimg.com/736x/8d/85/02/8d850252f18eb6016ffae77c07e61438.jpg');
+
+INSERT INTO CompletedOrderPriceList (component_id, order_id, component_name, cost, description )
+VALUES
+(1,1, 'Bộ ốc vít', 50000, 'thay mới'),
+(2,1, 'Lõi đồng', 35000, 'bị cháy, thay tạm lõi cũ'),
+(3,1, 'Phích cắm', 5000, 'thay mới');
 
 --
 -- Metadata
