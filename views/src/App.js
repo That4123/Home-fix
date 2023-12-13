@@ -18,7 +18,7 @@ import ConfirmPriceSchedule from './components/confirm_price_schedule/ConfirmPri
 import SendInformation from './components/SendInformation/SendInformation';
 import CustomerOrderQueue from './components/customer_order_queue/RequestQueue';
 import ProviderOrderQueue from './components/provider_order_queue/RequestQueue';
-// import Chat from './components/chat/Chat';
+import Chat from './components/chat/Chat';
 import CustomerOrderDetails from './components/customer_order_queue/request_detail/RequestDetail'
 import ProviderOrderDetails from './components/provider_order_queue/request_detail/RequestDetail'
 
@@ -32,7 +32,7 @@ function App() {
         <Route path='signup' element={<SignUp />} />
         <Route path='publicTest' element={<PublicTest />} />
         <Route path='confirmPriceSchedule/:orderId' element={<ConfirmPriceSchedule />} />
-        {/* <Route path='chat/:name' element={<Chat />} /> */}
+        <Route path='chat/:name' element={<Chat />} />
         <Route element={<PrivateRoutes validateRoute={"protectedTest"} />} >
           <Route path='protectedTest' element={<ProtectedTest />} />
           
