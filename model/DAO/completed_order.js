@@ -5,7 +5,7 @@ function getCompletedOrderByCustomerId(req, res) {
   connect_DB.query(
     `
     SELECT * 
-    FROM (SELECT CompletedOrder.*,service_order.customer_id customer_id, service_order.time_range time_range, service_order.specific_item item, user_provider.user_name 
+    FROM (SELECT CompletedOrder.*,service_order.customer_id customer_id, service_order.time_range time_range, service_order.specific_item item, user_provider.user_name, user_provider.name 
       FROM CompletedOrder
       INNER JOIN service_order
       ON CompletedOrder.order_id = service_order.order_id

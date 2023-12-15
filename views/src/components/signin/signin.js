@@ -28,16 +28,18 @@ function SignIn() {
   // const [login, setLogin] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    cookies.set("USER_NAME", user_name, { path: "/" });
     axios
       .post("/api/signin", {
         user_name,
         password,
       })
       .then((response) => {
-        cookies.set("TOKEN", response.data.token, {
-          path: "/",
-        });
-        navigate("/publicTest");
+        cookies.set("TOKEN", response.data.token, { path: "/" });
+        setTimeout(() => {
+          window.location.reload();
+      }, 100);
+        navigate("/");
       })
       .catch((error) => {
         if (error.response) {
