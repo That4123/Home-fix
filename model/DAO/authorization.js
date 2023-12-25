@@ -16,23 +16,22 @@ async function loadCurMember(req, res, next) {
     next();
 }
 function role(req, res){
-    if (req.cur_member){
-        let sql = "SELECT * FROM user_customer WHERE user_name = ?";
-        connect_DB.query(sql, [
-            req.cur_member.user_name
-        ], function (err, result, field) {
-            if (err) {
-                res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
-            }
-            else if (result.length == 0){
-                res.json({role: "provider"})
-            }
-            else {
-                res.json({role: "customer"})
-            }
-        })
-    }
+    let sql = "SELECT * FROM user_customer WHERE user_name = ?";
+    connect_DB.query(sql, [
+        req
+    ], function (err, result, field) {
+        if (err) {
+            res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
+        }
+        else if (result.length == 0) {
+            res.status(200).json({role: "provider"});
+        }
+        else {
+            res.status(200).json({ role: "customer" });
+        }
+    })
 }
+
 async function authorizeStudent(req, res, next) {
     if (req.cur_member) {
         let sql = "SELECT * FROM user WHERE user_id = ? AND email = ? AND state = ? AND role = ?";
