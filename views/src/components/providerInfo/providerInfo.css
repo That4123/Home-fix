@@ -1,0 +1,43 @@
+.view-information {
+    margin: 10px;
+}
+.view-information img{
+    width: 25vw;
+    display: block;
+    float: left;
+}
+.special{
+    padding-left: 5px;
+    background-color: gainsboro;
+}
+.Column {
+    display: block;
+    float: left;
+    width: 33vw;
+    margin-left: 20px;
+    margin-right: 10px;
+    font-size: 20px;
+}
+.view-information label {
+    display: block;
+    width: 100%;
+}
+.view-information span {
+    display: block;
+    width: 100%;
+    height: 68px;
+    margin-bottom: 5px;
+
+}
+.view-information input {
+    margin-bottom: 5px;
+}
+.view-information img {
+    height: 292px;
+    object-fit: cover; /* Scale và cắt bỏ chiều ngang */
+    object-position: center top;
+}
+.view-information p{
+    color: red;
+    font-size: 15px;
+}

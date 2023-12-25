@@ -19,6 +19,7 @@ import { useState, useEffect } from "react";
 import Header from "../shared/header";
 import Cookies from "universal-cookie";
 import "../../components/signin/signin.css";
+import { colors } from "@mui/material";
 const cookies = new Cookies();
 
 function SignIn() {
@@ -93,7 +94,7 @@ function SignIn() {
             </p>
           </div>
         </form>
-        <p>{errorMessage ? errorMessage : ""}</p>
+        <p style={{ color: "red" }}>{errorMessage ? errorMessage : ""}</p>
       </div>
     </>
   );

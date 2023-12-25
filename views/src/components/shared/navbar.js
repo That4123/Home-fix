@@ -22,10 +22,11 @@ export default function Navbar(props) {
   const navigate = useNavigate();
   const [signIn, setSignIn] = useState(true);
   const [role, setRole] = useState(null);
+  const [user_name, setUserName] = useState(null);
   
   useEffect(() => {
     const token = cookies.get("TOKEN");
-    const user_name = cookies.get("USER_NAME");
+    setUserName(cookies.get("USER_NAME"));
     if (!token) {
       setSignIn(false);
     }
@@ -46,7 +47,8 @@ export default function Navbar(props) {
     navigate("signin");
   }
 
-  let navItem = null, renderSignOut = null, renderSignIn = null, renderSignUp = null;
+
+  let navItem = null, renderSignOut = null, renderSignIn = null, renderSignUp = null, renderInfo = null;
   if (!signIn) {
     navItem = (
       <>
@@ -105,12 +107,23 @@ export default function Navbar(props) {
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/CompletedOrder">
-              Xem yêu cầu
+              Yêu cầu đã hoàn thành
             </Link>
           </li>
         </>
       )
+    
+      renderInfo = (
+        <Link to={`/providerInfo`}> 
+              <button type="submit" className="btn btn-light m-2" >
+            Profile
+              </button>
+          </Link>
+       
+      )
     }
+
+    
     renderSignOut = (
       <button type="submit" className="btn btn-light" onClick={handleSignOut}>
           Log Out
@@ -141,6 +154,7 @@ export default function Navbar(props) {
                     </ul>
                     {renderSignUp}
                     {renderSignIn}
+                    {renderInfo}
                     {renderSignOut}
                 </div>
             </div>
