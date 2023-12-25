@@ -176,8 +176,8 @@ CREATE TABLE IF NOT EXISTS `service_order` (
 INSERT INTO `service_order` (`order_id`, `item_type`, `specific_item`, `text_description`, `image_description`, `province`, `district`, `town`, `street`, `time_range`, `status`, `customer_id`, `provider_id`) VALUES
 (1, 'Vật dụng công nghệ', 'abc', 'abcy', 'abcx', 'phu tho', 'ba dinh', 'kontum', 'street', '2023-12-02 20:33:25', '', 1, 2),
 (2, 'Vật dụng công nghệ', 'abc', 'abcy', 'abcx', 'phu tho', 'ba dinh', 'kontum', 'street', '2023-12-02 21:09:33', '', 1, 2),
-(3, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không vào điện', 'C:\\fakepath\\0906d8a01483c6dd9f92.jpg', 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', '220, Hùng Vương', '2023-12-02 21:08:00', 'Đang xác nhận', 1, 2),
-(4, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không vào điện', 'C:\\fakepath\\0906d8a01483c6dd9f92.jpg', 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', 'tran phu', '2023-12-02 21:08:00', 'Đang xác nhận', 1, 2);
+(3, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không vào điện', 'https://tse1.mm.bing.net/th?id=OIP.h43m6JfyuhSB1ZgT7-_h0QHaJ4&pid=Api&P=0&h=220', 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', '220, Hùng Vương', '2023-12-02 21:08:00', 'Đang xác nhận', 1, 2),
+(4, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không vào điện', 'https://tse1.mm.bing.net/th?id=OIP.h43m6JfyuhSB1ZgT7-_h0QHaJ4&pid=Api&P=0&h=220', 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', 'tran phu', '2023-12-02 21:08:00', 'Đang xác nhận', 1, 2);
 
 -- --------------------------------------------------------
 
