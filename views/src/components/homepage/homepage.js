@@ -23,7 +23,7 @@ function Homepage() {
   }, []);
   return (
     <div className="container mt-4">
-      <h2 className="mb-4 text-center" style={{ color: '#3498db' }}>THINGS FIX - NỀN TẢNG SỬA CHỮA ĐÁNG TIN CẬY</h2>
+      <h2 className="mb-4 text-center" style={{ color: '#3498db' }}>HOMEFIX - NỀN TẢNG SỬA CHỮA ĐÁNG TIN CẬY</h2>
       <div className="row">
         <div className="col-md-6">
           <div className="text-center">

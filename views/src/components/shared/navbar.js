@@ -1,5 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom/client";
+import iconHomepage from "./logo_homefix.gif"
 import {
   BrowserRouter,
   Routes,
@@ -13,6 +14,7 @@ import Popper from "popper.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import logo from "../../img/SIMSBCLogo.png";
+import "./navbar.css"
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
@@ -75,7 +77,7 @@ export default function Navbar(props) {
     if (role === "customer"){
       navItem = (
         <>
-          <li className="nav-item">
+           <li className="nav-item">
             <Link className="nav-link active" aria-current="page" to="/">
               Trang chủ
             </Link>
@@ -136,7 +138,7 @@ export default function Navbar(props) {
     <nav className="navbar navbar-expand-lg border-bottom border-body">
             <div className="container-fluid" style={{ marginLeft: '50px', marginRight: '50px' }}>
                 <Link className="navbar-brand" to="/">
-                    THINGS FIX
+                <img src={iconHomepage} alt="Ảnh Logo" className="logo" />
                 </Link>
                 <button
                     className="navbar-toggler"
