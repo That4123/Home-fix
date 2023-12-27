@@ -43,7 +43,7 @@ WHERE
     })
 };
 function setCSP(req, res){
-    connect_DB.query(`INSERT INTO agreement (price, time_schedule, order_id) VALUES (?, ?, ?);`, [req.price, req.datetime, req.id.orderId], function (err, result, field) {
+    connect_DB.query(`INSERT INTO agreement (price, time_schedule, order_id) VALUES (?, ?, ?);`, [req.price, req.datetime, req.id.order_id], function (err, result, field) {
         if (err) {
             res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
         }
@@ -53,7 +53,7 @@ function setCSP(req, res){
     })
 }
 function getCSP(req, res){
-    connect_DB.query(`SELECT * FROM agreement WHERE order_id = ?;`, [req.order_id.orderId], function (err, result, field) {
+    connect_DB.query(`SELECT * FROM agreement WHERE order_id = ?;`, [req.order_id.order_id], function (err, result, field) {
         if (err) {
             res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
         }
@@ -65,7 +65,7 @@ function getCSP(req, res){
 function updateAfterCSP(req, res){
     connect_DB.query(`UPDATE service_order
         SET status = 'Đang chờ thực hiện'
-        WHERE order_id = ?;`, [req.id.orderId],function (err, result, field) {
+        WHERE order_id = ?;`, [req.id.order_id],function (err, result, field) {
             if (err) {
                 res.status(500).json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
             }

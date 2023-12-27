@@ -15,18 +15,29 @@ function Confirm () {
     
     const [info_order, setInfoOrder] = useState([])
     const id = useParams();
-    const token = cookies.get("TOKEN");
-    const navigate = useNavigate();
     const [role, setRole] = useState();
-    const [isReturn, setIsReturn] = useState(false)
-    useEffect(()=> {axios.post("/api/confirmPriceSchedule/loadRole", {}, {
-        headers: {
-            Authorization: `Bearer ${token}`
+    const [isReturn, setIsReturn] = useState(false);
+    const user_name = cookies.get("USER_NAME");
+    const [signIn, setSignIn] = useState(true);
+    useEffect(() => {
+        const token = cookies.get("TOKEN");
+        console.log(user_name)
+        if (!token) {
+          setSignIn(false);
         }
-    }).then((response) => {
-       setRole(response.data.role)
-       
-    }).catch((error) => { });}, [])
+        else {
+          axios.post("/api/signin/role", { user_name })
+          .then((response) => {
+            setRole(response.data.role);
+            console.log(123);
+            console.log("ID is", id)
+            console.log(response.data.role);
+          }).catch((error) => {
+            console.log(error);
+          })
+        }
+      }, [])
+
 
     useEffect(()=> {    
         axios.post("/api/confirmPriceSchedule/getCSP", {order_id: id}).
@@ -43,6 +54,7 @@ function Confirm () {
         axios.post("/api/confirmPriceSchedule/getInfoOrder", {order_id: id}).
     then((response) => {
        setInfoOrder(response.data);
+       console.log(response.data)
        setIsReturn(true);    
     }).catch((error) => { });}, [])
 
@@ -57,6 +69,9 @@ function Confirm () {
         then((response) => {
         }).catch((error) => { });
     };
+    const handleClickToOpenCustomer = (e) => {
+        setOpen(true);
+    }
     const handleChange = (e) => {
         console.log(e.target.value)
     }
@@ -195,7 +210,7 @@ function Confirm () {
                     </div>
                     <div className="submit-area">
                     Xác nhận thông tin đơn hàng
-                    <button type="submit" onClick={(e) => {handleClickToOpen(e); handleUpdate()}}> Xác nhận</button>
+                    <button type="submit" onClick={(e) => {handleClickToOpenCustomer(e); handleUpdate()}}> Xác nhận</button>
                     </div>
                 </div>
                 <Modal

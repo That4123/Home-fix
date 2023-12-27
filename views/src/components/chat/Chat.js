@@ -5,6 +5,7 @@ import axios from 'axios'
 import Cookies from "universal-cookie";
 import {useParams} from 'react-router-dom';
 import firebase from 'firebase/compat/app';
+//import "firebase/compat/database";
 import 'firebase/compat/auth'; 
 
 const cookies = new Cookies();
@@ -25,15 +26,23 @@ function Chat () {
     const [new_msg, setNewMsg] = useState('');
     const [role, setRole] = useState();
     const token = cookies.get("TOKEN");
+    const user_name = cookies.get("USER_NAME");
     const nameOpposite = useParams();
-    useEffect(()=> {axios.post("/api/confirmPriceSchedule/loadRole", {}, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then((response) => {
-       setRole(response.data.role)
-       
-    }).catch((error) => { });}, [])
+    useEffect(() => {
+      const token = cookies.get("TOKEN");
+      console.log(user_name)
+      if (!token) {
+      }
+      else {
+        axios.post("/api/signin/role", { user_name })
+        .then((response) => {
+          setRole(response.data.role);
+          console.log(response.data.role);
+        }).catch((error) => {
+          console.log(error);
+        })
+      }
+    }, [])
     const data = [
           { id: "1", name: nameOpposite.name}
         ];

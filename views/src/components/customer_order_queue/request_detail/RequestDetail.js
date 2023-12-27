@@ -93,9 +93,11 @@ function RequestDetails() {
         return (
           <>
             <button name="cancelOrder" className="action-button" onClick={()=>cancelOrder(order_id)}>Hủy đơn hàng</button>
-            <Link to='/ConfirmPriceScheduleCus'>
+            <a href={"/confirmPriceSchedule/" + order_id}>
               <button name="confirmDetails" className="action-button">Xác nhận chi tiết</button>
-            </Link>
+            </a>
+              
+           
           </>
         )
       } else if (status === 'Đã hủy') {
