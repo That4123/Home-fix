@@ -22,11 +22,11 @@ export default function Navbar(props) {
   const navigate = useNavigate();
   const [signIn, setSignIn] = useState(true);
   const [role, setRole] = useState(null);
-  const [user_name, setUserName] = useState(null);
+  const user_name = cookies.get("USER_NAME")
   
   useEffect(() => {
     const token = cookies.get("TOKEN");
-    setUserName(cookies.get("USER_NAME"));
+    console.log(user_name)
     if (!token) {
       setSignIn(false);
     }
@@ -34,6 +34,7 @@ export default function Navbar(props) {
       axios.post("/api/signin/role", { user_name })
       .then((response) => {
         setRole(response.data.role);
+        console.log(role);
       }).catch((error) => {
         console.log(error);
       })
