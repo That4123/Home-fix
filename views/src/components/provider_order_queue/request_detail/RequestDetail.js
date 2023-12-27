@@ -36,7 +36,7 @@ function RequestDetails() {
   const [responseMessage, setResponseMessage] = useState(null);
   const [isModalNotiOpen, setModalNoti] = useState(false);
 
-  const { order_id } = useParams();
+  const {order_id} = useParams();
   const [isModalAcceptOrder,setModalAcceptOrder]=useState(false);
   const handleAcceptOrder=()=>{
     setModalAcceptOrder(true);
@@ -130,21 +130,21 @@ function RequestDetails() {
         return null;
       } else if (status === 'Đang chờ thực hiện') {
         return (
-          <Link to='/ConfirmPriceScheduleCus'>
+          <Link to={`/confirmPriceSchedule/${order_id}`}>
             <button name="confirmDetails" className="action-button">Xác nhận chi tiết</button>
           </Link>
         );
       }
       else if (status === 'Đã hoàn thành') {
         return (
-          <Link to='/ConfirmPriceScheduleCus'>
+          <Link to={`/confirmPriceSchedule/${order_id}`}>
             <button name="payment" className="action-button">Thanh toán</button>
           </Link>
         )
       }
       else {
         return (
-          <p>bảng thông tin thanh toán</p>
+          <p>Bảng thông tin thanh toán</p>
         )
       }
 

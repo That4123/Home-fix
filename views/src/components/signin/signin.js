@@ -1,3 +1,4 @@
+import React from "react"
 import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,
@@ -18,6 +19,7 @@ import { useState, useEffect } from "react";
 import Header from "../shared/header";
 import Cookies from "universal-cookie";
 import "../../components/signin/signin.css";
+import { colors } from "@mui/material";
 const cookies = new Cookies();
 
 function SignIn() {
@@ -28,16 +30,18 @@ function SignIn() {
   // const [login, setLogin] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    cookies.set("USER_NAME", user_name, { path: "/" });
     axios
       .post("/api/signin", {
         user_name,
         password,
       })
       .then((response) => {
-        cookies.set("TOKEN", response.data.token, {
-          path: "/",
-        });
-        navigate("/publicTest");
+        cookies.set("TOKEN", response.data.token, { path: "/" });
+        setTimeout(() => {
+          window.location.reload();
+      }, 100);
+        navigate("/");
       })
       .catch((error) => {
         if (error.response) {
@@ -90,7 +94,7 @@ function SignIn() {
             </p>
           </div>
         </form>
-        <p>{errorMessage ? errorMessage : ""}</p>
+        <p style={{ color: "red" }}>{errorMessage ? errorMessage : ""}</p>
       </div>
     </>
   );

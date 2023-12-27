@@ -45,7 +45,10 @@
   }
   
   .request-container-ctmq .avt-request-queue img {
-    max-width: 100px;
+    max-width: 120px;
+    height: 120px;
+    
+    object-fit: cover;
     border-radius: 50%;
   }
   .txt-request-ctn-ctmq{

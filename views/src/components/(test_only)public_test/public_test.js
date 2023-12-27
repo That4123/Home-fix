@@ -8,7 +8,10 @@ import axios from 'axios'
 import { useState, useEffect } from "react";
 import Header from '../shared/header';
 import Cookies from "universal-cookie";
+import React from "react"
+
 const cookies = new Cookies();
+
 
 function PublicTest() {
     const [commentFrame, setCommandFrame] = useState(null);

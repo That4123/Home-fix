@@ -62,7 +62,7 @@ function CustomerComfirmCompletion() {
                 >
                   <td className="col-3">{item.item}</td>
                   <td className="col-6">{item.description}</td>
-                  <td className="col-3">{item.user_name}</td>
+                  <td className="col-3">{item.name}</td>
                 </tr>
               ))}
             </table>
