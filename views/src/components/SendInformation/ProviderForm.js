@@ -6,6 +6,7 @@ export const ProviderForm= ({ formData, onProviderChange })=> {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [providers, setProviders] = useState([]);
     const [selectedProvider, setSelectedProvider] = useState(null);
+    const [sortOption, setSortOption] = useState("");
 
     const handleFindClick = (e) => {
         e.preventDefault();

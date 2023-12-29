@@ -138,6 +138,13 @@ function RequestQueue() {
             </button>
             </>
           )}
+          {requestData.status==='Đang chờ thực hiện' && (
+            <>
+            <button onClick={() => { setSelectedOrder(requestData); handleCancelOrder(); }}>
+              Đã hoàn thành
+            </button>
+            </>
+          )}
             <Link to={`details/${requestData.order_id}`}>
               <button>Chi tiết</button>
             </Link>
