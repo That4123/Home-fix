@@ -81,6 +81,13 @@ const InformationForm = () => {
     }));
     console.log(formData.position);
   };
+  const handleProviderChange = (provider) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      provider: provider.target.value.name,
+      providerId: provider.target.value.provider_id,
+    }));
+  };
   const [modalSubmit,setModalSubmit]=useState(false);
   const closeModalSubmit=()=>{
     setModalSubmit(false);
@@ -184,7 +191,7 @@ const InformationForm = () => {
                     onChange={handleDateTimeChange}
                 />
             </div>
-            <ProviderForm formData={formData} handleChange={handleChange} />
+            <ProviderForm formData={formData} onProviderChange={handleProviderChange} />
             <div className="submit-button-container">
               <button type="submit" onClick={handleSubmit}>Xác nhận</button>
             </div>

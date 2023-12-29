@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import Modal from 'react-modal';
 import axios from "axios";
 
-export const ProviderForm= ({ formData, handleChange })=> {
+export const ProviderForm= ({ formData, onProviderChange })=> {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [providers, setProviders] = useState([]);
     const [selectedProvider, setSelectedProvider] = useState(null);
@@ -25,7 +25,7 @@ export const ProviderForm= ({ formData, handleChange })=> {
     };
 
     const chooseProvider = () => {
-        handleChange({
+        onProviderChange({
             target: {
                 name: "provider",
                 value: selectedProvider,
@@ -42,7 +42,7 @@ export const ProviderForm= ({ formData, handleChange })=> {
             type="text"
             name="provider"
             value={formData.provider}
-            onChange={handleChange}
+            onChange={onProviderChange}
             placeholder="Nhà sửa chữa"
             />
             
@@ -110,7 +110,7 @@ export const ProviderForm= ({ formData, handleChange })=> {
                                 <td>{item.rate}</td>
                                 <td>{item.phone_number}</td>
                                 <td>
-                                    <input type="radio" name="provider" onChange={() => setSelectedProvider(item.name)}/>
+                                    <input type="radio" name="provider" onChange={() => setSelectedProvider(item)}/>
                                 </td>
                             </tr>
                         ))}
