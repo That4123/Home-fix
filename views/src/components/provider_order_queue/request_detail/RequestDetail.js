@@ -121,7 +121,7 @@ function RequestDetails() {
       if (status === 'Đang xác nhận') {
         return (
           <>
-            <button name="cancelOrder normal-button-hf" className="action-button" onClick={()=>cancelOrder(order_id)}>Hủy đơn hàng</button>
+            <button name="cancelOrder normal-button-hf" className="action-button normal-button-hf" onClick={()=>cancelOrder(order_id)}>Từ chối</button>
             <button className="action-button normal-button-hf" onClick={() => { handleAcceptOrder(); }}>
               Chấp nhận
             </button>
@@ -133,25 +133,27 @@ function RequestDetails() {
         return (
           <>
             <Link to={`/confirmPriceSchedule/${order_id}`}>
-              <button name="confirmDetails normal-button-hf" className="action-button">Xác nhận chi tiết</button>
+              <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
             </Link>
             <Link to={`/CompleteRequest/${order_id}`}>
-              <button className="action-button normal-button-hf">Đã hoàn thành</button>
+              <button className="action-button normal-button-hf">Xác thực hoàn tất</button>
             </Link>
           </>
         );
       }
-      else if (status === 'Đã hoàn thành') {
+      else if (status === 'Xác thực hoàn tất') {
         return (
+          <>
           <Link to={`/confirmPriceSchedule/${order_id}`}>
-            <button name="payment" className="action-button normal-button-hf">Thanh toán</button>
+              <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
+            </Link>
+          <Link to={`/confirmPriceSchedule/${order_id}`}>
+            <button name="payment" className="action-button normal-button-hf">Xác thực hoàn tất</button>
           </Link>
+          </>
         )
       }
       else {
-        return (
-          <p>Bảng thông tin thanh toán</p>
-        )
       }
 
   }

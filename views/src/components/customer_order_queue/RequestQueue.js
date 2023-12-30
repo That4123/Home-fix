@@ -110,11 +110,11 @@ function RequestQueue() {
         />
       </div>
   );
-  const [filterStatus, setFilterStatus] = useState('all'); // Initial filter status
+  const [filterStatus, setFilterStatus] = useState('all'); 
 
   const filteredServiceOrderList = serviceOrderList.filter(requestData => {
     if (filterStatus === 'all') {
-      return true; // Show all items
+      return true; 
     }
     return requestData.status === filterStatus;
   });
@@ -153,9 +153,9 @@ function RequestQueue() {
             <option value="Đang xác nhận">Đang xác nhận</option>
             <option value="Đang chờ thực hiện">Đang chờ thực hiện</option>
             <option value="Đã hủy">Đã hủy</option>
-            <option value="Xác thực hoàn tất">Xác thực hoàn tất</option>
+
             <option value="Đã hoàn thành">Đã hoàn thành</option>
-            
+            <option value="Xác thực hoàn tất">Xác thực hoàn tất</option>
 
           </select>
         </div>
