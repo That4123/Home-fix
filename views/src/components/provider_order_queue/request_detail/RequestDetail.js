@@ -4,6 +4,7 @@ import axios from 'axios';
 import Modal from 'react-modal'
 import providerAvt from '../provider_avt.jpg';
 import './RequestDetail.css';
+import "../../../styles/style.css"
 import ImageCusDetail from './image1.png'
 import Cookies from 'universal-cookie';
 import {ModalActionNoti} from '../RequestQueue'
@@ -22,7 +23,7 @@ const ModalNoti=({isModalNotiOpen,setModalNoti,message,setLoading})=>{
       <h2>Thông báo</h2>
       <span className="span-complete-config">
         <p className="complete-noti-content">{message}</p>
-        <button onClick={() => setModalNoti(false)} className="complete-noti-btn">
+        <button onClick={() => setModalNoti(false)} className="complete-noti-btn normal-button-hf">
           Đóng
         </button>
       </span>
@@ -120,8 +121,8 @@ function RequestDetails() {
       if (status === 'Đang xác nhận') {
         return (
           <>
-            <button name="cancelOrder" className="action-button" onClick={()=>cancelOrder(order_id)}>Hủy đơn hàng</button>
-            <button className="action-button" onClick={() => { handleAcceptOrder(); }}>
+            <button name="cancelOrder normal-button-hf" className="action-button" onClick={()=>cancelOrder(order_id)}>Hủy đơn hàng</button>
+            <button className="action-button normal-button-hf" onClick={() => { handleAcceptOrder(); }}>
               Chấp nhận
             </button>
           </>
@@ -132,10 +133,10 @@ function RequestDetails() {
         return (
           <>
             <Link to={`/confirmPriceSchedule/${order_id}`}>
-              <button name="confirmDetails" className="action-button">Xác nhận chi tiết</button>
+              <button name="confirmDetails normal-button-hf" className="action-button">Xác nhận chi tiết</button>
             </Link>
             <Link to={`/CompleteRequest/${order_id}`}>
-              <button className="action-button">Đã hoàn thành</button>
+              <button className="action-button normal-button-hf">Đã hoàn thành</button>
             </Link>
           </>
         );
@@ -143,7 +144,7 @@ function RequestDetails() {
       else if (status === 'Đã hoàn thành') {
         return (
           <Link to={`/confirmPriceSchedule/${order_id}`}>
-            <button name="payment" className="action-button">Thanh toán</button>
+            <button name="payment" className="action-button normal-button-hf">Thanh toán</button>
           </Link>
         )
       }

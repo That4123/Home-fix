@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import "./RequestQueue.css";
+import "../../styles/style.css"
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Modal from 'react-modal';
@@ -9,7 +10,7 @@ import providerAvt from './provider_avt.jpg';
 const cookies = new Cookies();
 
 const token = cookies.get('TOKEN');
-const ModalNoti = ({ isModalOpen, closeModal, message,selectedOrder, cancelOrder }) => {
+const ModalNoti = ({ isModalOpen, closeModal, message}) => {
   return (
     <Modal 
       className={"popup-confirm-config"} 
@@ -21,8 +22,8 @@ const ModalNoti = ({ isModalOpen, closeModal, message,selectedOrder, cancelOrder
       <h2>Thông báo</h2>
       <p>{message}</p>
       <div className='btn-ctn-cfm-cfg'>
-        <button onClick={closeModal} className="cfm-config-btn">Đóng</button>
-        <button onClick={() => { closeModal(); cancelOrder(selectedOrder.order_id); }} className="cfm-config-btn">Xác nhận</button>
+        <button onClick={closeModal} className="cfm-config-btn normal-button-hf">Đóng</button>
+        {/* <button onClick={() => { closeModal(); cancelOrder(selectedOrder.order_id); }} className="cfm-config-btn">Xác nhận</button> */}
       </div>
     </Modal>
   );
@@ -53,13 +54,15 @@ function RequestQueue() {
       });
   }, [isLoading]);
   const [isModalCancelOrder,setModalCancelOrder]=useState(false);
-  const handleCancelOrder=()=>{
+  const [modalMessage,setModalMessage]=useState('');
+  const handleCancelOrder=(requestData)=>{
+    cancelOrder(requestData);
     setModalCancelOrder(true);
   }
-  const cancelOrder=(order_id)=>{
+  const cancelOrder=(selectedOrder)=>{
     axios
       .post('/api/orderQueue/customer/cancelOrder', {
-        order_id:order_id,
+        order_id:selectedOrder.order_id,
       }, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -68,12 +71,14 @@ function RequestQueue() {
       .then((response) => {
         console.log(response);
         setErrorMessage('');
-        setLoading(true);
+        setModalMessage("Hủy yêu cầu thành công");
+        selectedOrder.status='Đã hủy';
       })
       .catch((error) => {
         setErrorMessage(error.response.data.message);
+        setModalMessage(error.response.data.message);
         console.error(error.response.data.message);
-        setLoading(true);
+        selectedOrder.status='Đã hủy';
       });
   }
   const serviceOrderSingleQueue = (requestData) => (
@@ -87,30 +92,42 @@ function RequestQueue() {
           <p className={`request-status ${requestData.status}`}>Trạng thái: {requestData.status}</p>
           <div className='btn-ctn-ctmq'>
           {requestData.status==='Đang xác nhận' && (
-            <button onClick={() => { setSelectedOrder(requestData); handleCancelOrder(); }}>
+            <button className='normal-button-hf' onClick={() => { setSelectedOrder(requestData); handleCancelOrder(requestData); }}>
               Hủy
             </button>
           )}
             <Link to={`details/${requestData.order_id}`}>
-              <button>Chi tiết</button>
+              <button className='normal-button-hf'>Chi tiết</button>
             </Link>
           </div>
         </div>
         <ModalNoti 
         isModalOpen={isModalCancelOrder} 
         closeModal={()=>setModalCancelOrder(false)}
-        message={'Bạn chắc chắn muốn hủy yêu cầu này'}
+        message={modalMessage}
         selectedOrder={selectedOrder}
         cancelOrder={cancelOrder}
         />
       </div>
   );
-  
-  const allRequestDataItems = serviceOrderList.map((requestData) => (
+  const [filterStatus, setFilterStatus] = useState('all'); // Initial filter status
+
+  const filteredServiceOrderList = serviceOrderList.filter(requestData => {
+    if (filterStatus === 'all') {
+      return true; // Show all items
+    }
+    return requestData.status === filterStatus;
+  });
+
+  const handleFilterChange = (newFilterStatus) => {
+    setFilterStatus(newFilterStatus);
+  };
+  const allRequestDataItems = filteredServiceOrderList.map(requestData => (
     <React.Fragment key={requestData.order_id}>
       {serviceOrderSingleQueue(requestData)}
     </React.Fragment>
   ));
+
   if (isLoading) {
     return <div className='App'>Loading...</div>;
   }
@@ -121,6 +138,29 @@ function RequestQueue() {
     <div>
     <div className='allRequest-container'>
         <h2>DANH SÁCH YÊU CẦU SỬA CHỮA</h2>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          margin: '20px'
+        }}>
+          <label htmlFor="filterStatus">Trạng thái:</label>
+          <select
+            id="filterStatus"
+            value={filterStatus}
+            onChange={(e) => handleFilterChange(e.target.value)}
+          >
+            <option value="all">Hiển thị tất cả</option>
+            <option value="Đang xác nhận">Đang xác nhận</option>
+            <option value="Đang chờ thực hiện">Đang chờ thực hiện</option>
+            <option value="Đã hủy">Đã hủy</option>
+            <option value="Xác thực hoàn tất">Xác thực hoàn tất</option>
+            <option value="Đã hoàn thành">Đã hoàn thành</option>
+            
+
+          </select>
+        </div>
+
+        {/* Render the filtered items */}
         {allRequestDataItems}
     </div>
     </div>
