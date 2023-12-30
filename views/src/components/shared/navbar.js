@@ -110,7 +110,7 @@ export default function Navbar(props) {
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/CompletedOrder">
-              Yêu cầu đã hoàn thành
+              Yêu cầu Đã hoàn thành
             </Link>
           </li>
         </>

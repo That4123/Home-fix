@@ -176,16 +176,12 @@
   .detail-dialog .action-button {
     padding: 10px;
     margin: 5px;
-    background-color: #007bff;
     color: #fff;
     border: none;
     cursor: pointer;
     font-size: medium;
   }
   
-  .detail-dialog .action-button:hover {
-    background-color: #0056b3;
-  }
   .complete-config-ctn {
     position: fixed;
     top: 0;
@@ -226,13 +222,9 @@
     justify-content: space-between;
   }
   .popup-complete-config  .span-complete-config .complete-noti-btn{
-    background-color: #9999FF;
     border: 1px solid #cccccc;
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-  }
-  .popup-complete-config  .span-complete-config .complete-noti-btn:hover{
-    background-color: #6f6ffe;
   }

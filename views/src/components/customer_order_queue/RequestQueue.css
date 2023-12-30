@@ -2,7 +2,8 @@
     max-width: 60%;
     margin: 0 auto;
     padding: 20px;
-    
+    display: flex;
+    flex-direction: column;
   }
   
   .allRequest-container h2 {
@@ -79,21 +80,7 @@
     justify-content: flex-end;
   }
   
-  .request-container-ctmq .btn-ctn-ctmq button {
-    background-color: #01317e;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    margin:10px
-  }
-  
-  .request-container-ctmq .btn-ctn-ctmq button:hover {
-    background-color: #000000;
-  }
+
   .popup-confirm-config h2{
     text-align: center;
     border-bottom: 1px solid #000000;
