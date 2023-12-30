@@ -6,6 +6,7 @@ import axios from 'axios'
 import Modal from 'react-modal';
 import Cookies from 'universal-cookie';
 import providerAvt from './provider_avt.jpg';
+
 const cookies = new Cookies();
 
 const token = cookies.get('TOKEN');
@@ -135,13 +136,6 @@ function RequestQueue() {
             </button>
             <button onClick={() => { setSelectedOrder(requestData); handleAcceptOrder(); }}>
               Chấp nhận
-            </button>
-            </>
-          )}
-          {requestData.status==='Đang chờ thực hiện' && (
-            <>
-            <button onClick={() => { setSelectedOrder(requestData); handleCancelOrder(); }}>
-              Đã hoàn thành
             </button>
             </>
           )}

@@ -31,6 +31,7 @@ import CustomerOrderDetails from "./components/customer_order_queue/request_deta
 import ProviderOrderDetails from "./components/provider_order_queue/request_detail/RequestDetail";
 import CompletedOrder from "./components/completedOrder/completedOrder.js";
 import CompletedOrderDetail from "./components/completedOrderDetail/completedOrderDetail.js";
+import CompleteRequestDetail from "./components/completeRequest/completeRequestDetail.js";
 import ProviderInfo from "./components/providerInfo/providerInfo.js";
 
 function App() {
@@ -67,7 +68,10 @@ function App() {
           path="CompletedOrder/:order_id"
           element={<CompletedOrderDetail />}
         />
-        
+        <Route
+          path="CompleteRequest/:order_id"
+          element={<CompleteRequestDetail />}
+        />
           
       </Route>
     </Routes>
