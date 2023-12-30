@@ -5,19 +5,18 @@ import $ from 'jquery';
 import Popper from 'popper.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import Navbar from "./navbar";
-import Footer from "./footer"
 
-function Header() {
+
+
+function Footer() {
     return (
-       
-        <div style={{display:"flex", flexDirection:"column",justifyContent:"space-between", minHeight: "100vh"}}>
-            <Navbar/>
-            <Outlet />
-            <Footer />
-        </div> 
-       
+        <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' , marginTop: '50px'}}>
+        &copy; {new Date().getFullYear()} Copyright:{' '}
+        <a className='text-dark' href='/'>
+          HomeFix
+        </a>
+      </div>
     )
 }
 
-export default Header;
+export default Footer;

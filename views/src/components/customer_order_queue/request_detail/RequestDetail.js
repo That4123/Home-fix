@@ -104,9 +104,9 @@ function RequestDetails() {
         return null;
       } else if (status === 'Đang chờ thực hiện') {
         return (
-          <Link to='/ConfirmPriceScheduleCus'>
-            <button name="confirmDetails" className="action-button">Xác nhận chi tiết</button>
-          </Link>
+          <a href={"/confirmPriceSchedule/" + order_id}>
+          <button name="confirmDetails" className="action-button">Xác nhận chi tiết</button>
+        </a>
         );
       }
       else if (status === 'Đã hoàn thành') {

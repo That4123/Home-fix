@@ -131,9 +131,9 @@ function RequestDetails() {
       } else if (status === 'Đang chờ thực hiện') {
         return (
           <>
-            <Link to={`/confirmPriceSchedule/${order_id}`}>
+            <a href={"/confirmPriceSchedule/" + order_id}>
               <button name="confirmDetails" className="action-button">Xác nhận chi tiết</button>
-            </Link>
+            </a>
             <Link to={`/CompleteRequest/${order_id}`}>
               <button className="action-button">Đã hoàn thành</button>
             </Link>

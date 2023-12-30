@@ -135,7 +135,7 @@ export default function Navbar(props) {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg border-bottom border-body">
+    <nav className="navbar navbar-expand-lg border-bottom border-body" style = {{maxHeight: "90px"}}>
             <div className="container-fluid" style={{ marginLeft: '50px', marginRight: '50px' }}>
                 <Link className="navbar-brand" to="/">
                 <img src={iconHomepage} alt="Ảnh Logo" className="logo" />
