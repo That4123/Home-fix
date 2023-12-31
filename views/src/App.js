@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import "./App.css";
 import ReactDOM from "react-dom/client";
 import {
@@ -26,7 +26,7 @@ import ConfirmPriceSchedule from "./components/confirm_price_schedule/ConfirmPri
 import SendInformation from "./components/SendInformation/SendInformation";
 import CustomerOrderQueue from "./components/customer_order_queue/RequestQueue";
 import ProviderOrderQueue from "./components/provider_order_queue/RequestQueue";
-import Chat from './components/chat/Chat';
+import Chat from "./components/chat/Chat";
 import CustomerOrderDetails from "./components/customer_order_queue/request_detail/RequestDetail";
 import ProviderOrderDetails from "./components/provider_order_queue/request_detail/RequestDetail";
 import CompletedOrder from "./components/completedOrder/completedOrder.js";
@@ -45,7 +45,7 @@ function App() {
           path="confirmPriceSchedule/:order_id"
           element={<ConfirmPriceSchedule />}
         />
-        <Route path='chat/:name' element={<Chat />} />
+        <Route path="chat/:name" element={<Chat />} />
         <Route element={<PrivateRoutes validateRoute={"protectedTest"} />}>
           <Route path="protectedTest" element={<ProtectedTest />} />
         </Route>
@@ -60,15 +60,13 @@ function App() {
           path="ProviderOrderQueue/details/:order_id"
           element={<ProviderOrderDetails />}
         />
-        <Route path="providerInfo"  element = {<ProviderInfo />} />
+        <Route path="providerInfo" element={<ProviderInfo />} />
         <Route path="*" element={<NoPage />} />
         <Route path="CompletedOrder" element={<CompletedOrder />} />
         <Route
           path="CompletedOrder/:order_id"
           element={<CompletedOrderDetail />}
         />
-        
-          
       </Route>
     </Routes>
   );
