@@ -114,7 +114,7 @@ function RequestDetails() {
           
         );
       }
-      else if (status === 'Xác thực hoàn tất') {
+      else if (status === 'Đã hoàn thành') {
         return (
           <>
           <a href={"/confirmPriceSchedule/" + order_id}>
