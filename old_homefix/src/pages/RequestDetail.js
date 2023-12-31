@@ -62,7 +62,7 @@ function RequestDetails() {
 
   // Extract properties from requestData object
   const handleCancelOrder = () => {
-    const confirmCancel = window.confirm("Bạn có chắc chắn muốn hủy đơn hàng?");
+    const confirmCancel = window.confirm("Bạn có chắc chắn muốn hủy yêu cầu?");
     if (confirmCancel) {
       // Perform the cancellation logic here
       // ...
@@ -71,7 +71,7 @@ function RequestDetails() {
   function StatusButton(status){
     if (status==='đang chờ chấp nhận'){
       return(
-        <button onClick={handleCancelOrder}>Hủy đơn hàng</button>
+        <button onClick={handleCancelOrder}>Hủy yêu cầu</button>
       )
     }
     else if (status==='hoàn thành'){

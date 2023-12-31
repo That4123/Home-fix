@@ -118,7 +118,7 @@ function Confirm () {
                     </div>
                     <div className="user-info">
                         <div>Thợ sửa: {info_order[0].provider_name}</div>
-                        <div>Mã đơn hàng: {info_order[0].order_id}</div>
+                        <div>Mã yêu cầu: {info_order[0].order_id}</div>
                         <div>Số điện thoại: {info_order[0].provider_phone_number}</div>
                     </div>
                 </div>
@@ -146,12 +146,12 @@ function Confirm () {
                     </div>
                     {info_order[0].status === "Đang chờ thực hiện" && status_send_confirm === "No" &&
                     <div className="submit-area">
-                    Gửi yêu cầu xác nhận xác nhận thông tin đơn hàng
+                    Gửi yêu cầu xác nhận xác nhận thông tin yêu cầu
                     <button type="submit"  onClick={handleClickToOpen} > Gửi</button>
                     </div>}
                     {status_send_confirm === "Yes" &&
                     <div className="submit-area">
-                    Bạn đã gửi yêu cầu xác nhận xác nhận thông tin đơn hàng. Hãy chờ đợi khách hàng xác nhận thông tin đơn hàng.
+                    Bạn đã gửi yêu cầu xác nhận xác nhận thông tin yêu cầu. Hãy chờ đợi khách hàng xác nhận thông tin yêu cầu.
                     
                     </div>}
                 </form>
@@ -193,7 +193,7 @@ function Confirm () {
                     </div>
                     <div className="user-info">
                         <div>Thợ sửa: {info_order[0].provider_name}</div>
-                        <div>Mã đơn hàng: {info_order[0].order_id}</div>
+                        <div>Mã yêu cầu: {info_order[0].order_id}</div>
                         <div>Số điện thoại: {info_order[0].provider_phone_number}</div>
                     </div>
                 </div>
@@ -222,15 +222,15 @@ function Confirm () {
                     
                     
                     <div className="submit-area">
-                    Xác nhận thông tin đơn hàng:
+                    Xác nhận thông tin yêu cầu:
                    
                     {info_order[0].status === "Đang chờ thực hiện" && price !== 0 && time !== null && status_confirm === "No" &&
                     <button type="submit" onClick={(e) => {handleClickToOpenCustomer(e); handleUpdate()}}> Xác nhận</button>}
                     </div>
                     {info_order[0].status === "Đang chờ thực hiện" && price === 0 &&
-                    <div>Chưa có yêu cầu xác nhận thông tin đơn hàng từ nhà cung cấp dịch vụ</div>} 
+                    <div>Chưa có yêu cầu xác nhận thông tin yêu cầu từ nhà cung cấp dịch vụ</div>} 
                     {status_confirm === "Yes" &&
-                    <>Đã xác nhận thành công đơn hàng</>}
+                    <>Đã xác nhận thành công yêu cầu</>}
                 </div>
                 <Modal
                 open={open}
@@ -243,7 +243,7 @@ function Confirm () {
                     Xác nhận thành công!
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Nhân viên sửa chữa sẽ sớm thực hiện đơn hàng theo lịch đã xác nhận!
+                    Nhân viên sửa chữa sẽ sớm thực hiện yêu cầu theo lịch đã xác nhận!
                     </Typography>
                 </Box>
                 </Modal>

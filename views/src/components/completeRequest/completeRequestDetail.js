@@ -151,7 +151,7 @@ function CompleteRequestDetail () {
                     </div>
                     <div className="user-info">
                         <div>Thợ sửa: {info_order[0].provider_name}</div>
-                        <div>Mã đơn hàng: {info_order[0].order_id}</div>
+                        <div>Mã yêu cầu: {info_order[0].order_id}</div>
                         <div>Số điện thoại: {info_order[0].provider_phone_number}</div>
                     </div>
                 </div>
@@ -282,7 +282,7 @@ function CompleteRequestDetail () {
                     Xác nhận thành công!
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Nhân viên sửa chữa sẽ sớm thực hiện đơn hàng theo lịch đã xác nhận!
+                    Nhân viên sửa chữa sẽ sớm thực hiện yêu cầu theo lịch đã xác nhận!
                     </Typography>
                 </Box>
                 </Modal>

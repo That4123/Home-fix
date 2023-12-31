@@ -11,7 +11,7 @@ import {ModalActionNoti} from '../RequestQueue'
 
 const cookies = new Cookies();
 const token = cookies.get('TOKEN');
-const ModalNoti=({isModalNotiOpen,setModalNoti,message,setLoading})=>{
+const ModalNoti=({isModalNotiOpen,setModalNoti,message})=>{
   return(
     <Modal
       className={"popup-complete-config"}
@@ -38,9 +38,8 @@ function RequestDetails() {
   const [isModalNotiOpen, setModalNoti] = useState(false);
 
   const {order_id} = useParams();
-  const [isModalAcceptOrder,setModalAcceptOrder]=useState(false);
   const handleAcceptOrder=()=>{
-    setModalAcceptOrder(true);
+    acceptOrder(selectedOrder.order_id);
   }
   const acceptOrder=(order_id)=>{
     axios
@@ -52,8 +51,8 @@ function RequestDetails() {
         },
       })
       .then((response) => {
-        console.log(response);
-        setErrorMessage('');
+        setResponseMessage('Chấp nhận thành công');
+        setModalNoti(true);
         setSelectedOrder((prevOrder) => ({
           ...prevOrder,
           status: 'Đang chờ thực hiện',
@@ -200,14 +199,8 @@ function RequestDetails() {
           </div>
 
           {StatusButton(selectedOrder.status)}
-          <ModalActionNoti 
-          isModalOpen={isModalAcceptOrder} 
-          closeModal={()=>setModalAcceptOrder(false)}
-          message={'Bạn chắc chắn muốn chấp nhận yêu cầu này'}
-          selectedOrder={selectedOrder}
-          action={acceptOrder}
-          />
-          <ModalNoti isModalNotiOpen={isModalNotiOpen} setModalNoti={setModalNoti} message={responseMessage} setLoading={setLoading}/>
+
+          <ModalNoti isModalNotiOpen={isModalNotiOpen} setModalNoti={setModalNoti} message={responseMessage}/>
         </div>
       )}
     </>
