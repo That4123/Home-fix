@@ -174,10 +174,12 @@ CREATE TABLE IF NOT EXISTS `service_order` (
 --
 
 INSERT INTO `service_order` (`order_id`, `item_type`, `specific_item`, `text_description`, `image_description`, `province`, `district`, `town`, `street`, `time_range`, `status`, `customer_id`, `provider_id`) VALUES
-(1, 'Vật dụng công nghệ', 'abc', 'abcy', 'abcx', 'phu tho', 'ba dinh', 'kontum', 'street', '2023-12-02 20:33:25', 'Đã huỷ', 1, 2),
-(2, 'Vật dụng công nghệ', 'abc', 'abcy', 'abcx', 'phu tho', 'ba dinh', 'kontum', 'street', '2023-12-02 21:09:33', 'Đã huỷ', 1, 2),
-(3, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không vào điện', 'https://tse1.mm.bing.net/th?id=OIP.h43m6JfyuhSB1ZgT7-_h0QHaJ4&pid=Api&P=0&h=220', 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', '220, Hùng Vương', '2023-12-02 21:08:00', 'Đang xác nhận', 1, 2),
-(4, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không vào điện', 'https://tse1.mm.bing.net/th?id=OIP.h43m6JfyuhSB1ZgT7-_h0QHaJ4&pid=Api&P=0&h=220', 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', 'tran phu', '2023-12-02 21:08:00', 'Đang xác nhận', 1, 2);
+(1, 'Vật dụng công nghệ', 'Máy tính HP', 'Tắt màn hình', 'https://cdn.tgdd.vn/Files/2021/09/05/1380257/h2_1280x720-800-resize.jpg', 'Tỉnh Phú Thọ', 'Ba Đình', 'Phường Bình An', '267 Nguyễn Thái Bình', '2023-12-02 20:33:25', 'Đã huỷ', 1, 2),
+(2, 'Vật dụng công nghệ', 'Máy in Xerox', 'Hết mực in', 'https://vitinhnguyenkim.vn/uploads/product/may-in-may-scan/Fuji-Xerox-DocuPrint-3205.png', 'Tỉnh Phú Thọ', 'Ba Đình', 'Phường An Bình', '234 Quang Trung', '2023-12-03 21:09:33', 'Đã huỷ', 1, 2),
+(3, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không vào điện', 'https://tse1.mm.bing.net/th?id=OIP.h43m6JfyuhSB1ZgT7-_h0QHaJ4&pid=Api&P=0&h=220', 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', '220 Hùng Vương', '2023-12-04 21:08:00', 'Đã hoàn thành', 1, 2),
+(4, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không vào điện', 'https://tse1.mm.bing.net/th?id=OIP.h43m6JfyuhSB1ZgT7-_h0QHaJ4&pid=Api&P=0&h=220', 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', '35 Trần Phú', '2023-12-05 21:08:00', 'Đang xác nhận', 1, 2),
+(5, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không thể bơm nước', 'https://tse1.mm.bing.net/th?id=OIP.h43m6JfyuhSB1ZgT7-_h0QHaJ4&pid=Api&P=0&h=220', 'TP Hồ Chí Minh', 'Quận 5', 'Phường 11', '220 Trần Hưng Đạo', '2023-12-06 21:10:00', 'Đang xác nhận', 1, 2),
+(6, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Tiếng động mạnh khi hoạt động', 'https://tse1.mm.bing.net/th?id=OIP.h43m6JfyuhSB1ZgT7-_h0QHaJ4&pid=Api&P=0&h=220', 'TP Hồ Chí Minh', 'Quận 12', 'Phường 12', '234 Tô Hiến Thành', '2023-12-07 21:28:00', 'Đã hoàn thành', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -208,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `user_customer` (
 --
 
 INSERT INTO `user_customer` (`customer_id`, `user_name`, `password`, `name`, `balance`, `phone_number`) VALUES
-(1, 'customer1', '$2b$10$LmHWQ8e/4zG1lhc6LJtVZOYEzRPw86fgOpuj7/GBJFwNAQ4AXOQkK', 'Trần Thị A', 0.00, '');
+(1, 'customer1', '$2b$10$LmHWQ8e/4zG1lhc6LJtVZOYEzRPw86fgOpuj7/GBJFwNAQ4AXOQkK', 'Trần Thị An', 0.00, '');
 
 -- --------------------------------------------------------
 
@@ -244,8 +246,13 @@ CREATE TABLE IF NOT EXISTS `user_provider` (
 --
 
 INSERT INTO `user_provider` (`provider_id`, `user_name`, `password`, `name`, `balance`, `province`, `district`, `town`, `street`, `phone_number`, `rate`) VALUES
-(2, 'provider1', '$2b$10$iZkUu9bm2731fYMEd75aGOY6jwpYUPomTtmBOa6zTj2AW8cD9FVlW', 'Nguyễn Văn A', 0.00, 'Hcm', 'q10', 'phú ', '112', '1234567890', '4.7');
-
+(2, 'provider1', '$2b$10$iZkUu9bm2731fYMEd75aGOY6jwpYUPomTtmBOa6zTj2AW8cD9FVlW', 'Nguyễn Văn Anh', 0.00, 'TP Hồ Chí Minh', 'Q10', 'Phường 14 ', '35 Thành Thái', '0975667874', '4.7'),
+(3, 'provider2', '$2b$10$xk1fKCFjroW6.waXRqAwDuClWp6xLAXtWr1cOgNAND2lamE74fXA2', 'Nguyễn Hoàng Thành', 0.00, 'TP Hồ Chí Minh', 'Q5 ', 'Phường 11', '234 Trần Hưng Đạo', '0926484832', '4.9'),
+(4, 'provider3', '$2b$10$HHpxAcehWOO0GyXSUhgDPeJs25YiwfKuUCP34icqQey9CZTwN2/ZC', 'Phạm Hoàng An', 0.00, 'TP Hồ Chí Minh', 'Q1 ', 'Phường Tân Định','134 Trần Quang Khải', '0926484834', '4.5'),
+(5, 'provider4', '$2b$10$w/S73eXYIDD.cfhWUnJA4OgTB5gv9ocoGSzBdEDye1P6x/4jaz9x6', 'Vũ Trọng Phúc', 0.00, 'TP Hồ Chí Minh', 'Q10 ', 'Phường 12','254 Tô Hiến Thành', '0974584832', '4.6'),
+(6, 'provider5', '$2b$10$OJMCJUgo7wzJ.1HcFB2RLuPseSzAown7MAp09TFrzhwRwzMEs70fW', 'Phạm Thành', 0.00, 'TP Hồ Chí Minh', 'Q10 ', 'Phường 12','296 Tô Hiến Thành', '0974584856', '4.0'),
+(7, 'provider6', '$2b$10$/5VLno5RYfpQGveWGlZUFueIyE6dqb1ashP8N2i5uUY5GhxHSn/jq', 'Phan Lê Hoàng An', 0.00, 'TP Hồ Chí Minh', 'Thủ Đức ', 'Phường Bình Thọ','16 Võ Văn Ngân', '0974584832', '4.6'),
+(8, 'provider7', '$2b$10$JEYWbDehukLRZNO8.2OFZu2LUKue4KHBKCXOMqgQ/wRPNOGx7BPJW', 'Phùng Thanh', 0.00, 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo ', 'Thị trấn Đại Đình','254 Tô Hiến Thành', '0974584556', '4.0');
 --
 -- Constraints for dumped tables
 --
