@@ -133,7 +133,7 @@ function RequestDetails() {
         return (
           <>
             <a href={"/confirmPriceSchedule/" + order_id}>
-              <button name="confirmDetails" className="action-button">Xác nhận chi tiết</button>
+              <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
             </a>
             <Link to={`/CompleteRequest/${order_id}`}>
               <button className="action-button normal-button-hf">Xác thực hoàn tất</button>

@@ -94,17 +94,19 @@ function RequestDetails() {
         return (
           <>
             <button name="cancelOrder" className="action-button normal-button-hf" onClick={()=>cancelOrder(order_id)}>Hủy đơn hàng</button>
-              
-           
           </>
         )
       } else if (status === 'Đã hủy') {
         return null;
       } else if (status === 'Đang chờ thực hiện') {
         return (
-          <a href={"/confirmPriceSchedule/" + order_id}>
-            <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
-          </a>
+          <>
+            <button name="cancelOrder" className="action-button normal-button-hf" onClick={()=>cancelOrder(order_id)}>Hủy đơn hàng</button>
+            <a href={"/confirmPriceSchedule/" + order_id}>
+              <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
+            </a>
+          </>
+          
         );
       }
       else if (status === 'Xác thực hoàn tất') {

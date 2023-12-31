@@ -160,8 +160,7 @@ function RequestQueue() {
           </select>
         </div>
 
-        {/* Render the filtered items */}
-        {allRequestDataItems}
+        {allRequestDataItems.length===0?<p style={{ textAlign: 'center' }}>Không có yêu cầu phù hợp</p>:allRequestDataItems}
     </div>
     </div>
   )
