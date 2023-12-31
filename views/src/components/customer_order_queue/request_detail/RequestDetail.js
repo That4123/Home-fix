@@ -120,6 +120,7 @@ function RequestDetails() {
         )
       }
       else {
+        return(
         <>
           <a href={"/confirmPriceSchedule/" + order_id}>
             <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
@@ -128,6 +129,7 @@ function RequestDetails() {
             <button name="payment" className="action-button normal-button-hf">Thanh toán</button>
           </Link>
         </>
+        )
       }
 
   }

@@ -19,6 +19,8 @@ function Confirm () {
     const [isReturn, setIsReturn] = useState(false);
     const user_name = cookies.get("USER_NAME");
     const [signIn, setSignIn] = useState(true);
+    const [status_send_confirm, setStatusSendConfirm] = useState("No")
+    const [status_confirm, setStatusConfirm] = useState("No")
     useEffect(() => {
         const token = cookies.get("TOKEN");
         console.log(user_name)
@@ -68,6 +70,8 @@ function Confirm () {
         axios.post("/api/confirmPriceSchedule/setCSP", {id, datetime, price}).
         then((response) => {
         }).catch((error) => { });
+        setStatusSendConfirm("Yes")
+        
     };
     const handleClickToOpenCustomer = (e) => {
         setOpen(true);
@@ -91,9 +95,10 @@ function Confirm () {
         setDay(date)
     }
     const handleUpdate = () => {
-        axios.post("/api/confirmPriceSchedule/updateAfterCSP", {id}).
-    then((response) => {
-    }).catch((error) => { });
+                axios.post("/api/confirmPriceSchedule/updateAfterCSP", {id}).
+            then((response) => {
+            }).catch((error) => { });
+            setStatusConfirm("Yes")
     }
     
 
@@ -139,10 +144,16 @@ function Confirm () {
                         <input type = "number" className="input-order-info" name="Chi phí" onChange = {(e) => setPrice(e.target.value)}/>
                         <label>VND</label>
                     </div>
+                    {info_order[0].status === "Đang chờ thực hiện" && status_send_confirm === "No" &&
                     <div className="submit-area">
                     Gửi yêu cầu xác nhận xác nhận thông tin đơn hàng
                     <button type="submit"  onClick={handleClickToOpen} > Gửi</button>
-                    </div>
+                    </div>}
+                    {status_send_confirm === "Yes" &&
+                    <div className="submit-area">
+                    Bạn đã gửi yêu cầu xác nhận xác nhận thông tin đơn hàng. Hãy chờ đợi khách hàng xác nhận thông tin đơn hàng.
+                    
+                    </div>}
                 </form>
                 <div>
                 <Modal
@@ -208,10 +219,18 @@ function Confirm () {
                         <div type = "number" className="input-order-info" name="Chi phí"> {price} </div>
                         <label>VND</label>
                     </div>
+                    
+                    
                     <div className="submit-area">
-                    Xác nhận thông tin đơn hàng
-                    <button type="submit" onClick={(e) => {handleClickToOpenCustomer(e); handleUpdate()}}> Xác nhận</button>
+                    Xác nhận thông tin đơn hàng:
+                   
+                    {info_order[0].status === "Đang chờ thực hiện" && price !== 0 && time !== null && status_confirm === "No" &&
+                    <button type="submit" onClick={(e) => {handleClickToOpenCustomer(e); handleUpdate()}}> Xác nhận</button>}
                     </div>
+                    {info_order[0].status === "Đang chờ thực hiện" && price === 0 &&
+                    <div>Chưa có yêu cầu xác nhận thông tin đơn hàng từ nhà cung cấp dịch vụ</div>} 
+                    {status_confirm === "Yes" &&
+                    <>Đã xác nhận thành công đơn hàng</>}
                 </div>
                 <Modal
                 open={open}
