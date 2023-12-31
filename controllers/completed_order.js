@@ -17,4 +17,9 @@ module.exports = {
     const { order_id } = req.query;
     completed_order_model.getPriceListByOrderId(order_id, res);
   },
+  complete: function (req, res) {
+    const data = req.body;
+    console.log(data);
+    completed_order_model.complete(data, res);
+  },
 };

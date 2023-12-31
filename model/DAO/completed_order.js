@@ -83,9 +83,29 @@ function getPriceListByOrderId(req, res) {
   );
 }
 
+function complete(req, res) {
+  const id = req.order_id;
+  console.log(id);
+  const data = req.formData;
+  console.log(data);
+  for (cost of data.componentCosts) {
+    let sql = "INSERT INTO completedorderpricelist (order_id, component_name, cost, description) VALUES (?,?,?,?)";
+    connect_DB.query(
+      sql,
+      [id.order_id, cost.name, cost.value, cost.description]
+    );
+  }
+  sqlUpdateStatus = "UPDATE service_order SET status = 'Đã hoàn thành' WHERE order_id = ?";
+  connect_DB.query(sqlUpdateStatus, [id.order_id]);
+  
+  sqlComplete = "INSERT INTO completedorder (order_id, description, order_status, wage) VALUES (?,?,?,?)";
+  connect_DB.query(sqlComplete, [id.order_id, data.jobDescription, data.status, data.wage]);
+}
+
 module.exports = {
   getCompletedOrderByCustomerId,
   getCompletedOrderByOrderId,
   getPicByOrderId,
   getPriceListByOrderId,
+  complete
 };

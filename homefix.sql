@@ -302,7 +302,7 @@ CREATE TABLE CompletedOrderPic (
 
 DROP TABLE IF EXISTS CompletedOrderPriceList;
 CREATE TABLE CompletedOrderPriceList (
-    component_id INT,
+    component_id INT auto_increment,
     order_id INT,
     component_name VARCHAR(50),
     cost INT,

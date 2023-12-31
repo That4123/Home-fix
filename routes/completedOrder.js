@@ -16,5 +16,6 @@ completed_order_router.get(
   "/priceList",
   completed_order_controller.getPriceListByOrderId
 );
+completed_order_router.post("/complete", completed_order_controller.complete);
 
 module.exports = completed_order_router;
