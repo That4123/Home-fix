@@ -9,25 +9,28 @@ import ImageCusDetail from './image1.png'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const token = cookies.get('TOKEN');
-const ModalNoti=({isModalNotiOpen,setModalNoti,message,setLoading})=>{
-  return(
-    <Modal
-      className={"popup-complete-config"}
-      overlayClassName={"complete-config-ctn"}
-      isOpen={isModalNotiOpen}
-      onRequestClose={() => setModalNoti(false)}
+const ModalNoti = ({ isModalOpen, closeModal, message}) => {
+  return (
+    <>
+    <Modal 
+      className={"popup-confirm-config"} 
+      overlayClassName={"cfm-config-ctn"}
+      isOpen={isModalOpen}
+      onRequestClose={closeModal}
       ariaHideApp={false}
     >
       <h2>Thông báo</h2>
-      <span className="span-complete-config">
-        <p className="complete-noti-content">{message}</p>
-        <button onClick={() => setModalNoti(false)} className="complete-noti-btn normal-button-hf">
-          Đóng
-        </button>
-      </span>
+      <p>{message}</p>
+      <div className='btn-ctn-cfm-cfg'>
+        <button onClick={closeModal} className="cfm-config-btn normal-button-hf">Đóng</button>
+      
+      
+      </div>
+
     </Modal>
-  )
-}
+    </>
+  );
+};
 function RequestDetails() {
   const [isLoading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -49,6 +52,7 @@ function RequestDetails() {
         console.log(response);
         setResponseMessage('Hủy thành công');
         setModalNoti(true);
+        console.log('123333   ',isModalNotiOpen);
         setSelectedOrder((prevOrder) => ({
           ...prevOrder,
           status: 'Đã hủy',
@@ -60,6 +64,7 @@ function RequestDetails() {
       });
   }
   useEffect(() => {
+    console.log('call eff/');
     axios
       .post(
         '/api/orderQueue/customer/getOrderDetails',
@@ -73,7 +78,7 @@ function RequestDetails() {
         }
       )
       .then((response) => {
-        setErrorMessage('');
+        setErrorMessage(null);
         setSelectedOrder(response.data.service_order);
         const src_image_description = [ImageCusDetail, ImageCusDetail];
 
@@ -93,40 +98,54 @@ function RequestDetails() {
       if (status === 'Đang xác nhận') {
         return (
           <>
-            <button name="cancelOrder" className="action-button normal-button-hf" onClick={()=>cancelOrder(order_id)}>Hủy đơn hàng</button>
-            <a href={"/confirmPriceSchedule/" + order_id}>
-              <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
-            </a>
-              
-           
+            <button name="cancelOrder" className="action-button normal-button-hf" onClick={()=>cancelOrder(order_id)}>Hủy yêu cầu</button>
           </>
         )
       } else if (status === 'Đã hủy') {
         return null;
       } else if (status === 'Đang chờ thực hiện') {
         return (
-          <Link to='/ConfirmPriceScheduleCus'>
-            <button name="confirmDetails normal-button-hf" className="action-button">Xác nhận chi tiết</button>
-          </Link>
+          <>
+            <button name="cancelOrder" className="action-button normal-button-hf" onClick={()=>cancelOrder(order_id)}>Hủy yêu cầu</button>
+            <a href={"/confirmPriceSchedule/" + order_id}>
+              <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
+            </a>
+          </>
+          
         );
       }
-      else if (status === 'Đã hoàn thành') {
+      else if (status === 'Xác thực hoàn tất') {
         return (
-          <Link to='/ConfirmPriceScheduleCus'>
+          <>
+          <a href={"/confirmPriceSchedule/" + order_id}>
+            <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
+          </a>
+          <Link to={'/CompletedOrder/'+order_id}>
             <button name="payment" className="action-button normal-button-hf">Thanh toán</button>
           </Link>
+          </>
         )
       }
       else {
-        return (
-          <p>bảng thông tin thanh toán</p>
+        return(
+        <>
+          <a href={"/confirmPriceSchedule/" + order_id}>
+            <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
+          </a>
+          <Link to='/ConfirmPriceScheduleCus'>
+            <button name="payment" className="action-button normal-button-hf">Thanh toán</button>
+          </Link>
+        </>
         )
       }
 
   }
-
+  useEffect(()=>{
+    console.log(isModalNotiOpen); 
+  },[isModalNotiOpen])
   return (
     <>
+      
       {isLoading && <p>Loading...</p>}
       {errorMessage && <p>Error: {errorMessage}</p>}
       {selectedOrder && (
@@ -165,11 +184,16 @@ function RequestDetails() {
             <h5>Nhà sửa chữa: {selectedOrder.provider_name}</h5>
             <h5>Trạng thái công việc: {selectedOrder.status}</h5>
           </div>
-
+          
           {StatusButton(selectedOrder.status)}
-          <ModalNoti isModalNotiOpen={isModalNotiOpen} setModalNoti={setModalNoti} message={responseMessage} setLoading={setLoading}/>
+          {console.log('3',isModalNotiOpen)}
         </div>
       )}
+      <ModalNoti 
+            isModalOpen={isModalNotiOpen} 
+            closeModal={()=>setModalNoti(false)}
+            message={responseMessage}
+      />
     </>
   );
 }

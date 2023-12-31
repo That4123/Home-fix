@@ -38,6 +38,7 @@ function SignIn() {
       })
       .then((response) => {
         cookies.set("TOKEN", response.data.token, { path: "/" });
+        console.log(response.data.token)
         setTimeout(() => {
           window.location.reload();
       }, 100);

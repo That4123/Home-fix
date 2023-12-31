@@ -44,7 +44,7 @@ function CustomerComfirmCompletion() {
         <div className="col mx-auto">
           <div className="container border border-2 mt-3">
             <div className="fw-bold text-center fs-2 mb-3 mt-3">
-              Danh sách yêu cầu đã hoàn thành
+              Danh sách yêu cầu Đã hoàn thành
             </div>
             <table className="table m-0">
               <tr className="row bg-dark text-white py-2">

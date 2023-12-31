@@ -46,7 +46,7 @@ function Confirm (props) {
                     </div>
                     <div className="user-info">
                         <div>Thợ sửa: {order_info.staff_name}</div>
-                        <div>Mã đơn hàng: {order_info.order_id}</div>
+                        <div>Mã yêu cầu: {order_info.order_id}</div>
                         <div>Số điện thoại: {order_info.staff_phone_number}</div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ function Confirm (props) {
                         <label>VND</label>
                     </div>
                     <div className="submit-area">
-                    Gửi yêu cầu xác nhận xác nhận thông tin đơn hàng
+                    Gửi yêu cầu xác nhận xác nhận thông tin yêu cầu
                     <button type="submit" onClick={handleClickToOpen}> Gửi</button>
                     </div>
                 </form>
@@ -113,7 +113,7 @@ function Confirm (props) {
                     </div>
                     <div className="user-info">
                         <div>Thợ sửa: {order_info.staff_name}</div>
-                        <div>Mã đơn hàng: {order_info.order_id}</div>
+                        <div>Mã yêu cầu: {order_info.order_id}</div>
                         <div>Số điện thoại: {order_info.staff_phone_number}</div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@ function Confirm (props) {
                         <label>VND</label>
                     </div>
                     <div className="submit-area">
-                    Xác nhận thông tin đơn hàng
+                    Xác nhận thông tin yêu cầu
                     <button type="submit" onClick={handleClickToOpen}> Xác nhận</button>
                     </div>
                 </div>
@@ -155,7 +155,7 @@ function Confirm (props) {
                     Xác nhận thành công!
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Nhân viên sửa chữa sẽ sớm thực hiện đơn hàng theo lịch đã xác nhận!
+                    Nhân viên sửa chữa sẽ sớm thực hiện yêu cầu theo lịch đã xác nhận!
                     </Typography>
                 </Box>
                 </Modal>

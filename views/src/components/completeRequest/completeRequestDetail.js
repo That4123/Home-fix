@@ -104,7 +104,7 @@ function CompleteRequestDetail () {
                     </div>
                     <div className="user-info">
                         <div>Thợ sửa: {info_order[0].provider_name}</div>
-                        <div>Mã đơn hàng: {info_order[0].order_id}</div>
+                        <div>Mã yêu cầu: {info_order[0].order_id}</div>
                         <div>Số điện thoại: {info_order[0].provider_phone_number}</div>
                     </div>
                 </div>

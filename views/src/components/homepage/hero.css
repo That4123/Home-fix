@@ -7,3 +7,7 @@
 .heroImg{
     visibility: hidden;
 }
+.mid-img .mi{
+    width: 100%;
+    position:  webkit-sticky;
+}

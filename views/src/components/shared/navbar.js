@@ -84,7 +84,7 @@ export default function Navbar(props) {
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/sendInformation">
-              Gởi yêu cầu 
+              Gửi yêu cầu 
             </Link>
           </li>
           <li className="nav-item">
@@ -105,14 +105,14 @@ export default function Navbar(props) {
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/ProviderOrderQueue">
-              Yêu cầu mới
+              Xem yêu cầu
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link className="nav-link" to="/CompletedOrder">
-              Yêu cầu đã hoàn thành
+              Yêu cầu Đã hoàn thành
             </Link>
-          </li>
+          </li> */}
         </>
       )
     
@@ -135,7 +135,7 @@ export default function Navbar(props) {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg border-bottom border-body">
+    <nav className="navbar navbar-expand-lg border-bottom border-body" style = {{maxHeight: "90px"}}>
             <div className="container-fluid" style={{ marginLeft: '50px', marginRight: '50px' }}>
                 <Link className="navbar-brand" to="/">
                 <img src={iconHomepage} alt="Ảnh Logo" className="logo" />

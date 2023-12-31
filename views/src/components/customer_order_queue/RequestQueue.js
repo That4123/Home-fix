@@ -57,7 +57,7 @@ function RequestQueue() {
   const [modalMessage,setModalMessage]=useState('');
   const handleCancelOrder=(requestData)=>{
     cancelOrder(requestData);
-    setModalCancelOrder(true);
+    
   }
   const cancelOrder=(selectedOrder)=>{
     axios
@@ -72,12 +72,14 @@ function RequestQueue() {
         console.log(response);
         setErrorMessage('');
         setModalMessage("Hủy yêu cầu thành công");
+        setModalCancelOrder(true);
         selectedOrder.status='Đã hủy';
       })
       .catch((error) => {
         setErrorMessage(error.response.data.message);
         setModalMessage(error.response.data.message);
         console.error(error.response.data.message);
+        setModalCancelOrder(true);
         selectedOrder.status='Đã hủy';
       });
   }
@@ -91,9 +93,9 @@ function RequestQueue() {
           <p className='specific-item-info'>Yêu cầu sửa: {requestData.specific_item}</p>
           <p className={`request-status ${requestData.status}`}>Trạng thái: {requestData.status}</p>
           <div className='btn-ctn-ctmq'>
-          {requestData.status==='Đang xác nhận' && (
+          {(requestData.status==='Đang xác nhận'||requestData.status=='Đang chờ thực hiện') && (
             <button className='normal-button-hf' onClick={() => { setSelectedOrder(requestData); handleCancelOrder(requestData); }}>
-              Hủy
+              Hủy yêu cầu
             </button>
           )}
             <Link to={`details/${requestData.order_id}`}>
@@ -110,11 +112,11 @@ function RequestQueue() {
         />
       </div>
   );
-  const [filterStatus, setFilterStatus] = useState('all'); // Initial filter status
+  const [filterStatus, setFilterStatus] = useState('all'); 
 
   const filteredServiceOrderList = serviceOrderList.filter(requestData => {
     if (filterStatus === 'all') {
-      return true; // Show all items
+      return true; 
     }
     return requestData.status === filterStatus;
   });
@@ -153,15 +155,14 @@ function RequestQueue() {
             <option value="Đang xác nhận">Đang xác nhận</option>
             <option value="Đang chờ thực hiện">Đang chờ thực hiện</option>
             <option value="Đã hủy">Đã hủy</option>
-            <option value="Xác thực hoàn tất">Xác thực hoàn tất</option>
+
             <option value="Đã hoàn thành">Đã hoàn thành</option>
-            
+            <option value="Xác thực hoàn tất">Xác thực hoàn tất</option>
 
           </select>
         </div>
 
-        {/* Render the filtered items */}
-        {allRequestDataItems}
+        {allRequestDataItems.length===0?<p style={{ textAlign: 'center' }}>Không có yêu cầu phù hợp</p>:allRequestDataItems}
     </div>
     </div>
   )

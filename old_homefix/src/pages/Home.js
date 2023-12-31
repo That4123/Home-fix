@@ -19,7 +19,6 @@ function Home() {
       <main>
         <div className="mid-img">
           <img className="mi" src="../img/homepic.png" alt="Hình ảnh trang chủ" />
-          {/* <a className="btn" href="">GET A QUOTE</a> */}
         </div>
 
         <div className="end-note">
