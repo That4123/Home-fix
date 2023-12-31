@@ -25,8 +25,26 @@ function CompletedOrder() {
   const [priceList, setPriceList] = useState([]);
   const token = cookies.get("TOKEN");
   const { order_id } = useParams();
-
+  const [comment, setComment] = useState("");
+  const [rate, setRate] = useState(0);
+  const [rated, setRated] = useState(0);
   useEffect(() => {
+    axios
+      .post("/api/completedOrder/getRate", {
+        params: { order_id: order_id },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        if (response.data.length !== 0) {
+          setRated(1);
+          var data = response.data[0];
+          setComment(data.comment);
+          setRate(data.rate);
+        }
+      })
+      .catch((error) => {});
     axios
       .get(
         "/api/completedOrder/detail",
@@ -50,7 +68,7 @@ function CompletedOrder() {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setPic(response.data);
       })
       .catch((error) => {});
@@ -62,22 +80,97 @@ function CompletedOrder() {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setPriceList(response.data);
       })
       .catch((error) => {});
   }, []);
+  // rate
 
+  const handleRate = (e) => {
+    setRate(parseInt(e.target.getAttribute("value")) + 1);
+  };
+
+  // comment
+
+  const handleInputChange = (event) => {
+    setComment(event.target.value);
+    adjustTextareaHeight(event.target);
+  };
+  const handleChangeRate = (e) => {
+    axios
+      .post("/api/completedOrder/changeRate", {
+        params: {
+          order_id: order_id,
+          comment: comment,
+          rate: rate,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log("changed");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const adjustTextareaHeight = (textarea) => {
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
+  };
+  //submit rate
+  const handleSubmitRate = (e) => {
+    setRated(1);
+    axios
+      .post("/api/completedOrder/addRate", {
+        params: {
+          order_id: order_id,
+          comment: comment,
+          rate: rate,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log("rated");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  // delete rate
+  const handleDelRate = (e) => {
+    setRated(0);
+    setRate(0);
+    setComment("");
+    axios
+      .post("/api/completedOrder/delRate", {
+        params: {
+          order_id: order_id,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log("rated");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   var totalCost = priceList.reduce((prev, cur) => {
     return prev + cur.cost;
   }, 0);
   totalCost += completedOrder.wage;
-  console.log(totalCost);
   return (
     <div className="container-fluid w-100">
       <div className="row w-100 border-bottom mt-3">
         <div className="col-8">
-          <div className="fw-bold fs-3 mb-3 text-center">Nội dung sửa chữa</div>
+          <div className="fw-bold fs-3 mb-3">Nội dung sửa chữa</div>
           <div className="container mb-3">
             <div className="fs-3 c-gray">Mô tả</div>
             <div className="fs-4 fst-italic">{completedOrder.description}</div>
@@ -109,7 +202,7 @@ function CompletedOrder() {
           </div>
         </div>
         <div className="col-4 border-start border-3">
-          <div className="fw-bold fs-3 mb-3 text-center">Chi tiết hóa đơn</div>
+          <div className="fw-bold fs-3 mb-3">Chi tiết hóa đơn</div>
           <div className="fs-3">Linh kiện</div>
           {priceList.map((item, index) => (
             <div className="container" key={index}>
@@ -136,6 +229,65 @@ function CompletedOrder() {
             className="hover-mouse hover-bg-green fs-3 fw-bold border-green border-3 my-3 mx-5 hover-c-white text-center"
           >
             Thanh Toán
+          </div>
+          {/* Rate */}
+          <div className="fw-bold fs-3">Đánh giá</div>
+          <div className="container mb-3">
+            {Array.from({ length: 5 }, (_, index) => (
+              <i
+                className={
+                  "bi " +
+                  (index < rate ? "bi-star-fill" : "bi-star") +
+                  " fs-1 px-2 hover-mouse"
+                }
+                key={index}
+                onClick={handleRate}
+                value={index}
+              ></i>
+            ))}
+          </div>
+          <textarea
+            className={"p-3 w-100" + (rate === 0 ? " d-none" : "")}
+            value={comment}
+            onChange={handleInputChange}
+            placeholder="Để lại lời đánh giá..."
+            style={{
+              resize: "none",
+              overflowY: "hidden",
+            }}
+          />
+          <div
+            className={
+              "hover-mouse hover-c-white hover-bg-blue fs-3 fw-bold border-blue border-3 w-25 text-center" +
+              (rate === 0 || rated === 1 ? " d-none" : "")
+            }
+            onClick={handleSubmitRate}
+          >
+            Gửi
+          </div>
+          <div className="row">
+            <div className="col-lg-6">
+              <div
+                className={
+                  "hover-mouse hover-c-white hover-bg-orange fs-3 fw-bold border-orange border-3 text-center" +
+                  (rated === 0 ? " d-none" : "")
+                }
+                onClick={handleChangeRate}
+              >
+                Chỉnh sửa
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div
+                className={
+                  "hover-mouse hover-c-white hover-bg-red fs-3 fw-bold border-red border-3 text-center" +
+                  (rated === 0 ? " d-none" : "")
+                }
+                onClick={handleDelRate}
+              >
+                Xóa
+              </div>
+            </div>
           </div>
         </div>
       </div>
