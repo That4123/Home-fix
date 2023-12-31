@@ -5,7 +5,7 @@ import axios from 'axios'
 import Cookies from "universal-cookie";
 import {useParams} from 'react-router-dom';
 import firebase from 'firebase/compat/app';
-//import "firebase/compat/database";
+import "firebase/compat/database";
 import 'firebase/compat/auth'; 
 
 const cookies = new Cookies();

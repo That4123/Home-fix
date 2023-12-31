@@ -8,6 +8,8 @@ import axios from 'axios'
 import React from "react"
 import { useState, useEffect } from "react";
 import Header from '../shared/header'
+import imgHomepage from "./Homepic.png"
+import "./hero.css"
 
 function Homepage() {
   const [greetingFromServer, setGreetingFromServer] = useState(null);
@@ -22,7 +24,12 @@ function Homepage() {
       })
   }, []);
   return (
+    <>
+        <div className="mid-img">
+          <img className="mi" src={imgHomepage} alt="Hình ảnh trang chủ" />
+        </div>
     <div className="container mt-4">
+       
       <h2 className="mb-4 text-center" style={{ color: '#3498db' }}>HOMEFIX - NỀN TẢNG SỬA CHỮA ĐÁNG TIN CẬY</h2>
       <div className="row">
         <div className="col-md-6">
@@ -49,11 +56,12 @@ function Homepage() {
           </div>
           <h3 style={{ color: '#e74c3c' }}>Can fix things?</h3>
           <p style={{ color: '#333' }}>
-            Join THINGS FIX and help others by offering your fixing skills.
+            Join HomeFix and help others by offering your fixing skills.
           </p>
         </div>
       </div>
     </div>
+    </>
   );
 }
 export default Homepage

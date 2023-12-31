@@ -49,8 +49,8 @@ const InformationForm = () => {
     imageDescription: "",
     position: [],
     meetingTimeSchedule: "",
-    provider: "nhà sửa chữa An Sơn",
-    providerId:2,
+    provider: "",
+    providerId: "",
   });
   const [errorMessage,setErrorMessage]=useState('');
   const handleChange = (e) => {
@@ -80,6 +80,13 @@ const InformationForm = () => {
       },
     }));
     console.log(formData.position);
+  };
+  const handleProviderChange = (provider) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      provider: provider.target.value.name,
+      providerId: provider.target.value.provider_id,
+    }));
   };
   const [modalSubmit,setModalSubmit]=useState(false);
   const closeModalSubmit=()=>{
@@ -113,7 +120,7 @@ const InformationForm = () => {
   return (
     <div className="informationForm-container">
         <h2 className="informationForm-name">Phiếu yêu cầu sửa chữa</h2>
-        <form onSubmit={handleSubmit}> 
+        <form> 
             <div className="informationForm-group">
                 <label>Loại vật dụng </label>
                 <select  name="itemType" value={formData.itemType} onChange={handleChange}>
@@ -184,9 +191,9 @@ const InformationForm = () => {
                     onChange={handleDateTimeChange}
                 />
             </div>
-            <ProviderForm formData={formData} handleChange={handleChange} />
+            <ProviderForm formData={formData} onProviderChange={handleProviderChange} />
             <div className="submit-button-container">
-            <button type="submit">Xác nhận</button>
+              <button type="submit" onClick={handleSubmit}>Xác nhận</button>
             </div>
         </form>
         <ModalNoti isModalOpen={modalSubmit} closeModal={closeModalSubmit} errorMessage={errorMessage} />

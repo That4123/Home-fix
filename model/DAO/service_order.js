@@ -116,4 +116,16 @@ function getOrderDetails(req,res){
     })
 }
 
-module.exports = { checkNoEmpty, makeOrder,cancelOrder,getOrderDetails,acceptOrder }
+function getProviders(req,res){
+    const sql = 'SELECT * FROM user_provider, repair_type WHERE user_provider.provider_id = repair_type.provider_id';
+    connect_DB.query(sql, function (err, result, field) {
+        if (err) {
+            res.status(500).json({ message: err });
+        }
+        else {
+            res.status(200).json({ message: "Thành công lấy danh sách nhà cung cấp", providers: result });
+        }
+    })
+}
+
+module.exports = { checkNoEmpty, makeOrder,cancelOrder,getOrderDetails,acceptOrder, getProviders }

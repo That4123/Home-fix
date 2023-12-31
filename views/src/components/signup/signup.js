@@ -41,6 +41,7 @@ function SignUp() {
     // const [login, setLogin] = useState(false);
     const handleSubmit = (e) => {
         e.preventDefault();
+        cookies.set("USER_NAME", user_name, { path: "/" });
         axios.post("/api/register", {
             user_name,
             name_customer,
@@ -48,12 +49,16 @@ function SignUp() {
             password
         })
             .then((response) => {
-                cookies.set("TOKEN", response.data.token, {
-                    path: "/",
-                });
-                navigate("/publicTest");
+                cookies.set("TOKEN", response.data.token, {path: "/"});
+                console.log("Sign Up")
+                console.log(response.data.token)
+                setTimeout(() => {
+                  window.location.reload();
+                }, 100);
+                navigate("/");
             })
             .catch((error) => {
+              console.log("EERROR")
                 if (error.response) {
                     setErrorMessage(error.response.data.message);
                 }
@@ -117,7 +122,7 @@ function SignUp() {
             Đăng kí
           </button>
           <p>{errorMessage ? errorMessage : ""}</p>
-          <a href="./login" className="btn-close">
+          <a href="./signin" className="btn-close">
             Quay lại
           </a>
         </form>

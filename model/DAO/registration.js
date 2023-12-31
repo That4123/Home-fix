@@ -59,10 +59,13 @@ function register(res, obj) {
                         obj.name_customer
                     ], function (err, result) {
                     let member = {
+                        user_name: obj.user_name,
+                        name: obj.name_customer,
                         user_id: result[0].customer_id,
-                        user_name:obj.user_name,
                     };
-                    const token = jwt.sign(member, "RANDOM-TOKEN", { expiresIn: "15m" });
+                    console.log("Controller Registration")
+                    console.log(member);
+                    const token = jwt.sign(member, "RANDOM-TOKEN", { expiresIn: "59m" });
                     res.json({ member: member, token });
                     }
                     )

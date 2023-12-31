@@ -11,4 +11,7 @@ module.exports = {
             res.status(500).json({message:'Vui lòng không bỏ trống trường nào'});
         }
     }],
+    getProviders:[function (req, res) {
+        service_order_model.getProviders(req,res);
+    }],
 }

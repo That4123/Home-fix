@@ -11,5 +11,20 @@
 .border-orange{border: 1px solid rgb(255, 145, 0)}
 .hover-bg-blue:hover{background-color:  rgb(0, 132, 255);}
 .hover-bg-green:hover{background-color: rgb(16, 196, 16)}
+.normal-button-hf {
+    background-color: #01317e;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin:10px
+  }
+  
+  .normal-button-hf:hover {
+    background-color: #000000;
+  }
 .hover-bg-red:hover{background-color: rgb(212, 0, 0);}
 .hover-bg-orange:hover{background-color: rgb(255, 145, 0);}
