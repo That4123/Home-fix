@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Jan 01, 2024 at 04:39 AM
+=======
+-- Generation Time: Jan 01, 2024 at 05:49 AM
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -28,7 +32,11 @@ USE `homefix`;
 --
 -- Table structure for table `agreement`
 --
+<<<<<<< HEAD
 -- Creation: Jan 01, 2024 at 03:33 AM
+=======
+-- Creation: Jan 01, 2024 at 03:47 AM
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 --
 
 DROP TABLE IF EXISTS `agreement`;
@@ -52,8 +60,13 @@ CREATE TABLE IF NOT EXISTS `agreement` (
 --
 -- Table structure for table `completedorder`
 --
+<<<<<<< HEAD
 -- Creation: Jan 01, 2024 at 03:33 AM
 -- Last update: Jan 01, 2024 at 03:33 AM
+=======
+-- Creation: Jan 01, 2024 at 03:47 AM
+-- Last update: Jan 01, 2024 at 03:47 AM
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 --
 
 DROP TABLE IF EXISTS `completedorder`;
@@ -84,8 +97,13 @@ INSERT INTO `completedorder` (`order_id`, `description`, `order_status`, `wage`)
 --
 -- Table structure for table `completedorderpic`
 --
+<<<<<<< HEAD
 -- Creation: Jan 01, 2024 at 03:33 AM
 -- Last update: Jan 01, 2024 at 03:33 AM
+=======
+-- Creation: Jan 01, 2024 at 03:47 AM
+-- Last update: Jan 01, 2024 at 03:47 AM
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 --
 
 DROP TABLE IF EXISTS `completedorderpic`;
@@ -115,8 +133,13 @@ INSERT INTO `completedorderpic` (`pic_id`, `order_id`, `image`) VALUES
 --
 -- Table structure for table `completedorderpricelist`
 --
+<<<<<<< HEAD
 -- Creation: Jan 01, 2024 at 03:33 AM
 -- Last update: Jan 01, 2024 at 03:33 AM
+=======
+-- Creation: Jan 01, 2024 at 03:47 AM
+-- Last update: Jan 01, 2024 at 03:47 AM
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 --
 
 DROP TABLE IF EXISTS `completedorderpricelist`;
@@ -147,7 +170,12 @@ INSERT INTO `completedorderpricelist` (`component_id`, `order_id`, `component_na
 --
 -- Table structure for table `feedback`
 --
+<<<<<<< HEAD
 -- Creation: Jan 01, 2024 at 03:33 AM
+=======
+-- Creation: Jan 01, 2024 at 03:47 AM
+-- Last update: Jan 01, 2024 at 04:31 AM
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 --
 
 DROP TABLE IF EXISTS `feedback`;
@@ -158,7 +186,17 @@ CREATE TABLE IF NOT EXISTS `feedback` (
   `order_id` int(11) NOT NULL,
   PRIMARY KEY (`feedback_id`),
   KEY `order_id` (`order_id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `feedback`:
+--   `order_id`
+--       `service_order` -> `order_id`
+--
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 
 --
 -- RELATIONSHIPS FOR TABLE `feedback`:
@@ -166,12 +204,22 @@ CREATE TABLE IF NOT EXISTS `feedback` (
 --       `service_order` -> `order_id`
 --
 
+<<<<<<< HEAD
+=======
+INSERT INTO `feedback` (`feedback_id`, `rate`, `comment`, `order_id`) VALUES
+(1, 5, '3364', 1);
+
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `make`
 --
+<<<<<<< HEAD
 -- Creation: Jan 01, 2024 at 03:33 AM
+=======
+-- Creation: Jan 01, 2024 at 03:47 AM
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 --
 
 DROP TABLE IF EXISTS `make`;
@@ -195,7 +243,11 @@ CREATE TABLE IF NOT EXISTS `make` (
 --
 -- Table structure for table `receive`
 --
+<<<<<<< HEAD
 -- Creation: Jan 01, 2024 at 03:33 AM
+=======
+-- Creation: Jan 01, 2024 at 03:47 AM
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 --
 
 DROP TABLE IF EXISTS `receive`;
@@ -219,8 +271,12 @@ CREATE TABLE IF NOT EXISTS `receive` (
 --
 -- Table structure for table `repair_type`
 --
+<<<<<<< HEAD
 -- Creation: Jan 01, 2024 at 03:33 AM
 -- Last update: Jan 01, 2024 at 03:38 AM
+=======
+-- Creation: Jan 01, 2024 at 03:47 AM
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 --
 
 DROP TABLE IF EXISTS `repair_type`;
@@ -254,7 +310,12 @@ INSERT INTO `repair_type` (`provider_id`, `repair_type`) VALUES
 --
 -- Table structure for table `service_order`
 --
+<<<<<<< HEAD
 -- Creation: Jan 01, 2024 at 03:33 AM
+=======
+-- Creation: Jan 01, 2024 at 04:26 AM
+-- Last update: Jan 01, 2024 at 04:37 AM
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 --
 
 DROP TABLE IF EXISTS `service_order`;
@@ -268,6 +329,7 @@ CREATE TABLE IF NOT EXISTS `service_order` (
   `district` varchar(40) NOT NULL,
   `town` varchar(40) NOT NULL,
   `street` varchar(50) NOT NULL,
+  `start_time` datetime NOT NULL DEFAULT current_timestamp(),
   `time_range` datetime NOT NULL DEFAULT current_timestamp(),
   `status` enum('Đang xác nhận','Đã hủy','Đã hoàn thành','Đang chờ thực hiện','Xác thực hoàn tất') NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -275,7 +337,11 @@ CREATE TABLE IF NOT EXISTS `service_order` (
   PRIMARY KEY (`order_id`),
   KEY `customer_id` (`customer_id`),
   KEY `provider_id` (`provider_id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 
 --
 -- RELATIONSHIPS FOR TABLE `service_order`:
@@ -289,6 +355,7 @@ CREATE TABLE IF NOT EXISTS `service_order` (
 -- Dumping data for table `service_order`
 --
 
+<<<<<<< HEAD
 INSERT INTO `service_order` (`order_id`, `item_type`, `specific_item`, `text_description`, `image_description`, `province`, `district`, `town`, `street`, `time_range`, `status`, `customer_id`, `provider_id`) VALUES
 (1, 'Vật dụng công nghệ', 'Máy tính HP', 'Tắt màn hình', 'https://cdn.tgdd.vn/Files/2021/09/05/138', 'Tỉnh Phú Thọ', 'Ba Đình', 'Phường Bình An', '267 Nguyễn Thái Bình', '2023-12-02 20:33:25', 'Đã hủy', 1, 2),
 (2, 'Vật dụng công nghệ', 'Máy in Xerox', 'Hết mực in', 'https://vitinhnguyenkim.vn/uploads/produ', 'Tỉnh Phú Thọ', 'Ba Đình', 'Phường An Bình', '234 Quang Trung', '2023-12-03 21:09:33', 'Đã hủy', 1, 2),
@@ -296,14 +363,30 @@ INSERT INTO `service_order` (`order_id`, `item_type`, `specific_item`, `text_des
 (4, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không vào điện', 'https://tse1.mm.bing.net/th?id=OIP.h43m6', 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', '35 Trần Phú', '2023-12-05 21:08:00', 'Đang xác nhận', 1, 2),
 (5, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không thể bơm nước', 'https://tse1.mm.bing.net/th?id=OIP.h43m6', 'TP Hồ Chí Minh', 'Quận 5', 'Phường 11', '220 Trần Hưng Đạo', '2023-12-06 21:10:00', 'Đang xác nhận', 1, 2),
 (6, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Tiếng động mạnh khi hoạt động', 'https://tse1.mm.bing.net/th?id=OIP.h43m6', 'TP Hồ Chí Minh', 'Quận 12', 'Phường 12', '234 Tô Hiến Thành', '2023-12-07 21:28:00', 'Đã hoàn thành', 1, 2);
+=======
+INSERT INTO `service_order` (`order_id`, `item_type`, `specific_item`, `text_description`, `image_description`, `province`, `district`, `town`, `street`, `start_time`, `time_range`, `status`, `customer_id`, `provider_id`) VALUES
+(1, 'Vật dụng công nghệ', 'Máy tính HP', 'Tắt màn hình', 'https://cdn.tgdd.vn/Files/2021/09/05/138', 'Tỉnh Phú Thọ', 'Ba Đình', 'Phường Bình An', '267 Nguyễn Thái Bình', '2024-01-01 11:26:21', '2023-12-02 20:33:25', 'Xác thực hoàn tất', 1, 2),
+(2, 'Vật dụng công nghệ', 'Máy in Xerox', 'Hết mực in', 'https://vitinhnguyenkim.vn/uploads/produ', 'Tỉnh Phú Thọ', 'Ba Đình', 'Phường An Bình', '234 Quang Trung', '2024-01-01 11:26:21', '2023-12-03 21:09:33', 'Đã hủy', 1, 2),
+(3, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không vào điện', 'https://tse1.mm.bing.net/th?id=OIP.h43m6', 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', '220 Hùng Vương', '2024-01-01 11:26:21', '2023-12-04 21:08:00', 'Đã hoàn thành', 1, 2),
+(4, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không vào điện', 'https://tse1.mm.bing.net/th?id=OIP.h43m6', 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', '35 Trần Phú', '2024-01-01 11:26:21', '2023-12-05 21:08:00', 'Đang xác nhận', 1, 2),
+(5, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Không thể bơm nước', 'https://tse1.mm.bing.net/th?id=OIP.h43m6', 'TP Hồ Chí Minh', 'Quận 5', 'Phường 11', '220 Trần Hưng Đạo', '2024-01-01 11:26:21', '2023-12-06 21:10:00', 'Đang xác nhận', 1, 2),
+(6, 'Đồ gia dụng', 'Máy giặt Toshiba 15x', 'Tiếng động mạnh khi hoạt động', 'https://tse1.mm.bing.net/th?id=OIP.h43m6', 'TP Hồ Chí Minh', 'Quận 12', 'Phường 12', '234 Tô Hiến Thành', '2024-01-01 11:26:21', '2023-12-07 21:28:00', 'Đã hoàn thành', 1, 2),
+(7, 'Nội thất', 'Máy Lạnh Toshiba 19x', 'Kêu lớn khi hoạt động', 'C:\\fakepath\\README.md', 'Tỉnh Bắc Ninh', 'Huyện Yên Phong', 'Xã Trung Nghĩa', '219, Trần Hưng Đạo', '2024-01-01 11:26:21', '2024-01-24 10:48:00', 'Đang xác nhận', 1, 2),
+(8, 'Nội thất', 'Máy giặt Toshiba 15x', '12', 'C:\\fakepath\\README.md', 'Tỉnh Phú Thọ', 'Huyện Tân Sơn', 'Xã Xuân Đài', '123, Trần Phú', '2024-01-01 11:37:20', '2024-01-10 11:37:00', 'Đang xác nhận', 1, 4);
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `user_customer`
 --
+<<<<<<< HEAD
 -- Creation: Jan 01, 2024 at 03:33 AM
 -- Last update: Jan 01, 2024 at 03:33 AM
+=======
+-- Creation: Jan 01, 2024 at 03:47 AM
+-- Last update: Jan 01, 2024 at 03:47 AM
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 --
 
 DROP TABLE IF EXISTS `user_customer`;
@@ -334,8 +417,13 @@ INSERT INTO `user_customer` (`customer_id`, `user_name`, `password`, `name`, `ba
 --
 -- Table structure for table `user_provider`
 --
+<<<<<<< HEAD
 -- Creation: Jan 01, 2024 at 03:33 AM
 -- Last update: Jan 01, 2024 at 03:33 AM
+=======
+-- Creation: Jan 01, 2024 at 03:47 AM
+-- Last update: Jan 01, 2024 at 04:47 AM
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 --
 
 DROP TABLE IF EXISTS `user_provider`;
@@ -364,6 +452,7 @@ CREATE TABLE IF NOT EXISTS `user_provider` (
 --
 
 INSERT INTO `user_provider` (`provider_id`, `user_name`, `password`, `name`, `balance`, `province`, `district`, `town`, `street`, `phone_number`, `rate`) VALUES
+<<<<<<< HEAD
 (2, 'provider1', '$2b$10$iZkUu9bm2731fYMEd75aGOY6jwpYUPomTtmBOa6zTj2AW8cD9FVlW', 'Nguyễn Văn Anh', 0.00, 'TP Hồ Chí Minh', 'Q10', 'Phường 14 ', '35 Thành Thái', '0975667874', 4.70),
 (3, 'provider2', '$2b$10$xk1fKCFjroW6.waXRqAwDuClWp6xLAXtWr1cOgNAND2lamE74fXA2', 'Nguyễn Hoàng Thành', 0.00, 'TP Hồ Chí Minh', 'Q5 ', 'Phường 11', '234 Trần Hưng Đạo', '0926484832', 4.90),
 (4, 'provider3', '$2b$10$HHpxAcehWOO0GyXSUhgDPeJs25YiwfKuUCP34icqQey9CZTwN2/ZC', 'Phạm Hoàng An', 0.00, 'TP Hồ Chí Minh', 'Q1 ', 'Phường Tân Định', '134 Trần Quang Khải', '0926484834', 4.50),
@@ -371,6 +460,15 @@ INSERT INTO `user_provider` (`provider_id`, `user_name`, `password`, `name`, `ba
 (6, 'provider5', '$2b$10$OJMCJUgo7wzJ.1HcFB2RLuPseSzAown7MAp09TFrzhwRwzMEs70fW', 'Phạm Thành', 0.00, 'TP Hồ Chí Minh', 'Q10 ', 'Phường 12', '296 Tô Hiến Thành', '0974584856', 4.00),
 (7, 'provider6', '$2b$10$/5VLno5RYfpQGveWGlZUFueIyE6dqb1ashP8N2i5uUY5GhxHSn/jq', 'Phan Lê Hoàng An', 0.00, 'TP Hồ Chí Minh', 'Thủ Đức ', 'Phường Bình Thọ', '16 Võ Văn Ngân', '0974584832', 4.60),
 (8, 'provider7', '$2b$10$JEYWbDehukLRZNO8.2OFZu2LUKue4KHBKCXOMqgQ/wRPNOGx7BPJW', 'Phùng Thanh', 0.00, 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo ', 'Thị trấn Đại Đình', '254 Tô Hiến Thành', '0974584556', 4.00);
+=======
+(2, 'provider1', '$2b$10$iZkUu9bm2731fYMEd75aGOY6jwpYUPomTtmBOa6zTj2AW8cD9FVlW', 'Nguyễn Văn Anh', 0.00, 'Tỉnh Phú Thọ', 'Ba Đình', 'Phường An Bình', '35 Thành Thái', '0975667874', 4.70),
+(3, 'provider2', '$2b$10$xk1fKCFjroW6.waXRqAwDuClWp6xLAXtWr1cOgNAND2lamE74fXA2', 'Nguyễn Hoàng Thành', 0.00, 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', '234 Trần Hưng Đạo', '0926484832', 4.90),
+(4, 'provider3', '$2b$10$HHpxAcehWOO0GyXSUhgDPeJs25YiwfKuUCP34icqQey9CZTwN2/ZC', 'Phạm Hoàng An', 0.00, 'Tỉnh Vĩnh Phúc', 'Huyện Tam Đảo', 'Thị trấn Đại Đình', '134 Trần Quang Khải', '0926484834', 4.50),
+(5, 'provider4', '$2b$10$w/S73eXYIDD.cfhWUnJA4OgTB5gv9ocoGSzBdEDye1P6x/4jaz9x6', 'Vũ Trọng Phúc', 0.00, 'TP Hồ Chí Minh', 'Quận 5', 'Phường 11', '254 Tô Hiến Thành', '0974584832', 4.60),
+(6, 'provider5', '$2b$10$OJMCJUgo7wzJ.1HcFB2RLuPseSzAown7MAp09TFrzhwRwzMEs70fW', 'Phạm Thành', 0.00, 'TP Hồ Chí Minh', 'Quận 12', 'Phường 12', '296 Tô Hiến Thành', '0974584856', 4.00),
+(7, 'provider6', '$2b$10$/5VLno5RYfpQGveWGlZUFueIyE6dqb1ashP8N2i5uUY5GhxHSn/jq', 'Phan Lê Hoàng An', 0.00, 'Tỉnh Bắc Ninh', 'Huyện Yên Phong', 'Xã Trung Nghĩa', '16 Võ Văn Ngân', '0974584832', 4.60),
+(8, 'provider7', '$2b$10$JEYWbDehukLRZNO8.2OFZu2LUKue4KHBKCXOMqgQ/wRPNOGx7BPJW', 'Phùng Thanh', 0.00, 'Tỉnh Phú Thọ', 'Huyện Tân Sơn', 'Xã Xuân Đài', '254 Tô Hiến Thành', '0974584556', 4.00);
+>>>>>>> 2a441f8d19cc0bdb7f3856cacb6c9ba22cdcf828
 
 --
 -- Constraints for dumped tables

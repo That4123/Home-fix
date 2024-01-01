@@ -227,7 +227,7 @@ function Confirm () {
                     {info_order[0].status === "Đang xác nhận" && price !== 0 && time !== null && status_confirm === "No" &&
                     <button type="submit" onClick={(e) => {handleClickToOpenCustomer(e); handleUpdate()}}> Xác nhận</button>}
                     </div>
-                    {info_order[0].status === "Đang xác nhận" && price === 0 &&
+                    {info_order[0].status === "Đang xác nhận" && time === "" &&
                     <div>Chưa có yêu cầu xác nhận thông tin yêu cầu từ nhà cung cấp dịch vụ</div>} 
                     {info_order[0].status === "Đang chờ thực hiện" &&
                     <>Đã xác nhận thành công yêu cầu</>}

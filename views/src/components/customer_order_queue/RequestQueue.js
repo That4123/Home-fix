@@ -137,7 +137,7 @@ function RequestQueue() {
     return <div className='App'>{errorMessage}</div>;
   }
   return (
-    <div>
+    <div style={{minHeight: '900px'}}>
     <div className='allRequest-container'>
         <h2>DANH SÁCH YÊU CẦU SỬA CHỮA</h2>
         <div style={{
