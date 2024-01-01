@@ -16,6 +16,7 @@ function checkNoEmpty(obj) {
 function getAllOrder(req, res) {
     const sql = [
         'SELECT * FROM service_order WHERE `provider_id`=?'
+        
     ];
     
     connect_DB.query(sql.join(''), [
@@ -32,7 +33,7 @@ function getAllOrder(req, res) {
 }
 function getAllInfo(req, res) {
     const sql = [
-        'SELECT * FROM user_provider WHERE `provider_id`=?'
+        'SELECT so.*, json_arrayagg(t.repair_type) AS repair_types FROM user_provider so JOIN repair_type t ON so.provider_id = t.provider_id WHERE so.provider_id = ?'
     ];
     
     connect_DB.query(sql.join(''), [
@@ -66,10 +67,40 @@ function editInfo(req, res) {
             res.status(500).json({ message: err });
         }
         else {
+            
             res.status(200).json({allInfo:result});
+        }
+    })
+}
+function getInfoCustomer(req, res) {
+    const sql = [
+        'SELECT so.*, json_arrayagg(t.repair_type) AS repair_types FROM user_provider so JOIN repair_type t ON so.provider_id = t.provider_id WHERE so.provider_id = ?'
+    ];
+    
+    connect_DB.query(sql.join(''), [
+        req
+    ], function (err, result, field) {
+        if (err) {
+            res.status(500).json({ message: err });
+        }
+        else {
+            res.status(200).json({allInfo:result});
+        }
+    })
+}
+function getFeedBack(req, res) {
+    const sql = [
+        'select f.* from feedback f JOIN service_order so ON f.order_id = so.order_id WHERE so.provider_id = ?'
+    ];
+    connect_DB.query(sql.join(''), [req], function(err, result, field) {
+        if (err) {
+            res.status(500).json({ message: err });
+        }
+        else {
+            res.status(200).json({allFeedBack:result});
         }
     })
 }
 
 
-module.exports = {getAllOrder, getAllInfo, editInfo}
+module.exports = {getAllOrder, getAllInfo, editInfo, getInfoCustomer,getFeedBack}

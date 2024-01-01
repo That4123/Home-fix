@@ -17,5 +17,14 @@ module.exports = {
             provider_id: req.body.provider_id
         };
         provider_model.editInfo(info, res);
+    },
+    getInfoCustomer: function (req,res){
+        let id = req.body.provider_id;
+        provider_model.getInfoCustomer(id,res);
+    },
+    getFeedBack: function (req,res){
+        let id = req.body.provider_id;
+        provider_model.getFeedBack(id,res);
     }
+
 }

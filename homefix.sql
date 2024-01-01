@@ -247,6 +247,8 @@ INSERT INTO `user_provider` (`provider_id`, `user_name`, `password`, `name`, `ba
 (2, 'provider1', '$2b$10$iZkUu9bm2731fYMEd75aGOY6jwpYUPomTtmBOa6zTj2AW8cD9FVlW', 'Nguyễn Văn A', 0.00, 'Hcm', 'q10', 'phú ', '112', '1234567890', '4.7');
 
 --
+-- Dump data for provider type repair;
+INSERT INTO `repair_type` (`provider_id`, `repair_type`) VALUES (2, 'Nội thất'), (2, 'Đồ gia dụng'), (2, 'Dụng cụ nhà bếp'), (2,'Vật dụng công nghệ');
 -- Constraints for dumped tables
 --
 
@@ -329,7 +331,13 @@ VALUES
 (1,1, 'Bộ ốc vít', 50000, 'thay mới'),
 (2,1, 'Lõi đồng', 35000, 'bị cháy, thay tạm lõi cũ'),
 (3,1, 'Phích cắm', 5000, 'thay mới');
-
+-- Dump data for feedback table
+INSERT INTO feedback (rate, `comment`, order_id) 
+VALUES 
+(5, 'Tuyệt vời lắm, sửa chữa nhanh, nhân viên lại còn nhiệt tình', 3),
+(4, 'Giá tuy hơi mắc nhưng sửa nhanh, chất lượng sửa ổn', 1),
+(5, 'Quá tuyệt vời, không uổng công tin tưởng', 4),
+(5, 'Lần sau tôi sẽ sử dụng dịch vụ ở đây nữa', 2);
 --
 -- Metadata
 --
@@ -350,7 +358,7 @@ USE `phpmyadmin`;
 --
 -- Metadata for table receive
 --
-
+select f.* from feedback f JOIN service_order so ON f.order_id = so.order_id WHERE so.provider_id = 2; 
 --
 -- Metadata for table repair_type
 --
