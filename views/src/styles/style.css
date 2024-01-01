@@ -28,3 +28,9 @@
   }
 .hover-bg-red:hover{background-color: rgb(212, 0, 0);}
 .hover-bg-orange:hover{background-color: rgb(255, 145, 0);}
+.popup-3s{animation: fadeOut 0.5s ease-in-out 3s forwards;}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}

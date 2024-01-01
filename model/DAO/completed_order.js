@@ -5,13 +5,8 @@ function getCompletedOrderByCustomerId(req, res) {
   connect_DB.query(
     `
     SELECT * 
-    FROM (SELECT CompletedOrder.*,service_order.customer_id customer_id, service_order.time_range time_range, service_order.specific_item item, user_provider.user_name, user_provider.name 
-      FROM CompletedOrder
-      INNER JOIN service_order
-      ON CompletedOrder.order_id = service_order.order_id
-      INNER JOIN user_provider
-      ON service_order.provider_id = user_provider.provider_id) a
-    WHERE a.customer_id = ?;
+    FROM service_order
+    WHERE customer_id = ? and fixed is not NULL;
     `,
     req,
     (err, result, field) => {
@@ -29,7 +24,7 @@ function getCompletedOrderByOrderId(req, res) {
   connect_DB.query(
     `
         SELECT *
-        FROM CompletedOrder
+        FROM service_order
         WHERE order_id = ?;
     `,
     req,
@@ -141,13 +136,68 @@ function delRateByOrderId(req, res) {
     }
   );
 }
+function complete(req, res) {
+  const id = req.order_id;
+  console.log(id);
+  const data = req.formData;
+  console.log(data);
+  for (cost of data.componentCosts) {
+    let sql =
+      "INSERT INTO completedorderpricelist (order_id, component_name, cost, description) VALUES (?,?,?,?)";
+    connect_DB.query(sql, [
+      id.order_id,
+      cost.name,
+      cost.value,
+      cost.description,
+    ]);
+  }
+  sqlUpdateStatus = `
+    UPDATE service_order 
+    SET 
+      status = 'Đã hoàn thành', 
+      fixed_description = ?, 
+      fixed = ?,
+      wage = ?  
+    WHERE order_id = ?
+    `;
+  connect_DB.query(sqlUpdateStatus, [
+    data.jobDescription,
+    data.status,
+    data.wage,
+    id.order_id,
+  ]);
+
+  // sqlComplete =
+  //   "UPDATE service_order SET (order_id, description, order_status, wage) VALUES (?,?,?,?)";
+  // connect_DB.query(sqlComplete, [
+  //   id.order_id,
+  //   data.jobDescription,
+  //   data.status,
+  //   data.wage,
+  // ]);
+}
+function paidByOrderId(req, res) {
+  connect_DB.query(
+    `
+      UPDATE service_order SET paid = 1 WHERE order_id = ?
+    `,
+    req.order_id,
+    (err, result, field) => {
+      if (err) {
+        res.status(500).json({ message: "Không thể thanh toán" });
+      }
+    }
+  );
+}
 module.exports = {
   getCompletedOrderByCustomerId,
   getCompletedOrderByOrderId,
   getPicByOrderId,
   getPriceListByOrderId,
   getRateByOrderId,
-  changeRateByOrderId,
   addRateByOrderId,
+  changeRateByOrderId,
   delRateByOrderId,
+  complete,
+  paidByOrderId,
 };

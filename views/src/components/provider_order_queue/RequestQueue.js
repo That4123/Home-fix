@@ -185,6 +185,7 @@ function RequestQueue() {
   if(errorMessage){
     return <div className='App'>{errorMessage}</div>;
   }
+
   return (
     <div>
     <div className='allRequest-container'>
@@ -211,8 +212,7 @@ function RequestQueue() {
           </select>
         </div>
 
-        {/* Render the filtered items */}
-        {allRequestDataItems}
+        {allRequestDataItems.length===0?<p style={{ textAlign: 'center' }}>Không có yêu cầu phù hợp</p>:allRequestDataItems}
     </div>
     </div>
   )

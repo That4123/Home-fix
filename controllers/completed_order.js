@@ -29,4 +29,12 @@ module.exports = {
   delRateByOrderId: function (req, res) {
     completed_order_model.delRateByOrderId(req.body.params, res);
   },
+  complete: function (req, res) {
+    const data = req.body;
+    console.log(data);
+    completed_order_model.complete(data, res);
+  },
+  paidByOrderId: function (req, res) {
+    completed_order_model.paidByOrderId(req.body.params, res);
+  },
 };

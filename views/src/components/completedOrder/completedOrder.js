@@ -35,7 +35,9 @@ function CustomerComfirmCompletion() {
         console.log(response.data);
         setCompletedOrder(response.data);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
@@ -48,9 +50,9 @@ function CustomerComfirmCompletion() {
             </div>
             <table className="table m-0">
               <tr className="row bg-dark text-white py-2">
-                <td className="col-3">Thiết bị</td>
-                <td className="col-6">Mô tả</td>
-                <td className="col-3">Người sửa chữa</td>
+                <td className="col-4">Thiết bị</td>
+                <td className="col-4">Mô tả</td>
+                <td className="col-4">Tình trạng</td>
               </tr>
               {completedOrder.map((item, index) => (
                 <tr
@@ -60,9 +62,15 @@ function CustomerComfirmCompletion() {
                     window.location.href = "/CompletedOrder/" + item.order_id;
                   }}
                 >
-                  <td className="col-3">{item.item}</td>
-                  <td className="col-6">{item.description}</td>
-                  <td className="col-3">{item.name}</td>
+                  <td className="col-4">{item.specific_item}</td>
+                  <td className="col-4">{item.text_description}</td>
+                  <td className="col-4">
+                    {item.fixed === "total"
+                      ? "Hoàn thiện"
+                      : item.fixed === "partial"
+                      ? "Sửa một phần"
+                      : "Không thể sửa"}
+                  </td>
                 </tr>
               ))}
             </table>

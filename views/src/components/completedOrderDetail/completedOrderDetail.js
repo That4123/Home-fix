@@ -28,6 +28,7 @@ function CompletedOrder() {
   const [comment, setComment] = useState("");
   const [rate, setRate] = useState(0);
   const [rated, setRated] = useState(0);
+  const [paid, setPaid] = useState(0);
   useEffect(() => {
     axios
       .post("/api/completedOrder/getRate", {
@@ -57,7 +58,8 @@ function CompletedOrder() {
         }
       )
       .then((response) => {
-        setCompletedOrder(response.data[0]);
+        setCompletedOrder((prev) => response.data[0]);
+        if (response.data[0].paid == 1) setPaid(1);
       })
       .catch((error) => {});
     axios
@@ -68,7 +70,6 @@ function CompletedOrder() {
         },
       })
       .then((response) => {
-        // console.log(response.data);
         setPic(response.data);
       })
       .catch((error) => {});
@@ -80,7 +81,6 @@ function CompletedOrder() {
         },
       })
       .then((response) => {
-        // console.log(response.data);
         setPriceList(response.data);
       })
       .catch((error) => {});
@@ -162,26 +162,58 @@ function CompletedOrder() {
         console.log(error);
       });
   };
+  // payment
+  const handlePayment = (e) => {
+    var popupPayment = document.getElementById("popupPayment");
+    popupPayment.classList.remove("d-none");
+    popupPayment.classList.add("popup-3s");
+    setPaid(1);
+    axios
+      .post("/api/completedOrder/paid", {
+        params: {
+          order_id: order_id,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log("paid");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   var totalCost = priceList.reduce((prev, cur) => {
     return prev + cur.cost;
   }, 0);
   totalCost += completedOrder.wage;
   return (
-    <div className="container-fluid w-100">
+    <div className="container-fluid w-100 position-relative">
+      <div
+        id="popupPayment"
+        className="position-absolute border-gray border-3 px-3 py-3 bg-white d-none"
+        style={{ top: "10px", right: "10px" }}
+      >
+        Bạn đã thanh toán yêu cầu "{completedOrder.specific_item}"<br></br>
+        Tài khoản -{totalCost.toLocaleString()} VND
+      </div>
       <div className="row w-100 border-bottom mt-3">
         <div className="col-8">
           <div className="fw-bold fs-3 mb-3">Nội dung sửa chữa</div>
           <div className="container mb-3">
             <div className="fs-3 c-gray">Mô tả</div>
-            <div className="fs-4 fst-italic">{completedOrder.description}</div>
+            <div className="fs-4 fst-italic">
+              {completedOrder.text_description}
+            </div>
           </div>
           <hr></hr>
           <div className="container mb-3">
             <div className="fs-3 c-gray">Tình trạng hoàn thành</div>
             <div className="fs-4 fst-italic">
-              {completedOrder.order_status === "total"
+              {completedOrder.fixed === "total"
                 ? "Toàn bộ"
-                : completedOrder.order_status === "partial"
+                : completedOrder.fixed === "partial"
                 ? "Một phần"
                 : "Không sửa được"}
             </div>
@@ -209,27 +241,29 @@ function CompletedOrder() {
               <div className="fs-4">{item.component_name}</div>
               <div className="fs-5 c-gray ps-3">Mô tả: {item.description}</div>
               <div className="fs-5 c-gray ps-3">
-                Giá tiền: {item.cost.toLocaleString("vi-VN")} đồng
+                Giá tiền: {item.cost.toLocaleString("vi-VN")} VND
               </div>
             </div>
           ))}
           <hr></hr>
           <div className="fs-4">
             Tiền công: {parseInt(completedOrder.wage).toLocaleString("vi-VN")}{" "}
-            đồng
+            VND
           </div>
           <hr></hr>
           <div className="fs-3 fw-bold">
-            Tổng số tiền: {totalCost.toLocaleString("vi-VN")} đồng
+            Tổng số tiền: {totalCost.toLocaleString("vi-VN")} VND
           </div>
           <div
-            onClick={() => {
-              alert("Chuyển hướng đến trang web thanh toán");
-            }}
-            className="hover-mouse hover-bg-green fs-3 fw-bold border-green border-3 my-3 mx-5 hover-c-white text-center"
+            onClick={paid === 1 ? null : handlePayment}
+            className={
+              (paid === 0 ? "hover-mouse hover-bg-green hover-c-white" : "") +
+              " fs-3 fw-bold border-green border-3 my-3 mx-5 text-center"
+            }
           >
-            Thanh Toán
+            {paid === 1 ? "Đã thanh toán" : "Thanh Toán"}
           </div>
+
           {/* Rate */}
           <div className="fw-bold fs-3">Đánh giá</div>
           <div className="container mb-3">
