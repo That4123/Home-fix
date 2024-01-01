@@ -84,7 +84,7 @@ export default function Navbar(props) {
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/sendInformation">
-              Gởi yêu cầu 
+              Gửi yêu cầu 
             </Link>
           </li>
           <li className="nav-item">
@@ -105,14 +105,14 @@ export default function Navbar(props) {
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/ProviderOrderQueue">
-              Yêu cầu mới
+              Xem yêu cầu
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link className="nav-link" to="/CompletedOrder">
               Yêu cầu Đã hoàn thành
             </Link>
-          </li>
+          </li> */}
         </>
       )
     

@@ -68,6 +68,10 @@ function App() {
           path="CompletedOrder/:order_id"
           element={<CompletedOrderDetail />}
         />
+        <Route
+          path="CompleteRequest/:order_id"
+          element={<CompleteRequestDetail />}
+        />
       </Route>
     </Routes>
   );

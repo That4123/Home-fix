@@ -103,6 +103,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 99;
 }
 .cfm-config-ctn .popup-confirm-config{
     position: relative !important;

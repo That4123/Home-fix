@@ -135,9 +135,6 @@ function RequestQueue() {
             <button className='normal-button-hf' onClick={() => { setSelectedOrder(requestData); handleCancelOrder(); }}>
               Từ chối
             </button>
-            <button className='normal-button-hf' onClick={() => { setSelectedOrder(requestData); handleAcceptOrder(); }}>
-              Chấp nhận
-            </button>
             </>
           )}
             <Link to={`details/${requestData.order_id}`}>
@@ -185,6 +182,7 @@ function RequestQueue() {
   if(errorMessage){
     return <div className='App'>{errorMessage}</div>;
   }
+
   return (
     <div>
     <div className='allRequest-container'>
@@ -211,8 +209,7 @@ function RequestQueue() {
           </select>
         </div>
 
-        {/* Render the filtered items */}
-        {allRequestDataItems}
+        {allRequestDataItems.length===0?<p style={{ textAlign: 'center' }}>Không có yêu cầu phù hợp</p>:allRequestDataItems}
     </div>
     </div>
   )

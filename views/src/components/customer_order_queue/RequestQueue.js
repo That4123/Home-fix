@@ -57,7 +57,7 @@ function RequestQueue() {
   const [modalMessage,setModalMessage]=useState('');
   const handleCancelOrder=(requestData)=>{
     cancelOrder(requestData);
-    setModalCancelOrder(true);
+    
   }
   const cancelOrder=(selectedOrder)=>{
     axios
@@ -72,12 +72,14 @@ function RequestQueue() {
         console.log(response);
         setErrorMessage('');
         setModalMessage("Hủy yêu cầu thành công");
+        setModalCancelOrder(true);
         selectedOrder.status='Đã hủy';
       })
       .catch((error) => {
         setErrorMessage(error.response.data.message);
         setModalMessage(error.response.data.message);
         console.error(error.response.data.message);
+        setModalCancelOrder(true);
         selectedOrder.status='Đã hủy';
       });
   }
@@ -91,9 +93,9 @@ function RequestQueue() {
           <p className='specific-item-info'>Yêu cầu sửa: {requestData.specific_item}</p>
           <p className={`request-status ${requestData.status}`}>Trạng thái: {requestData.status}</p>
           <div className='btn-ctn-ctmq'>
-          {requestData.status==='Đang xác nhận' && (
+          {(requestData.status==='Đang xác nhận'||requestData.status=='Đang chờ thực hiện') && (
             <button className='normal-button-hf' onClick={() => { setSelectedOrder(requestData); handleCancelOrder(requestData); }}>
-              Hủy
+              Hủy yêu cầu
             </button>
           )}
             <Link to={`details/${requestData.order_id}`}>
@@ -135,7 +137,7 @@ function RequestQueue() {
     return <div className='App'>{errorMessage}</div>;
   }
   return (
-    <div>
+    <div style={{minHeight: '900px'}}>
     <div className='allRequest-container'>
         <h2>DANH SÁCH YÊU CẦU SỬA CHỮA</h2>
         <div style={{
@@ -160,8 +162,7 @@ function RequestQueue() {
           </select>
         </div>
 
-        {/* Render the filtered items */}
-        {allRequestDataItems}
+        {allRequestDataItems.length===0?<p style={{ textAlign: 'center' }}>Không có yêu cầu phù hợp</p>:allRequestDataItems}
     </div>
     </div>
   )
