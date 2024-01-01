@@ -18,7 +18,7 @@ function getCompletedOrderByCustomerId(req, res) {
       if (err) {
         res
           .status(500)
-          .json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
+          .json({ message: "Không thể lấy danh sách yêu cầu của người dùng" });
       } else {
         res.json(result);
       }
@@ -35,9 +35,7 @@ function getCompletedOrderByOrderId(req, res) {
     req,
     (err, result, field) => {
       if (err) {
-        res
-          .status(500)
-          .json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
+        res.status(500).json({ message: "Không thể lấy thông tin order" });
       } else {
         res.json(result);
       }
@@ -54,9 +52,7 @@ function getPicByOrderId(req, res) {
     req,
     (err, result, field) => {
       if (err) {
-        res
-          .status(500)
-          .json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
+        res.status(500).json({ message: "Không thể lấy danh sách hình ảnh" });
       } else {
         res.json(result);
       }
@@ -73,19 +69,85 @@ function getPriceListByOrderId(req, res) {
     req,
     (err, result, field) => {
       if (err) {
-        res
-          .status(500)
-          .json({ message: "Hệ thống gặp vấn đề. Vui lòng thử lại sau" });
+        res.status(500).json({ message: "Không thể lấy danh sách giá tiền" });
       } else {
         res.json(result);
       }
     }
   );
 }
-
+function getRateByOrderId(req, res) {
+  connect_DB.query(
+    `
+      SELECT *
+      FROM feedback
+      WHERE order_id = ?;
+    `,
+    req.order_id,
+    (err, result, field) => {
+      if (err) {
+        res.status(500).json({ message: "Không thể lấy thông tin đánh giá" });
+      } else {
+        res.json(result);
+      }
+    }
+  );
+}
+function addRateByOrderId(req, res) {
+  connect_DB.query(
+    `
+      INSERT INTO feedback
+      (rate,comment,order_id)
+      VALUES
+      (?,?,?);
+    `,
+    // req.rate,
+    [req.rate, req.comment, req.order_id],
+    (err, result, field) => {
+      if (err) {
+        res.status(500).json({ message: "Không thể thêm đánh giá" });
+      }
+    }
+  );
+}
+function changeRateByOrderId(req, res) {
+  connect_DB.query(
+    `
+      UPDATE feedback
+      SET 
+        rate = ?,
+        comment = ?
+      WHERE order_id = ?;
+    `,
+    [req.rate, req.comment, req.order_id],
+    (err, result, field) => {
+      if (err) {
+        res.status(500).json({ message: "Không thể cập nhật đánh giá" });
+      }
+    }
+  );
+}
+function delRateByOrderId(req, res) {
+  connect_DB.query(
+    `
+      DELETE FROM feedback
+      WHERE order_id = ?;
+    `,
+    req.order_id,
+    (err, result, field) => {
+      if (err) {
+        res.status(500).json({ message: "Không thể xóa đánh giá" });
+      }
+    }
+  );
+}
 module.exports = {
   getCompletedOrderByCustomerId,
   getCompletedOrderByOrderId,
   getPicByOrderId,
   getPriceListByOrderId,
+  getRateByOrderId,
+  changeRateByOrderId,
+  addRateByOrderId,
+  delRateByOrderId,
 };
