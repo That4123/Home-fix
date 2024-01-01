@@ -121,12 +121,13 @@ INSERT INTO `completedorderpic` (`pic_id`, `order_id`, `image`) VALUES
 
 DROP TABLE IF EXISTS `completedorderpricelist`;
 CREATE TABLE IF NOT EXISTS `completedorderpricelist` (
-  `component_id` int(11) NOT NULL,
+  `component_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `component_name` varchar(50) DEFAULT NULL,
   `cost` int(11) DEFAULT NULL,
-  `description` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `description` text DEFAULT NULL,
+  primary key(`component_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- RELATIONSHIPS FOR TABLE `completedorderpricelist`:
@@ -139,8 +140,7 @@ CREATE TABLE IF NOT EXISTS `completedorderpricelist` (
 INSERT INTO `completedorderpricelist` (`component_id`, `order_id`, `component_name`, `cost`, `description`) VALUES
 (1, 1, 'Bộ ốc vít', 50000, 'thay mới'),
 (2, 1, 'Lõi đồng', 35000, 'bị cháy, thay tạm lõi cũ'),
-(3, 1, 'Phích cắm', 5000, 'thay mới'),
-(0, 9, 'dây điện ', 40000, 'dây cũ bị đứt');
+(3, 1, 'Phích cắm', 5000, 'thay mới');
 
 -- --------------------------------------------------------
 
