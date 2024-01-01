@@ -209,9 +209,9 @@ function CompletedOrder() {
           <div className="container mb-3">
             <div className="fs-3 c-gray">Tình trạng hoàn thành</div>
             <div className="fs-4 ps-3">
-              {completedOrder.fixed === "total"
+              {completedOrder.order_status === "total"
                 ? "Toàn bộ"
-                : completedOrder.fixed === "partial"
+                : completedOrder.order_status === "partial"
                 ? "Một phần"
                 : "Không sửa được"}
             </div>
