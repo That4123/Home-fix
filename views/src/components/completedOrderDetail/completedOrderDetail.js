@@ -16,7 +16,7 @@ import {
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { useParams } from "react-router-dom";
-
+import samplePic from "./samplePic.jpg";
 const cookies = new Cookies();
 
 function CompletedOrder() {
@@ -220,14 +220,9 @@ function CompletedOrder() {
           <div className="container mb-3">
             <div className="fs-3 c-gray">Hình ảnh</div>
             <div className="row">
-              {pic.map((item, index) => (
-                <div className="col-lg-6 mb-3" key={index}>
-                  <img
-                    src={item.image}
-                    className="object-fit-cover w-100"
-                  ></img>
-                </div>
-              ))}
+              <div className="col-lg-6 mb-3">
+                <img src={samplePic} className="object-fit-cover w-100"></img>
+              </div>
             </div>
           </div>
         </div>
