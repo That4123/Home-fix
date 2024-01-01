@@ -152,7 +152,10 @@ function Confirm () {
                     {status_send_confirm === "Yes" &&
                     <div className="submit-area">
                     Bạn đã gửi yêu cầu xác nhận xác nhận thông tin yêu cầu. Hãy chờ đợi khách hàng xác nhận thông tin yêu cầu.
-                    
+                    </div>}
+                    {info_order[0].status === "Đang chờ thực hiện" &&
+                    <div className="submit-area">
+                    Khách hàng đã xác nhận yêu cầu chi tiết đơn hàng của bạn.
                     </div>}
                 </form>
                 <div>
@@ -226,6 +229,8 @@ function Confirm () {
                    
                     {info_order[0].status === "Đang xác nhận" && price !== 0 && time !== null && status_confirm === "No" &&
                     <button type="submit" onClick={(e) => {handleClickToOpenCustomer(e); handleUpdate()}}> Xác nhận</button>}
+                    {info_order[0].status !== "Đang xác nhận" && info_order[0].status !== "Đang chờ thực hiện" &&
+                    <button type="submit" style={{backgroundColor:"gray"}} onClick={(e) => e.preventDefault()}> Xác nhận</button>}
                     </div>
                     {info_order[0].status === "Đang xác nhận" && time === "" &&
                     <div>Chưa có yêu cầu xác nhận thông tin yêu cầu từ nhà cung cấp dịch vụ</div>} 
