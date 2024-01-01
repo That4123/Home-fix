@@ -99,6 +99,9 @@ function RequestDetails() {
         return (
           <>
             <button name="cancelOrder" className="action-button normal-button-hf" onClick={()=>cancelOrder(order_id)}>Hủy yêu cầu</button>
+            <a href={"/confirmPriceSchedule/" + order_id}>
+              <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
+            </a>
           </>
         )
       } else if (status === 'Đã hủy') {
@@ -106,7 +109,6 @@ function RequestDetails() {
       } else if (status === 'Đang chờ thực hiện') {
         return (
           <>
-            <button name="cancelOrder" className="action-button normal-button-hf" onClick={()=>cancelOrder(order_id)}>Hủy yêu cầu</button>
             <a href={"/confirmPriceSchedule/" + order_id}>
               <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
             </a>
@@ -114,7 +116,7 @@ function RequestDetails() {
           
         );
       }
-      else if (status === 'Đã hoàn thành') {
+      else if (status === 'Xác thực hoàn tất') {
         return (
           <>
           <a href={"/confirmPriceSchedule/" + order_id}>

@@ -121,9 +121,9 @@ function RequestDetails() {
         return (
           <>
             <button name="cancelOrder normal-button-hf" className="action-button normal-button-hf" onClick={()=>cancelOrder(order_id)}>Từ chối</button>
-            <button className="action-button normal-button-hf" onClick={() => { handleAcceptOrder(); }}>
-              Chấp nhận
-            </button>
+            <a href={"/confirmPriceSchedule/" + order_id}>
+              <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
+            </a>
           </>
         )
       } else if (status === 'Đã hủy') {
@@ -145,8 +145,8 @@ function RequestDetails() {
           <>
           <Link to={`/confirmPriceSchedule/${order_id}`}>
               <button name="confirmDetails" className="action-button normal-button-hf">Xác nhận chi tiết</button>
-            </Link>
-          <Link to={`/confirmPriceSchedule/${order_id}`}>
+          </Link>
+          <Link to={`/CompleteRequest/${order_id}`}>
             <button name="payment" className="action-button normal-button-hf">Xác thực hoàn tất</button>
           </Link>
           </>
