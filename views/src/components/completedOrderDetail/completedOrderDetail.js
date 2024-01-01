@@ -166,7 +166,7 @@ function CompletedOrder() {
   const handlePayment = (e) => {
     var popupPayment = document.getElementById("popupPayment");
     popupPayment.classList.remove("d-none");
-    popupPayment.classList.add("popup-3s");
+    popupPayment.classList.add("popup-5s");
     setPaid(1);
     axios
       .post("/api/completedOrder/paid", {
