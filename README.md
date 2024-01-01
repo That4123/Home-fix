@@ -1,8 +1,8 @@
-###HƯỚNG DẪN CÀI ĐẶT
-###YÊU CẦU
+###HƯỚNG DẪN CÀI ĐẶT\
+###YÊU CẦU\
 - Nodejs: https://nodejs.org/en/download
 - XAMPP: https://www.apachefriends.org/download.html
-- Clone tất cả project homefix về máy
+- Clone tất cả project homefix về máy\
 #THIẾT LẬP
 + DATABASE:  
   - Khởi động XAMPP với quyền admin, start Apache và Mysql
