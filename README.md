@@ -9,12 +9,12 @@
   - Mở đường link sau trên trình duyệt bất kì: http://localhost/phpmyadmin/index.php
   - Chọn Import và chọn file homefix.sql nằm trong thư mục clone từ github
 + Ứng dụng
-- Mở thư mục được clone về ở cmd
-- Thực hiện câu lệnh:
-### `npm install`
-### `cd views`
-### `npm install`
-### `cd ../`
-### `npm run dev`
-- Khởi chạy ứng dụng hoàn tất, người dùng có thể truy cập trang web từ http://localhost:3000/.
-- 
+  - Mở thư mục được clone về ở cmd
+  - Thực hiện câu lệnh:
+  ### `npm install`
+  ### `cd views`
+  ### `npm install`
+  ### `cd ../`
+  ### `npm run dev`
+  - Khởi chạy ứng dụng hoàn tất, người dùng có thể truy cập trang web từ http://localhost:3000/.
+  - 
