@@ -111,7 +111,7 @@ function Confirm () {
                 <div className="user-info-area">
                 <div className="user-info">
                         <div>Khách hàng: {info_order[0].customer_name}</div>
-                        <div>Yêu cầu sửa: {info_order[0].item_type}</div>
+                        <div>Yêu cầu sửa: {info_order[0].specific_item}</div>
                         <div>Địa chỉ: {info_order[0].street} {info_order[0].town} {info_order[0].district} {info_order[0].province}</div>
                         <div>Số điện thoại: {info_order[0].customer_phone_number}</div>
                        
@@ -137,11 +137,17 @@ function Confirm () {
                     <div>Lịch sửa chữa:</div>
                     <div className = "form-confirm-date-time">
                         <label>Thời gian</label>
-                        <input type = "datetime-local" className="input-order-info" name="Giờ" onChange = {(e) => setDateTime(e.target.value)}/>
+                        {info_order[0].status === "Đang xác nhận" &&
+                        <input type = "datetime-local" className="input-order-info" name="Giờ" onChange = {(e) => setDateTime(e.target.value)}/>}
+                        {info_order[0].status === "Đang chờ thực hiện" &&
+                        <div type = "datetime-local" className="input-order-info" name="Giờ"> {time} {day} </div>}
                     </div>
                     <div className = "form-confirm-price">
                         <label>Giá đề xuất</label>
-                        <input type = "number" className="input-order-info" name="Chi phí" onChange = {(e) => setPrice(e.target.value)}/>
+                        {info_order[0].status === "Đang xác nhận" &&
+                        <input type = "number" className="input-order-info" name="Chi phí" onChange = {(e) => setPrice(e.target.value)}/>}
+                        {info_order[0].status === "Đang chờ thực hiện" &&
+                         <div type = "number" className="input-order-info" name="Chi phí"> {price} </div>}
                         <label>VND</label>
                     </div>
                     {info_order[0].status === "Đang xác nhận" && status_send_confirm === "No" &&
@@ -189,7 +195,7 @@ function Confirm () {
                 <div className="user-info-area">
                 <div className="user-info">
                         <div>Khách hàng: {info_order[0].customer_name}</div>
-                        <div>Yêu cầu sửa: {info_order[0].item_type}</div>
+                        <div>Yêu cầu sửa: {info_order[0].specific_item}</div>
                         <div>Địa chỉ: {info_order[0].street} {info_order[0].town} {info_order[0].district} {info_order[0].province}</div>
                         <div>Số điện thoại: {info_order[0].customer_phone_number}</div>
                        
