@@ -28,6 +28,12 @@ function Chat () {
     const token = cookies.get("TOKEN");
     const user_name = cookies.get("USER_NAME");
     const nameOpposite = useParams();
+    const getTime = () => {
+        var date = new Date();
+        const showTime = date.getHours() 
+        + ':' + date.getMinutes();
+        return showTime;
+    }
     useEffect(() => {
       const token = cookies.get("TOKEN");
       console.log(user_name)
@@ -126,7 +132,7 @@ function Chat () {
             <div className="left-msg">
                 <div className="msg-bubble">
                     <div className="msg-info">
-                        <div className="msg-info-time">12:45</div>
+                        <div className="msg-info-time">{getTime()}</div>
                     </div>
                     <div className="msg-text">{messenger[i].content}</div>
                 </div>
@@ -135,7 +141,7 @@ function Chat () {
                 <div className="right-msg">
                 <div className="msg-bubble">
                     <div className="msg-info">
-                        <div className="msg-info-time">12:45</div>
+                        <div className="msg-info-time">{getTime()}</div>
                     </div>
                     <div className="msg-text">{messenger[i].content}</div>
 
