@@ -135,9 +135,6 @@ function RequestQueue() {
             <button className='normal-button-hf' onClick={() => { setSelectedOrder(requestData); handleCancelOrder(); }}>
               Từ chối
             </button>
-            <button className='normal-button-hf' onClick={() => { setSelectedOrder(requestData); handleAcceptOrder(); }}>
-              Chấp nhận
-            </button>
             </>
           )}
             <Link to={`details/${requestData.order_id}`}>
