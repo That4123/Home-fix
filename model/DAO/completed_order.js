@@ -152,34 +152,17 @@ function complete(req, res) {
       cost.description,
     ]);
   }
-  sqlUpdateStatus = `
-    UPDATE service_order 
-    SET 
-      status = 'Đã hoàn thành', 
-    WHERE order_id = ?
-    `;
+  let sqlUpdateStatus =
+    "UPDATE service_order SET status = 'Xác thực hoàn tất' WHERE order_id = ?";
   connect_DB.query(sqlUpdateStatus, [id.order_id]);
-  sqlUpdateStatus = `
-    INSERT INTO completedOrder 
-      (order_id, description, order_status, wage)
-    VALUES 
-      (?,?,?,?);
-    `;
-  connect_DB.query(sqlUpdateStatus, [
+  let sqlComplete =
+    "INSERT INTO completedorder (order_id, description, order_status, wage) VALUES (?, ?, ?, ?)";
+  connect_DB.query(sqlComplete, [
     id.order_id,
     data.jobDescription,
     data.status,
     data.wage,
   ]);
-
-  // sqlComplete =
-  //   "UPDATE service_order SET (order_id, description, order_status, wage) VALUES (?,?,?,?)";
-  // connect_DB.query(sqlComplete, [
-  //   id.order_id,
-  //   data.jobDescription,
-  //   data.status,
-  //   data.wage,
-  // ]);
 }
 function paidByOrderId(req, res) {
   connect_DB.query(

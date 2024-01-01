@@ -159,7 +159,7 @@ function CompleteRequestDetail () {
 
                         {/* Input field for component costs */}
                         <tr>
-                            <td><label htmlFor="componentCosts">Chi phí h kiện:</label></td>
+                            <td><label htmlFor="componentCosts">Chi phí linh kiện:</label></td>
                             <td>
                                 <ul className="no-bullets"> {/* Add a class for styling */}
                                 {componentCosts.map((cost, index) => (
