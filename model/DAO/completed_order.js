@@ -4,9 +4,10 @@ var jwt = require("jsonwebtoken");
 function getCompletedOrderByCustomerId(req, res) {
   connect_DB.query(
     `
-    SELECT * 
-    FROM service_order
-    WHERE customer_id = ? and fixed is not NULL;
+    SELECT a.*, b.*
+    FROM completedOrder a LEFT JOIN service_order b 
+    ON a.order_id = b.order_id
+    WHERE b.customer_id = ?;
     `,
     req,
     (err, result, field) => {
@@ -24,7 +25,7 @@ function getCompletedOrderByOrderId(req, res) {
   connect_DB.query(
     `
         SELECT *
-        FROM service_order
+        FROM completedOrder
         WHERE order_id = ?;
     `,
     req,
@@ -155,16 +156,20 @@ function complete(req, res) {
     UPDATE service_order 
     SET 
       status = 'Đã hoàn thành', 
-      fixed_description = ?, 
-      fixed = ?,
-      wage = ?  
     WHERE order_id = ?
     `;
+  connect_DB.query(sqlUpdateStatus, [id.order_id]);
+  sqlUpdateStatus = `
+    INSERT INTO completedOrder 
+      (order_id, description, order_status, wage)
+    VALUES 
+      (?,?,?,?);
+    `;
   connect_DB.query(sqlUpdateStatus, [
+    id.order_id,
     data.jobDescription,
     data.status,
     data.wage,
-    id.order_id,
   ]);
 
   // sqlComplete =
@@ -179,7 +184,7 @@ function complete(req, res) {
 function paidByOrderId(req, res) {
   connect_DB.query(
     `
-      UPDATE service_order SET paid = 1 WHERE order_id = ?
+      UPDATE completedOrder SET paid = 1 WHERE order_id = ?
     `,
     req.order_id,
     (err, result, field) => {

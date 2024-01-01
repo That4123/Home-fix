@@ -1,10 +1,15 @@
 const completed_order_model = require("../model/DAO/completed_order");
+const authorization_moodel = require("../model/DAO/authorization");
 
 module.exports = {
-  getCompletedOrderByCustomerId: function (req, res) {
-    const { customer_id } = req.query;
-    completed_order_model.getCompletedOrderByCustomerId(customer_id, res);
-  },
+  getCompletedOrderByCustomerId: [
+    authorization_moodel.loadCurMember,
+    function (req, res) {
+      console.log(req.cur_member.user_id);
+      const customer_id = req.cur_member.user_id;
+      completed_order_model.getCompletedOrderByCustomerId(customer_id, res);
+    },
+  ],
   getCompletedOrderByOrderId: function (req, res) {
     const { order_id } = req.query;
     completed_order_model.getCompletedOrderByOrderId(order_id, res);

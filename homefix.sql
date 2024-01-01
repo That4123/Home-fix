@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2024 at 10:18 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Jan 01, 2024 at 01:44 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,85 +20,55 @@ SET time_zone = "+00:00";
 --
 -- Database: `homefix`
 --
-DROP DATABASE IF EXISTS `homefix`;
-CREATE DATABASE IF NOT EXISTS `homefix` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `homefix`;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `agreement`
 --
--- Creation: Jan 01, 2024 at 03:47 AM
--- Last update: Jan 01, 2024 at 09:16 AM
---
 
-DROP TABLE IF EXISTS `agreement`;
-CREATE TABLE IF NOT EXISTS `agreement` (
-  `agreement_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `agreement` (
+  `agreement_id` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `time_schedule` datetime NOT NULL,
-  `order_id` int(11) NOT NULL,
-  PRIMARY KEY (`agreement_id`),
-  KEY `order_id` (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELATIONSHIPS FOR TABLE `agreement`:
---   `order_id`
---       `service_order` -> `order_id`
---
+  `order_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `completedorder`
 --
--- Creation: Jan 01, 2024 at 09:06 AM
--- Last update: Jan 01, 2024 at 09:06 AM
---
 
-DROP TABLE IF EXISTS `completedorder`;
-CREATE TABLE IF NOT EXISTS `completedorder` (
+CREATE TABLE `completedorder` (
   `order_id` int(11) NOT NULL,
   `description` text DEFAULT NULL,
   `order_status` enum('total','partial','not') DEFAULT NULL,
-  `wage` int(11) DEFAULT NULL
+  `wage` int(11) DEFAULT NULL,
+  `paid` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELATIONSHIPS FOR TABLE `completedorder`:
---
 
 --
 -- Dumping data for table `completedorder`
 --
 
-INSERT INTO `completedorder` (`order_id`, `description`, `order_status`, `wage`) VALUES
-(1, 'Máy bị cháy cuộn dây', 'total', 100000),
-(2, 'Lỗi nguồn điện, đã tiến hành đo áp và thay thế', 'total', 100000),
-(3, 'Thiết bị lỗi phần điện tử, không phải phần cơ như mô tả. Không thể sửa chữa', 'not', 100000),
-(4, 'Bị mất linh kiện, đã bổ sung nhưng máy chạy vẫn bị rung lắc', 'partial', 100000);
+INSERT INTO `completedorder` (`order_id`, `description`, `order_status`, `wage`, `paid`) VALUES
+(1, 'Máy bị cháy cuộn dây', 'total', 100000, 0),
+(2, 'Lỗi nguồn điện, đã tiến hành đo áp và thay thế', 'total', 100000, 0),
+(3, 'Thiết bị lỗi phần điện tử, không phải phần cơ như mô tả. Không thể sửa chữa', 'not', 100000, 0),
+(4, 'Bị mất linh kiện, đã bổ sung nhưng máy chạy vẫn bị rung lắc', 'partial', 100000, 0);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `completedorderpic`
 --
--- Creation: Jan 01, 2024 at 09:06 AM
--- Last update: Jan 01, 2024 at 09:06 AM
---
 
-DROP TABLE IF EXISTS `completedorderpic`;
-CREATE TABLE IF NOT EXISTS `completedorderpic` (
+CREATE TABLE `completedorderpic` (
   `pic_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `image` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELATIONSHIPS FOR TABLE `completedorderpic`:
---
 
 --
 -- Dumping data for table `completedorderpic`
@@ -115,22 +85,14 @@ INSERT INTO `completedorderpic` (`pic_id`, `order_id`, `image`) VALUES
 --
 -- Table structure for table `completedorderpricelist`
 --
--- Creation: Jan 01, 2024 at 03:47 AM
--- Last update: Jan 01, 2024 at 09:14 AM
---
 
-DROP TABLE IF EXISTS `completedorderpricelist`;
-CREATE TABLE IF NOT EXISTS `completedorderpricelist` (
+CREATE TABLE `completedorderpricelist` (
   `component_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `component_name` varchar(50) DEFAULT NULL,
   `cost` int(11) DEFAULT NULL,
   `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELATIONSHIPS FOR TABLE `completedorderpricelist`:
---
 
 --
 -- Dumping data for table `completedorderpricelist`
@@ -147,12 +109,8 @@ INSERT INTO `completedorderpricelist` (`component_id`, `order_id`, `component_na
 --
 -- Table structure for table `feedback`
 --
--- Creation: Jan 01, 2024 at 03:47 AM
--- Last update: Jan 01, 2024 at 09:06 AM
---
 
-DROP TABLE IF EXISTS `feedback`;
-CREATE TABLE IF NOT EXISTS `feedback` (
+CREATE TABLE `feedback` (
   `feedback_id` int(11) NOT NULL,
   `rate` smallint(6) NOT NULL,
   `comment` text NOT NULL,
@@ -160,36 +118,22 @@ CREATE TABLE IF NOT EXISTS `feedback` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `feedback`:
---
-
---
 -- Dumping data for table `feedback`
 --
 
 INSERT INTO `feedback` (`feedback_id`, `rate`, `comment`, `order_id`) VALUES
-(3, 4, 'Dat', 1);
+(0, 3, '', 1);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `repair_type`
 --
--- Creation: Jan 01, 2024 at 03:47 AM
---
 
-DROP TABLE IF EXISTS `repair_type`;
-CREATE TABLE IF NOT EXISTS `repair_type` (
+CREATE TABLE `repair_type` (
   `provider_id` int(11) NOT NULL,
-  `repair_type` enum('Nội thất','Đồ gia dụng','Dụng cụ nhà bếp','Vật dụng công nghệ') NOT NULL,
-  PRIMARY KEY (`provider_id`,`repair_type`)
+  `repair_type` enum('Nội thất','Đồ gia dụng','Dụng cụ nhà bếp','Vật dụng công nghệ') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELATIONSHIPS FOR TABLE `repair_type`:
---   `provider_id`
---       `user_provider` -> `provider_id`
---
 
 --
 -- Dumping data for table `repair_type`
@@ -209,13 +153,9 @@ INSERT INTO `repair_type` (`provider_id`, `repair_type`) VALUES
 --
 -- Table structure for table `service_order`
 --
--- Creation: Jan 01, 2024 at 04:26 AM
--- Last update: Jan 01, 2024 at 09:17 AM
---
 
-DROP TABLE IF EXISTS `service_order`;
-CREATE TABLE IF NOT EXISTS `service_order` (
-  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `service_order` (
+  `order_id` int(11) NOT NULL,
   `item_type` enum('Nội thất','Đồ gia dụng','Dụng cụ nhà bếp','Vật dụng công nghệ') NOT NULL,
   `specific_item` varchar(40) NOT NULL,
   `text_description` text NOT NULL,
@@ -228,19 +168,8 @@ CREATE TABLE IF NOT EXISTS `service_order` (
   `time_range` datetime NOT NULL DEFAULT current_timestamp(),
   `status` enum('Đang xác nhận','Đã hủy','Đã hoàn thành','Đang chờ thực hiện','Xác thực hoàn tất') NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `provider_id` int(11) NOT NULL,
-  PRIMARY KEY (`order_id`),
-  KEY `customer_id` (`customer_id`),
-  KEY `provider_id` (`provider_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELATIONSHIPS FOR TABLE `service_order`:
---   `customer_id`
---       `user_customer` -> `customer_id`
---   `provider_id`
---       `user_provider` -> `provider_id`
---
+  `provider_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `service_order`
@@ -260,25 +189,15 @@ INSERT INTO `service_order` (`order_id`, `item_type`, `specific_item`, `text_des
 --
 -- Table structure for table `user_customer`
 --
--- Creation: Jan 01, 2024 at 03:47 AM
--- Last update: Jan 01, 2024 at 08:20 AM
---
 
-DROP TABLE IF EXISTS `user_customer`;
-CREATE TABLE IF NOT EXISTS `user_customer` (
-  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_customer` (
+  `customer_id` int(11) NOT NULL,
   `user_name` varchar(20) NOT NULL,
   `password` varchar(100) NOT NULL,
   `name` varchar(40) NOT NULL,
   `balance` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `phone_number` varchar(10) NOT NULL,
-  PRIMARY KEY (`customer_id`),
-  UNIQUE KEY `user_name` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELATIONSHIPS FOR TABLE `user_customer`:
---
+  `phone_number` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_customer`
@@ -292,12 +211,9 @@ INSERT INTO `user_customer` (`customer_id`, `user_name`, `password`, `name`, `ba
 --
 -- Table structure for table `user_provider`
 --
--- Creation: Jan 01, 2024 at 03:47 AM
---
 
-DROP TABLE IF EXISTS `user_provider`;
-CREATE TABLE IF NOT EXISTS `user_provider` (
-  `provider_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_provider` (
+  `provider_id` int(11) NOT NULL,
   `user_name` varchar(20) NOT NULL,
   `password` varchar(100) NOT NULL,
   `name` varchar(40) NOT NULL,
@@ -307,14 +223,8 @@ CREATE TABLE IF NOT EXISTS `user_provider` (
   `town` varchar(20) NOT NULL,
   `street` varchar(40) NOT NULL,
   `phone_number` varchar(10) NOT NULL,
-  `rate` decimal(10,2) NOT NULL DEFAULT 0.00,
-  PRIMARY KEY (`provider_id`),
-  UNIQUE KEY `user_name` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELATIONSHIPS FOR TABLE `user_provider`:
---
+  `rate` decimal(10,2) NOT NULL DEFAULT 0.00
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_provider`
@@ -328,6 +238,73 @@ INSERT INTO `user_provider` (`provider_id`, `user_name`, `password`, `name`, `ba
 (6, 'provider5', '$2b$10$OJMCJUgo7wzJ.1HcFB2RLuPseSzAown7MAp09TFrzhwRwzMEs70fW', 'Phạm Thành', 0.00, 'TP Hồ Chí Minh', 'Quận 12', 'Phường 12', '296 Tô Hiến Thành', '0974584856', 4.00),
 (7, 'provider6', '$2b$10$/5VLno5RYfpQGveWGlZUFueIyE6dqb1ashP8N2i5uUY5GhxHSn/jq', 'Phan Lê Hoàng An', 0.00, 'Tỉnh Bắc Ninh', 'Huyện Yên Phong', 'Xã Trung Nghĩa', '16 Võ Văn Ngân', '0974584832', 4.60),
 (8, 'provider7', '$2b$10$JEYWbDehukLRZNO8.2OFZu2LUKue4KHBKCXOMqgQ/wRPNOGx7BPJW', 'Phùng Thanh', 0.00, 'Tỉnh Phú Thọ', 'Huyện Tân Sơn', 'Xã Xuân Đài', '254 Tô Hiến Thành', '0974584556', 4.00);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `agreement`
+--
+ALTER TABLE `agreement`
+  ADD PRIMARY KEY (`agreement_id`),
+  ADD KEY `order_id` (`order_id`);
+
+--
+-- Indexes for table `repair_type`
+--
+ALTER TABLE `repair_type`
+  ADD PRIMARY KEY (`provider_id`,`repair_type`);
+
+--
+-- Indexes for table `service_order`
+--
+ALTER TABLE `service_order`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `provider_id` (`provider_id`);
+
+--
+-- Indexes for table `user_customer`
+--
+ALTER TABLE `user_customer`
+  ADD PRIMARY KEY (`customer_id`),
+  ADD UNIQUE KEY `user_name` (`user_name`);
+
+--
+-- Indexes for table `user_provider`
+--
+ALTER TABLE `user_provider`
+  ADD PRIMARY KEY (`provider_id`),
+  ADD UNIQUE KEY `user_name` (`user_name`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `agreement`
+--
+ALTER TABLE `agreement`
+  MODIFY `agreement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `service_order`
+--
+ALTER TABLE `service_order`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `user_customer`
+--
+ALTER TABLE `user_customer`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `user_provider`
+--
+ALTER TABLE `user_provider`
+  MODIFY `provider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

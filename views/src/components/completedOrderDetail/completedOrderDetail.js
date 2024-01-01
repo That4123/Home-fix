@@ -202,15 +202,13 @@ function CompletedOrder() {
         <div className="col-8">
           <div className="fw-bold fs-3 mb-3">Nội dung sửa chữa</div>
           <div className="container mb-3">
-            <div className="fs-3 c-gray">Mô tả</div>
-            <div className="fs-4 fst-italic">
-              {completedOrder.text_description}
-            </div>
+            <div className="fs-3 c-gray">Ghi chú sửa chữa</div>
+            <div className="fs-4 ps-3">{completedOrder.description}</div>
           </div>
           <hr></hr>
           <div className="container mb-3">
             <div className="fs-3 c-gray">Tình trạng hoàn thành</div>
-            <div className="fs-4 fst-italic">
+            <div className="fs-4 ps-3">
               {completedOrder.fixed === "total"
                 ? "Toàn bộ"
                 : completedOrder.fixed === "partial"
