@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Modal from 'react-modal'
 import providerAvt from './provider_avt.jpg';
+import providerBanner from './provider_banner.jpg'
 import './providerInfo.css';
 import Cookies from 'universal-cookie';
 // import {ModalActionNoti} from '../RequestQueue'
@@ -10,18 +11,44 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const token = cookies.get('TOKEN');
 function ProviderInfo()  {
+    const [signIn, setSignIn] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
     const [providerProfile, setProviderInfo] = useState(null);
     const [responseMessage, setResponseMessage] = useState(null);
     const [isModalNotiOpen, setModalNoti] = useState(false);
-    const {user_name} = useParams();
+    const user_name = cookies.get("USER_NAME");
     const [isEditing, setIsEditing] = useState(false);
     const [reFresh, setReFresh] = useState(0)
     const [message, setMessage] = useState()
     const [isModalAcceptOrder,setModalAcceptOrder]=useState(false);
     const [editContent, setEditContent] = useState(null)
+    const [role, setRole] = useState();
+    const [feedBack, setFeedBack] = useState();
+    const [providerId, setProviderId] = useState();
       
+  
     useEffect(() => {
+      // const token = cookies.get("TOKEN");
+      if (!token) {
+        setSignIn(false);
+      }
+      else {
+        axios.post("/api/signin/role", { user_name })
+        .then((response) => {
+          setRole(response.data.role);
+          // setRole("customer");
+          console.log(user_name);
+          console.log(response.data.role);
+        }).catch((error) => {
+          console.log(error);
+        })
+      }
+    }, [])
+
+
+
+    useEffect(() => {
+      if(role === "provider"){
       axios
         .post('/api/providerInfo', {
           // customerId:3,
@@ -32,13 +59,47 @@ function ProviderInfo()  {
         })
         .then((response) => {
           setErrorMessage('');
+          console.log(response.data)
+          setProviderInfo(response.data.allInfo[0]);
+        })
+        .catch((error) => {
+          setErrorMessage(error.response.data.message);
+          console.error(error.response.data.message);
+        });}
+        else if (role === "customer"){
+          //const pro_id = useParams();
+          let pro_id = 2
+          setProviderId(pro_id);
+      axios
+        .post ('/api/providerInfo/cusview', {provider_id: pro_id})
+        .then((response) => {
+          setErrorMessage('');
+          console.log(response.data)
           setProviderInfo(response.data.allInfo[0]);
         })
         .catch((error) => {
           setErrorMessage(error.response.data.message);
           console.error(error.response.data.message);
         });
-    }, [reFresh]);
+        }
+        else{
+
+        }
+    }, [role,reFresh]);
+
+    useEffect(() => {
+      axios
+        .post ('/api/providerInfo/feedback', {provider_id: providerId})
+        .then((response) => {
+          setErrorMessage('');
+          setFeedBack(response.data.allFeedBack);
+        })
+        .catch((error) => {
+          setErrorMessage(error.response.data.message);
+          console.error(error.response.data.message);
+        });
+    }, [providerId])
+    
     const handleEditClick = (provider) => {
       let editInfo = {
         name: provider.name,
@@ -75,6 +136,8 @@ function ProviderInfo()  {
       setEditContent((prevInfo) => ({ ...prevInfo, [name]: value }));
     };
   
+    if (role === "provider") {
+      
     return (
       <div>
         {providerProfile && (
@@ -150,5 +213,68 @@ function ProviderInfo()  {
         )}
       </div>
     )
+  }
+  else if (role === "customer") {
+  return (
+    <div>
+      {providerProfile&&feedBack&&(
+        <div className='ProfileCusView'>
+      <p>Thông tin nhà cung cấp dịch vụ</p>
+      
+      <div className=' Column1'>
+      <img className ="img1 "src={providerAvt} alt='Provider Avatar'/>
+
+      
+      <div className='Profile-block'>
+        <p >Dịch vụ sửa chữa: {providerProfile.name}</p>
+        <ul>
+          <li>Địa chỉ: {providerProfile.street}, {providerProfile.town}, {providerProfile.district}, {providerProfile.province}</li>
+          <li>SĐT liên hệ: {providerProfile.phone_number}</li>
+          <li>Hoạt động: 24/7. Tất cả các ngày trong tuần và ngày lễ</li>
+          <li>Loại sửa chữa: { providerProfile.repair_types.join(", ")}</li>
+        </ul>
+      </div>
+      <div className='RateCircle'>
+        <p>{providerProfile.rate}</p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" className="star">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg>
+      </div>
+      <img src={providerBanner} alt='Provider Banner'/>
+      </div>
+
+      <div className='Column2'>
+          <button className= "btn btn-light p-2 text-lg w-25" >Xác nhận chọn</button>
+          <button className= "btn btn-light p-2 text-lg w-25" >Nhận thông báo</button>
+          <button className= "btn btn-light p-2 text-lg w-25">Đánh giá nhà cung cấp</button>
+          <button className= "btn btn-light p-2 text-lg w-25">Xem địa chỉ trên google map</button>
+      
+      <div className='FeedBackBlock'> 
+        <p id='feedbacktitle'>Đánh giá hàng đầu</p>
+        <ul className='feedList'>
+        {feedBack.map((feedback, index) => (
+          <li key={index}>
+            <p>Đánh giá số: {feedback.feedback_id}</p>
+            <p>Đơn dịch vụ mã số: {feedback.order_id}</p>
+            <p>Đánh giá: {feedback.rate}/5 </p>
+            <p>Nội dung: {feedback.comment}</p>
+            </li>
+        ))}
+        </ul>
+      </div>
+      
+      </div>
+      
+
+       </div>
+
+        
+      )}
+
+
+    </div>
+  )
+  }
+  else return (<></>)
 }
 export default ProviderInfo;

@@ -331,6 +331,8 @@ INSERT INTO `user_provider` (`provider_id`, `user_name`, `password`, `name`, `ba
 (8, 'provider7', '$2b$10$JEYWbDehukLRZNO8.2OFZu2LUKue4KHBKCXOMqgQ/wRPNOGx7BPJW', 'Phùng Thanh', 0.00, 'Tỉnh Phú Thọ', 'Huyện Tân Sơn', 'Xã Xuân Đài', '254 Tô Hiến Thành', '0974584556', 4.00);
 
 --
+-- Dump data for provider type repair;
+INSERT INTO `repair_type` (`provider_id`, `repair_type`) VALUES (2, 'Nội thất'), (2, 'Đồ gia dụng'), (2, 'Dụng cụ nhà bếp'), (2,'Vật dụng công nghệ');
 -- Constraints for dumped tables
 --
 
@@ -352,6 +354,14 @@ ALTER TABLE `repair_type`
 ALTER TABLE `service_order`
   ADD CONSTRAINT `service_order_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `user_customer` (`customer_id`),
   ADD CONSTRAINT `service_order_ibfk_2` FOREIGN KEY (`provider_id`) REFERENCES `user_provider` (`provider_id`);
+-- Dump data for feedback table
+INSERT INTO feedback (rate, `comment`, order_id) 
+VALUES 
+(5, 'Tuyệt vời lắm, sửa chữa nhanh, nhân viên lại còn nhiệt tình', 3),
+(4, 'Giá tuy hơi mắc nhưng sửa nhanh, chất lượng sửa ổn', 1),
+(5, 'Quá tuyệt vời, không uổng công tin tưởng', 4),
+(5, 'Lần sau tôi sẽ sử dụng dịch vụ ở đây nữa', 2);
+--
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
