@@ -194,6 +194,7 @@ function RequestDetails() {
           <div className="Request-Description">
             <h3>Thông tin</h3>
             <h5>Ngày yêu cầu sửa chữa: {selectedOrder.start_time}</h5>  
+            <h5>Muốn được sửa chữa trước ngày: {selectedOrder.time_range}</h5>  
             <h5>Nhà sửa chữa: {selectedOrder.provider_name}</h5>
             <h5>Trạng thái công việc: {selectedOrder.status}</h5>
           </div>
