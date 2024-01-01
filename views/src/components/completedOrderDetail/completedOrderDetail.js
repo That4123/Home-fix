@@ -59,7 +59,7 @@ function CompletedOrder() {
       )
       .then((response) => {
         setCompletedOrder((prev) => response.data[0]);
-        if (response.data[0].paid == 1) setPaid(1);
+        if (response.data[0].status == "Đã thanh toán") setPaid(1);
       })
       .catch((error) => {});
     axios
@@ -196,7 +196,7 @@ function CompletedOrder() {
         style={{ top: "10px", right: "10px" }}
       >
         Bạn đã thanh toán yêu cầu "{completedOrder.specific_item}"<br></br>
-        Tài khoản -{totalCost.toLocaleString()} VND
+        với số tiền {totalCost.toLocaleString()} VND
       </div>
       <div className="row w-100 border-bottom mt-3">
         <div className="col-8">
