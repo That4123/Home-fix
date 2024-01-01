@@ -52,6 +52,7 @@ const InformationForm = () => {
     provider: "",
     providerId: "",
   });
+  
   const [errorMessage,setErrorMessage]=useState('');
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -109,6 +110,16 @@ const InformationForm = () => {
         console.log("send information, handle submit success");
         setErrorMessage(response.data.message);
         openModelSubmit();
+        setFormData({
+          itemType: "",
+          specificItem: "",
+          textDescription: "",
+          imageDescription: "",
+          position: [],
+          meetingTimeSchedule: "",
+          provider: "",
+          providerId: "",
+        })
       })
       .catch((error) => {
         console.log("send information, handle submit fail");

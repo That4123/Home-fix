@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from "react";
 import Modal from 'react-modal';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const ProviderForm= ({ formData, onProviderChange })=> {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [providers, setProviders] = useState([]);
     const [selectedProvider, setSelectedProvider] = useState(null);
     const [sortOption, setSortOption] = useState("");
-
+    const navigate = useNavigate();
     const handleFindClick = (e) => {
         e.preventDefault();
         axios.post("/api/sendInformation/getProviders")
@@ -30,6 +31,16 @@ export const ProviderForm= ({ formData, onProviderChange })=> {
             target: {
                 name: "provider",
                 value: selectedProvider,
+            },
+        });
+        setModalIsOpen(false);
+    }
+    const handleViewProvider = (item) => {
+        window.open(`/providerInfo/${item.provider_id}`, '_blank');
+        onProviderChange({
+            target: {
+                name: "provider",
+                value: item,
             },
         });
         setModalIsOpen(false);
@@ -99,6 +110,7 @@ export const ProviderForm= ({ formData, onProviderChange })=> {
                             <th>Đánh giá</th>
                             <th>Liên hệ</th>
                             <th>Chọn</th>   
+                            <th>Xem</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -112,6 +124,9 @@ export const ProviderForm= ({ formData, onProviderChange })=> {
                                 <td>{item.phone_number}</td>
                                 <td>
                                     <input type="radio" name="provider" onChange={() => setSelectedProvider(item)}/>
+                                </td>
+                                <td>
+                                    <button onClick={()=>handleViewProvider(item)}>Xem</button>
                                 </td>
                             </tr>
                         ))}

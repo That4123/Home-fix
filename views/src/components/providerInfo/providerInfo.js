@@ -6,6 +6,7 @@ import providerAvt from './provider_avt.jpg';
 import providerBanner from './provider_banner.jpg'
 import './providerInfo.css';
 import Cookies from 'universal-cookie';
+import { useNavigate } from 'react-router-dom';
 // import {ModalActionNoti} from '../RequestQueue'
 
 const cookies = new Cookies();
@@ -25,7 +26,12 @@ function ProviderInfo()  {
     const [role, setRole] = useState();
     const [feedBack, setFeedBack] = useState();
     const [providerId, setProviderId] = useState();
-      
+    const navigate = useNavigate();
+    const {provider_id} = useParams()
+    useEffect(() => {
+      setProviderId(provider_id);
+      console.log(provider_id);
+    }, []);
   
     useEffect(() => {
       // const token = cookies.get("TOKEN");
@@ -67,11 +73,10 @@ function ProviderInfo()  {
           console.error(error.response.data.message);
         });}
         else if (role === "customer"){
-          //const pro_id = useParams();
-          let pro_id = 2
-          setProviderId(pro_id);
+          
+         
       axios
-        .post ('/api/providerInfo/cusview', {provider_id: pro_id})
+        .post ('/api/providerInfo/cusview', {provider_id: providerId})
         .then((response) => {
           setErrorMessage('');
           console.log(response.data)
@@ -135,6 +140,10 @@ function ProviderInfo()  {
       const { name, value } = event.target;
       setEditContent((prevInfo) => ({ ...prevInfo, [name]: value }));
     };
+    const handleSelect = () => {
+      window.close();
+      
+    }
   
     if (role === "provider") {
       
@@ -244,7 +253,7 @@ function ProviderInfo()  {
       </div>
 
       <div className='Column2'>
-          <button className= "btn btn-light p-2 text-lg w-25" >Xác nhận chọn</button>
+          <button className= "btn btn-light p-2 text-lg w-25" onClick={()=>handleSelect()}>Xác nhận chọn</button>
           <button className= "btn btn-light p-2 text-lg w-25" >Nhận thông báo</button>
           <button className= "btn btn-light p-2 text-lg w-25">Đánh giá nhà cung cấp</button>
           <button className= "btn btn-light p-2 text-lg w-25">Xem địa chỉ trên google map</button>

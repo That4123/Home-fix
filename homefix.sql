@@ -154,10 +154,11 @@ INSERT INTO `completedorderpricelist` (`component_id`, `order_id`, `component_na
 
 DROP TABLE IF EXISTS `feedback`;
 CREATE TABLE IF NOT EXISTS `feedback` (
-  `feedback_id` int(11) NOT NULL,
+  `feedback_id` int(11) NOT NULL auto_increment,
   `rate` smallint(6) NOT NULL,
   `comment` text NOT NULL,
-  `order_id` int(11) NOT NULL
+  `order_id` int(11) NOT NULL,
+   primary key(`feedback_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -168,8 +169,6 @@ CREATE TABLE IF NOT EXISTS `feedback` (
 -- Dumping data for table `feedback`
 --
 
-INSERT INTO `feedback` (`feedback_id`, `rate`, `comment`, `order_id`) VALUES
-(3, 4, 'Dat', 1);
 
 -- --------------------------------------------------------
 
@@ -332,7 +331,7 @@ INSERT INTO `user_provider` (`provider_id`, `user_name`, `password`, `name`, `ba
 
 --
 -- Dump data for provider type repair;
-INSERT INTO `repair_type` (`provider_id`, `repair_type`) VALUES (2, 'Nội thất'), (2, 'Đồ gia dụng'), (2, 'Dụng cụ nhà bếp'), (2,'Vật dụng công nghệ');
+INSERT INTO `repair_type` (`provider_id`, `repair_type`) VALUES (2, 'Đồ gia dụng'), (2, 'Dụng cụ nhà bếp'), (2,'Vật dụng công nghệ');
 -- Constraints for dumped tables
 --
 

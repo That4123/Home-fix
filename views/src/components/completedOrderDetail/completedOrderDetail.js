@@ -195,7 +195,7 @@ function CompletedOrder() {
         className="position-absolute border-gray border-3 px-3 py-3 bg-white d-none"
         style={{ top: "10px", right: "10px" }}
       >
-        Bạn đã thanh toán yêu cầu "{completedOrder.specific_item}"<br></br>
+        Bạn đã thanh toán yêu cầu "{completedOrder.order_id}"<br></br>
         Tài khoản -{totalCost.toLocaleString()} VND
       </div>
       <div className="row w-100 border-bottom mt-3">
@@ -209,9 +209,9 @@ function CompletedOrder() {
           <div className="container mb-3">
             <div className="fs-3 c-gray">Tình trạng hoàn thành</div>
             <div className="fs-4 ps-3">
-              {completedOrder.fixed === "total"
+              {completedOrder.order_status === "total"
                 ? "Toàn bộ"
-                : completedOrder.fixed === "partial"
+                : completedOrder.order_status === "partial"
                 ? "Một phần"
                 : "Không sửa được"}
             </div>

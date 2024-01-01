@@ -61,6 +61,7 @@ function App() {
           path="ProviderOrderQueue/details/:order_id"
           element={<ProviderOrderDetails />}
         />
+        <Route path="providerInfo/:provider_id" element={<ProviderInfo />} />
         <Route path="providerInfo" element={<ProviderInfo />} />
         <Route path="*" element={<NoPage />} />
         <Route path="CompletedOrder" element={<CompletedOrder />} />
