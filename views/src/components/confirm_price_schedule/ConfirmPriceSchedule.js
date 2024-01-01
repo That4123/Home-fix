@@ -144,7 +144,7 @@ function Confirm () {
                         <input type = "number" className="input-order-info" name="Chi phí" onChange = {(e) => setPrice(e.target.value)}/>
                         <label>VND</label>
                     </div>
-                    {info_order[0].status === "Đang chờ thực hiện" && status_send_confirm === "No" &&
+                    {info_order[0].status === "Đang xác nhận" && status_send_confirm === "No" &&
                     <div className="submit-area">
                     Gửi yêu cầu xác nhận xác nhận thông tin yêu cầu
                     <button type="submit"  onClick={handleClickToOpen} > Gửi</button>
@@ -224,12 +224,12 @@ function Confirm () {
                     <div className="submit-area">
                     Xác nhận thông tin yêu cầu:
                    
-                    {info_order[0].status === "Đang chờ thực hiện" && price !== 0 && time !== null && status_confirm === "No" &&
+                    {info_order[0].status === "Đang xác nhận" && price !== 0 && time !== null && status_confirm === "No" &&
                     <button type="submit" onClick={(e) => {handleClickToOpenCustomer(e); handleUpdate()}}> Xác nhận</button>}
                     </div>
-                    {info_order[0].status === "Đang chờ thực hiện" && price === 0 &&
+                    {info_order[0].status === "Đang xác nhận" && price === 0 &&
                     <div>Chưa có yêu cầu xác nhận thông tin yêu cầu từ nhà cung cấp dịch vụ</div>} 
-                    {status_confirm === "Yes" &&
+                    {info_order[0].status === "Đang chờ thực hiện" &&
                     <>Đã xác nhận thành công yêu cầu</>}
                 </div>
                 <Modal
