@@ -1,5 +1,5 @@
-#HƯỚNG DẪN CÀI ĐẶT
-#YÊU CẦU
+###HƯỚNG DẪN CÀI ĐẶT
+###YÊU CẦU
 - Nodejs: https://nodejs.org/en/download
 - XAMPP: https://www.apachefriends.org/download.html
 - Clone tất cả project homefix về máy
@@ -17,4 +17,4 @@
   ### `cd ../`
   ### `npm run dev`
   - Khởi chạy ứng dụng hoàn tất, người dùng có thể truy cập trang web từ http://localhost:3000/.
-  - 
+  
