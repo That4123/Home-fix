@@ -5,15 +5,21 @@ module.exports = {
   getCompletedOrderByCustomerId: [
     authorization_moodel.loadCurMember,
     function (req, res) {
-      console.log(req.cur_member.user_id);
       const customer_id = req.cur_member.user_id;
       completed_order_model.getCompletedOrderByCustomerId(customer_id, res);
     },
   ],
-  getCompletedOrderByOrderId: function (req, res) {
-    const { order_id } = req.query;
-    completed_order_model.getCompletedOrderByOrderId(order_id, res);
-  },
+  getCompletedOrderByOrderId: [
+    authorization_moodel.loadCurMember,
+    function (req, res) {
+      const { order_id } = req.query;
+      const customer_id = req.cur_member.user_id;
+      completed_order_model.getCompletedOrderByOrderId(
+        { order_id: order_id, customer_id: customer_id },
+        res
+      );
+    },
+  ],
   getPicByOrderId: function (req, res) {
     const { order_id } = req.query;
     completed_order_model.getPicByOrderId(order_id, res);

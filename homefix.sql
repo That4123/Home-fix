@@ -226,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `service_order` (
   `street` varchar(50) NOT NULL,
   `start_time` datetime NOT NULL DEFAULT current_timestamp(),
   `time_range` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` enum('Đang xác nhận','Đã hủy','Đã hoàn thành','Đang chờ thực hiện','Xác thực hoàn tất') NOT NULL,
+  `status` enum('Đang xác nhận','Đã hủy','Đã hoàn thành','Đang chờ thực hiện','Xác thực hoàn tất','Đã thanh toán') NOT NULL,
   `customer_id` int(11) NOT NULL,
   `provider_id` int(11) NOT NULL,
   PRIMARY KEY (`order_id`),

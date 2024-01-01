@@ -24,11 +24,12 @@ function getCompletedOrderByCustomerId(req, res) {
 function getCompletedOrderByOrderId(req, res) {
   connect_DB.query(
     `
-        SELECT *
-        FROM completedOrder
-        WHERE order_id = ?;
+    SELECT a.*, b.*
+    FROM completedOrder a LEFT JOIN service_order b 
+    ON a.order_id = b.order_id
+    WHERE b.customer_id = ? and a.order_id = ?;
     `,
-    req,
+    [req.customer_id, req.order_id],
     (err, result, field) => {
       if (err) {
         res.status(500).json({ message: "Không thể lấy thông tin order" });
@@ -167,7 +168,7 @@ function complete(req, res) {
 function paidByOrderId(req, res) {
   connect_DB.query(
     `
-      UPDATE completedOrder SET paid = 1 WHERE order_id = ?
+      UPDATE service_order SET status = "Đã thanh toán" WHERE order_id = ?;
     `,
     req.order_id,
     (err, result, field) => {

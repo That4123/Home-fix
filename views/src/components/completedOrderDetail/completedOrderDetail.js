@@ -16,7 +16,7 @@ import {
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { useParams } from "react-router-dom";
-
+import samplePic from "./samplePic.jpg";
 const cookies = new Cookies();
 
 function CompletedOrder() {
@@ -59,7 +59,7 @@ function CompletedOrder() {
       )
       .then((response) => {
         setCompletedOrder((prev) => response.data[0]);
-        if (response.data[0].paid == 1) setPaid(1);
+        if (response.data[0].status == "Đã thanh toán") setPaid(1);
       })
       .catch((error) => {});
     axios
@@ -196,7 +196,7 @@ function CompletedOrder() {
         style={{ top: "10px", right: "10px" }}
       >
         Bạn đã thanh toán yêu cầu "{completedOrder.order_id}"<br></br>
-        Tài khoản -{totalCost.toLocaleString()} VND
+        với số tiền {totalCost.toLocaleString()} VND
       </div>
       <div className="row w-100 border-bottom mt-3">
         <div className="col-8">
@@ -220,14 +220,9 @@ function CompletedOrder() {
           <div className="container mb-3">
             <div className="fs-3 c-gray">Hình ảnh</div>
             <div className="row">
-              {pic.map((item, index) => (
-                <div className="col-lg-6 mb-3" key={index}>
-                  <img
-                    src={item.image}
-                    className="object-fit-cover w-100"
-                  ></img>
-                </div>
-              ))}
+              <div className="col-lg-6 mb-3">
+                <img src={samplePic} className="object-fit-cover w-100"></img>
+              </div>
             </div>
           </div>
         </div>
