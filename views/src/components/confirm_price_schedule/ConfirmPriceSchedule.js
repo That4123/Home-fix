@@ -106,7 +106,7 @@ function Confirm () {
     if (isReturn && role === "provider") {
         
         return (
-            <div className="background-white">
+            <div className="background-white" style ={{marginBottom: "30px"}}>
                 <div style={{fontSize:"30px"}}>Gửi yêu cầu xác nhận giá sửa chữa và lịch sửa chữa</div>
                 <div className="user-info-area">
                 <div className="user-info">
@@ -190,7 +190,7 @@ function Confirm () {
     else if (isReturn && role === "customer") {
 
         return (
-            <div className="background-white">
+            <div className="background-white" style ={{marginBottom: "30px"}}>
                 <div style={{fontSize:"30px"}}>Xác nhận giá sửa chữa và lịch sửa chữa</div>
                 <div className="user-info-area">
                 <div className="user-info">
